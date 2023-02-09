@@ -111,9 +111,13 @@ public class InfijoaPostfijo {
   }// end evaluar
 
   public static void main(String[] args) {
-    String exp = "(A*B/C)+(D-N/k)^(M+H*F)";
+    Scanner s = new Scanner(System.in);
+    String exp = " ";
+    System.out.println("Ingrese la operacion sin espacios: ");
+    exp=s.nextLine();
     System.out.println("El infijo es: " + exp);
     System.out.println("El postfijo es: " + InfijoaPostfijox(exp));
     Evaluar(InfijoaPostfijox(exp));
+    s.close();
   }// end mian
 }// end class
