@@ -29,7 +29,7 @@ public class ColasDinamicas {
         }//end if
     }//end Imprimir Cola
 
-    public void ImprimirPrimero() {
+    public void PrimerElemento() {
         if (!Vacia()) {
             JOptionPane.showMessageDialog(null,"El primer elemento de la cola es: "+ cola.getFirst());
         } else {
@@ -37,7 +37,7 @@ public class ColasDinamicas {
         }//end if
     }//end Imprimir Primero
 
-    public void ImprimirUltimo() {
+    public void UltimoElemento() {
         if (!Vacia()) {
             JOptionPane.showMessageDialog(null,"El ultimo elemento de la cola es: "+ cola.getLast());
         } else {
@@ -49,5 +49,48 @@ public class ColasDinamicas {
         JOptionPane.showMessageDialog(null, "La antidad e elemtnos de la cola es: "+ cola.size());
     }
 
-    
+    public static void main(String[] args) {
+        ColasDinamicas cola = new ColasDinamicas();
+        int opcion = 0;
+        while (opcion != 7) {
+            String menu = "Menú de opciones:\n" +
+                    "1. Agregar elemento\n" +
+                    "2. Eliminar elemento\n" +
+                    "3. Ver elementos de la cola\n" +
+                    "4. Imprimir el último elemento\n" +
+                    "5. Imprimir el primer elemento\n" +
+                    "6. Cantidad de elementos\n" +
+                    "7. Salir\n" +
+                    "Elige una opción: ";
+            String input = JOptionPane.showInputDialog(menu);
+            opcion = Integer.parseInt(input);
+
+            switch (opcion) {
+                case 1:
+                    String elemento = JOptionPane.showInputDialog("Ingrese el valor: ");
+                    int xelemento = Integer.parseInt(elemento);
+                    cola.Insertar(xelemento);
+                    break;
+                case 2:
+                    cola.Eliminar();
+                    break;
+                case 3:
+                    cola.ImpimirCola();
+                    break;
+                case 4:
+                    cola.UltimoElemento();
+                    break;
+                case 5:
+                    cola.PrimerElemento();
+                    break;
+                case 6:
+                    cola.CantidadElementos();
+                    break;
+                case 7:
+                    JOptionPane.showMessageDialog(null, "Saliendo del programa...");
+                    break;
+            }// end swhitch
+        } // end while
+    }// end main
+
 }//ens class
