@@ -28,5 +28,13 @@ public class ColasDinamicas {
             JOptionPane.showMessageDialog(null, "La cola esta vacia");
         }//end if
     }//end Imprimir Cola
+
+    public void ImprimirUltimo() {
+        if (!Vacia()) {
+            JOptionPane.showMessageDialog(null, cola.getLast());
+        } else {
+            JOptionPane.showMessageDialog(null, "La cola esta vacia");
+        }//end if
+    }//end Imprimir Cola
     
 }//ens class
