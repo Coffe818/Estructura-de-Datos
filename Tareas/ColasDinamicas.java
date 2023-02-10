@@ -29,12 +29,21 @@ public class ColasDinamicas {
         }//end if
     }//end Imprimir Cola
 
+    public void ImprimirPrimero() {
+        if (!Vacia()) {
+            JOptionPane.showMessageDialog(null,"El primer elemento de la cola es: "+ cola.getFirst());
+        } else {
+            JOptionPane.showMessageDialog(null, "La cola esta vacia");
+        }//end if
+    }//end Imprimir Primero
+
     public void ImprimirUltimo() {
         if (!Vacia()) {
-            JOptionPane.showMessageDialog(null, cola.getLast());
+            JOptionPane.showMessageDialog(null,"El ultimo elemento de la cola es: "+ cola.getLast());
         } else {
             JOptionPane.showMessageDialog(null, "La cola esta vacia");
         }//end if
     }//end Imprimir Cola
+
     
 }//ens class
