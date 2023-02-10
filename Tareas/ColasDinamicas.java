@@ -20,4 +20,13 @@ public class ColasDinamicas {
             JOptionPane.showMessageDialog(null, "La cola esta vacia");
         }//end if else
     }//end eliminar
+
+    public void ImpimirCola() {
+        if (!Vacia()) {
+            JOptionPane.showMessageDialog(null, cola);
+        } else {
+            JOptionPane.showMessageDialog(null, "La cola esta vacia");
+        }//end if
+    }//end Imprimir Cola
+    
 }//ens class
