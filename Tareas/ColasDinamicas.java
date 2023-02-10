@@ -6,4 +6,8 @@ public class ColasDinamicas {
     private boolean Vacia() {
         return cola.isEmpty();
     }
+
+    private void Insertar( int x) {
+        cola.add(x);
+    }
 }//ens class
