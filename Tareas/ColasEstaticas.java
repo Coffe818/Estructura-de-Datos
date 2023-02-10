@@ -9,19 +9,11 @@ public class ColasEstaticas {
     
 
     public boolean Vacia() {
-        if (inicio == fin) {
-            return true;
-        } else {
-            return false;
-        }
+        return inicio == fin; 
     }// end vacia
 
     public boolean Llena() {
-        if (fin == inicio) {
-            return true;
-        } else {
-            return false;
-        }
+        return fin == inicio;
     }// end llena
 
     public void Insertar(int elemento) {
