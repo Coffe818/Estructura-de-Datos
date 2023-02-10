@@ -45,5 +45,9 @@ public class ColasDinamicas {
         }//end if
     }//end Imprimir Cola
 
+    public void CantidadElementos() {
+        JOptionPane.showMessageDialog(null, "La antidad e elemtnos de la cola es: "+ cola.size());
+    }
+
     
 }//ens class
