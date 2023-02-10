@@ -122,7 +122,7 @@ public class ColasEstaticas {
                     cola.CantidadElementos();
                     break;
                 case 7:
-                    JOptionPane.showMessageDialog(null, "Saliendo del programa");
+                    JOptionPane.showMessageDialog(null, "Saliendo del programa...");
                     break;
             }// end swhitch
         } // end while
