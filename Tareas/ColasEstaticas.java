@@ -21,6 +21,7 @@ public class ColasEstaticas {
         fin = (fin + 1) % max;
         if (!Llena()) {
             cola[fin] = elemento;
+            cantidad++;
         } else {
             fin = temp;
             JOptionPane.showMessageDialog(null, "La cola esta llena");
@@ -33,6 +34,7 @@ public class ColasEstaticas {
             inicio = (inicio + 1) % max;
             int elemento = cola[inicio];
             JOptionPane.showMessageDialog(null, "Elemento " + elemento + " borrado correctamente");
+            cantidad--;
         } else {
             JOptionPane.showMessageDialog(null, "La cola esta vacía");
         } // end if else
@@ -77,7 +79,7 @@ public class ColasEstaticas {
 
     public void CantidadElementos() {
         if (!Vacia()) {
-            JOptionPane.showMessageDialog(null, "En la cola existen " + "x" + " de elementos");
+            JOptionPane.showMessageDialog(null, "En la cola existen " + cantidad + " de elementos");
         } else {
             JOptionPane.showMessageDialog(null, "La cola esta vacia");
 
