@@ -60,5 +60,44 @@ public class Problema_Estacionamiento2 {
         return colaPrincipal.peek();
     }// end ultimo vehiculo
 
+    public static void main(String[] args) {
+        int opcion = 0;
+        Problema_Estacionamiento pila = new Problema_Estacionamiento();
+
+        while (opcion != 6) {
+            String menu = "1. Insertar vehículo\n" +
+                    "2. Eliminar vehículo\n" +
+                    "3. Imprimir vehículos\n" +
+                    "4. Número de vehículos\n" +
+                    "5. Ultimo vehículo insertado\n" +
+                    "6. Salir\n" +
+                    "Seleccione una opción: ";
+            String opcionString = JOptionPane.showInputDialog(menu);
+            opcion = Integer.parseInt(opcionString);
+
+            switch (opcion) {
+                case 1:
+
+                    pila.insertarVehiculo(JOptionPane.showInputDialog("Ingrese la placa del vehículo:"));
+                    break;
+                case 2:
+                    pila.eliminarVehiculo(JOptionPane.showInputDialog("Placas disponibles para eliminar:\n" + pila.imprimirVehiculos()));
+                    break;
+                case 3:
+                    JOptionPane.showMessageDialog(null, pila.imprimirVehiculos());
+                    break;
+                case 4:
+                    JOptionPane.showMessageDialog(null,
+                            "Número de vehiculos en el estacionamiento: " + pila.numeroVehiculos());
+
+                    break;
+                case 5:
+                    JOptionPane.showMessageDialog(null, "Ultimo vehículo insertado: " + pila.ultimoVehiculo());
+                    break;
+                case 6:
+                    JOptionPane.showMessageDialog(null, "Hasta luego");
+            }// end switcH
+        } // end while
+    }// end main
 
 }// end class
