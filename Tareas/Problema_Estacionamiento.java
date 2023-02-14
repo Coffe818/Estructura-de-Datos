@@ -69,7 +69,7 @@ public class Problema_Estacionamiento {
                     break;
                 
                 case 3:
-                    pila.imprimirVehiculos();
+                  JOptionPane.showMessageDialog( null, pila.imprimirVehiculos());
                     break;
                 case 4:
                     JOptionPane.showMessageDialog(null,"Número de vehiculos en el estacionamiento: "+ pila.numeroVehiculos());
