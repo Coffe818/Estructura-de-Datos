@@ -43,5 +43,22 @@ public class Problema_Estacionamiento2 {
         } // end if else
     }// end elimiar placa
 
+    public void imprimirVehiculos() {
+        if (Vacia()) {
+            JOptionPane.showMessageDialog(null, "La cola esta vacia");
+        } else {
+            JOptionPane.showMessageDialog(null, colaPrincipal);
+        }
+
+    }// end imprimir Vehiculos
+
+    public int numeroVehiculos() {
+        return colaPrincipal.size();
+    }// end numero Vehiculos
+
+    public String ultimoVehiculo() {
+        return colaPrincipal.peek();
+    }// end ultimo vehiculo
+
 
 }// end class
