@@ -79,10 +79,10 @@ public class Problema_Estacionamiento {
                 JOptionPane.showMessageDialog(null, "Ultimo vehículo insertado: " + pila.ultimoVehiculo());
                     break;
                 case 6:
-                JOptionPane.showInputDialog("Hasta luego");
+                JOptionPane.showMessageDialog(null, "Hasta luego");
             }// end switcH
         } // end while
-       // sc.close();
+       
     }// end main
 
 }// end class
