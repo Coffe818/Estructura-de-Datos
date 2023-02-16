@@ -21,7 +21,7 @@ public class Problema_Estacionamiento2 {
 
     public void insertarVehiculo(String placa) {
         placa = placa.trim();// elimiana los espacios a la inicio y final de la palabra
-        colaPrincipal.push(placa);
+        colaPrincipal.add(placa);
     }// end insertar Vehiculo
 
     public void eliminarVehiculo(String placa) {
@@ -31,11 +31,11 @@ public class Problema_Estacionamiento2 {
             if (colaPrincipal.getLast().equals(placa)) {
                 colaPrincipal.poll();
             } else {
-                while (!colaPrincipal.getLast().equals(placa)) {
+                while (!colaPrincipal.getFirst().equals(placa)) {
                     pilaTemporal.push(colaPrincipal.poll());
                 } // end while
                 colaPrincipal.poll();
-                while (!pilaTemporal.empty()) {
+                while (!pilaTemporal.isEmpty()) {
                     colaPrincipal.add(pilaTemporal.pop());
                 } // end while
                 JOptionPane.showMessageDialog(null, "Se eliminó el vehículo: " + placa);
@@ -52,7 +52,7 @@ public class Problema_Estacionamiento2 {
     }// end numero Vehiculos
 
     public String ultimoVehiculo() {
-        return colaPrincipal.peek();
+        return colaPrincipal.getLast();
     }// end ultimo vehiculo
 
     public Stack<String> ImprimirPila() {        
@@ -63,7 +63,7 @@ public class Problema_Estacionamiento2 {
         int opcion = 0;
         Problema_Estacionamiento2 cola = new Problema_Estacionamiento2();
 
-        while (opcion != 6) {
+        while (opcion !=7 ) {
             String menu = "1. Insertar vehículo\n" +
                     "2. Eliminar vehículo\n" +
                     "3. Imprimir vehículos\n" +
