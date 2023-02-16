@@ -96,11 +96,7 @@ public class Problema_Estacionamiento2 {
                     JOptionPane.showMessageDialog(null, "Ultimo vehículo insertado: " + cola.ultimoVehiculo());
                     break;
                 case 6:
-                if (cola.Vacia()) {
-                    JOptionPane.showMessageDialog(null, "La pila esta vacia");
-                } else {
-                    JOptionPane.showMessageDialog(null,"Vehiculos en pila temporal: " + cola.ImprimirPila());
-                }//end if else                               
+                    JOptionPane.showMessageDialog(null,"Vehiculos en pila temporal: " + cola.ImprimirPila());                          
                 break;
                 case 7:
                     JOptionPane.showMessageDialog(null, "Hasta luego");
