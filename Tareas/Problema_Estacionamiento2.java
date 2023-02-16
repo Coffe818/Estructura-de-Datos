@@ -28,28 +28,23 @@ public class Problema_Estacionamiento2 {
         if (Vacia()) {
             JOptionPane.showInputDialog("La cola esta vacia");
         } else {
-            if (colaPrincipal.peek().equals(placa)) {
-                colaPrincipal.pop();
+            if (colaPrincipal.getLast().equals(placa)) {
+                colaPrincipal.poll();
             } else {
-                while (!colaPrincipal.peek().equals(placa)) {
-                    pilaTemporal.push(colaPrincipal.pop());
+                while (!colaPrincipal.getLast().equals(placa)) {
+                    pilaTemporal.push(colaPrincipal.poll());
                 } // end while
-                colaPrincipal.pop();
+                colaPrincipal.poll();
                 while (!pilaTemporal.empty()) {
-                    colaPrincipal.push(pilaTemporal.pop());
+                    colaPrincipal.add(pilaTemporal.pop());
                 } // end while
                 JOptionPane.showMessageDialog(null, "Se eliminó el vehículo: " + placa);
             } // end if else
         } // end if else
     }// end elimiar placa
 
-    public void imprimirVehiculos() {
-        if (Vacia()) {
-            JOptionPane.showMessageDialog(null, "La cola esta vacia");
-        } else {
-            JOptionPane.showMessageDialog(null, colaPrincipal);
-        }
-
+    public LinkedList<String> imprimirVehiculos() {
+            return colaPrincipal;
     }// end imprimir Vehiculos
 
     public int numeroVehiculos() {
@@ -60,9 +55,13 @@ public class Problema_Estacionamiento2 {
         return colaPrincipal.peek();
     }// end ultimo vehiculo
 
+    public Stack<String> ImprimirPila() {        
+            return pilaTemporal;
+    }//end imprimir pila
+
     public static void main(String[] args) {
         int opcion = 0;
-        Problema_Estacionamiento pila = new Problema_Estacionamiento();
+        Problema_Estacionamiento2 cola = new Problema_Estacionamiento2();
 
         while (opcion != 6) {
             String menu = "1. Insertar vehículo\n" +
@@ -70,33 +69,42 @@ public class Problema_Estacionamiento2 {
                     "3. Imprimir vehículos\n" +
                     "4. Número de vehículos\n" +
                     "5. Ultimo vehículo insertado\n" +
-                    "6. Salir\n" +
+                    "6. Mostrar pila\n"+
+                    "7. Salir\n" +
                     "Seleccione una opción: ";
             String opcionString = JOptionPane.showInputDialog(menu);
             opcion = Integer.parseInt(opcionString);
 
             switch (opcion) {
                 case 1:
-
-                    pila.insertarVehiculo(JOptionPane.showInputDialog("Ingrese la placa del vehículo:"));
+                cola.insertarVehiculo(JOptionPane.showInputDialog("Ingrese la placa del vehículo:"));
                     break;
                 case 2:
-                    pila.eliminarVehiculo(JOptionPane.showInputDialog("Placas disponibles para eliminar:\n" + pila.imprimirVehiculos()));
+                cola.eliminarVehiculo(JOptionPane.showInputDialog(null,"Placas disponibles para eliminar:\n" + cola.imprimirVehiculos() ));
                     break;
                 case 3:
-                    JOptionPane.showMessageDialog(null, pila.imprimirVehiculos());
+                if (cola.Vacia()) {
+                    JOptionPane.showMessageDialog(null, "La pila esta vacia");
+                } else {
+                    JOptionPane.showMessageDialog(null,  cola.imprimirVehiculos());
+                }//end if else                    
                     break;
                 case 4:
-                    JOptionPane.showMessageDialog(null,
-                            "Número de vehiculos en el estacionamiento: " + pila.numeroVehiculos());
-
+                    JOptionPane.showMessageDialog(null, "Número de vehiculos en el estacionamiento: " + cola.numeroVehiculos());
                     break;
                 case 5:
-                    JOptionPane.showMessageDialog(null, "Ultimo vehículo insertado: " + pila.ultimoVehiculo());
+                    JOptionPane.showMessageDialog(null, "Ultimo vehículo insertado: " + cola.ultimoVehiculo());
                     break;
                 case 6:
+                if (cola.Vacia()) {
+                    JOptionPane.showMessageDialog(null, "La pila esta vacia");
+                } else {
+                    JOptionPane.showMessageDialog(null,"Vehiculos en pila temporal: " + cola.ImprimirPila());
+                }//end if else                               
+                break;
+                case 7:
                     JOptionPane.showMessageDialog(null, "Hasta luego");
-            }// end switcH
+            }// end switcH 
         } // end while
     }// end main
 
