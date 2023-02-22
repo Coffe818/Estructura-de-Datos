@@ -111,4 +111,17 @@ public class ListaEncadenadaSimple {
         }//end if else que verifica si esta vacia o no
     }//end Borrar
 
+    public void ImprimirPorDepto(int depto) {
+        if (!Vacia()) {
+            temp = first;
+            
+            while (temp != null) {
+                if (temp.depto == depto) {
+                    System.out.println(temp.numEmp + "\t" + temp.nombre + "\t" + temp.depto + "\t" + temp.sueldo);
+                }// end if para imprimir
+                
+                temp = temp.next;
+            }//end while que recorre siempre e imprime siempre que sea el depto correspondiente
+        }//end if
+    }//end Imprimir Por Depto
 }// end class
