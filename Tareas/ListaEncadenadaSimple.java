@@ -105,6 +105,7 @@ public class ListaEncadenadaSimple {
             System.out.println("Esta vacia la lista");
         }//end if else que verifica si esta vacia o no
     }//end Borrar
+
     public void IimprimirTodo() {
         if (!Vacia()) {
             temp = first;
@@ -131,7 +132,6 @@ public class ListaEncadenadaSimple {
             }//end while que recorre siempre e imprime siempre que sea el depto correspondiente
         }//end if
     }//end Imprimir Por Depto
-
     
     public void ImprimirPrimerElemento() {
         if (!Vacia()) {
