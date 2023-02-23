@@ -22,8 +22,7 @@ public class ListaEncadenadaSimple {
     Nodo ant;
     Nodo temp;
     Nodo nuevoNodo;
-    int Contador;
-
+    
     public ListaEncadenadaSimple() {
         this.first = null;
         this.ant = null;
@@ -144,4 +143,28 @@ public class ListaEncadenadaSimple {
         
         System.out.println("La cantidad de epleados es dees de: "+contador);
     }//end Tamano
+
+    public void ImprimirPorSueldo(double xSal) {
+        temp = first;
+        while (temp != null) {
+            if (temp.sueldo >= xSal) {
+                System.out.println("NumEmp: " + temp.numEmp + ", Nombre: " + temp.nombre + ", Depto: " + temp.depto + ", Sueldo: " + temp.sueldo);
+            }//end if
+            temp = temp.next;
+        }//end while
+    }//end Imprimir por sueldo
+
+    public void Invertir() {
+            ant = null;
+            temp = first;
+            first = null;
+            while (temp != null) {
+                ant = temp;
+                temp = temp.next;
+                ant.next = first;
+                first = ant;
+            }// end while que recorre e invierte la direccion de los apuntadores, para asi invertirlos
+    }//end Invertir
+        
+    
 }// end class
