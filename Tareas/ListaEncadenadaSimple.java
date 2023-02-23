@@ -93,12 +93,13 @@ public class ListaEncadenadaSimple {
     public void ImprimirTodo() {
         if (!Vacia()) {
             temp = first;
-
+            String mensaje="";
             while (temp != null) {
-                JOptionPane.showMessageDialog(null,
-                        temp.numEmp + "\t" + temp.nombre + "\t" + temp.depto + "\t" + temp.sueldo);
+                mensaje += temp.numEmp + "  " + temp.nombre + "  " + temp.depto + "  " + temp.sueldo+"\n";
+                
                 temp = temp.next;
             } // end while para imprimir
+            JOptionPane.showMessageDialog(null, mensaje);
         } else {
             System.out.println("La lista esta vacia");
         } // end if else
@@ -107,23 +108,23 @@ public class ListaEncadenadaSimple {
     public void ImprimirPorDepto(int depto) {
         if (!Vacia()) {
             temp = first;
-
+            String mensaje="";
             while (temp != null) {
                 if (temp.depto == depto) {
-                    JOptionPane.showMessageDialog(null,
-                            temp.numEmp + "\t" + temp.nombre + "\t" + temp.depto + "\t" + temp.sueldo);
+                    mensaje += temp.numEmp + "  " + temp.nombre + "  " + temp.depto + "  " + temp.sueldo+"\n";                    
                 } // end if para imprimir al empleado
 
                 temp = temp.next;
             } // end while que recorre siempre e imprime siempre que sea el depto
               // correspondiente
+              JOptionPane.showMessageDialog(null, mensaje);
         } // end if
     }// end Imprimir Por Depto
 
     public void ImprimirPrimerElemento() {
         if (!Vacia()) {
-            JOptionPane.showMessageDialog(null,
-                    first.numEmp + "\t" + first.nombre + "\t" + first.depto + "\t" + first.sueldo);
+            String mensaje = first.numEmp + "  " + first.nombre + "  " + first.depto + "  " + first.sueldo+"\n";
+            JOptionPane.showMessageDialog(null, mensaje);
         } else {
             JOptionPane.showMessageDialog(null, "La lista esta vacia");
         } // end if else
@@ -149,9 +150,8 @@ public class ListaEncadenadaSimple {
         if (!Vacia()) {
             while (temp != null) {
                 if (temp.sueldo >= xSal) {
-                    JOptionPane.showMessageDialog(null,
-                            "NumEmp: " + temp.numEmp + ", Nombre: " + temp.nombre + ", Depto: " + temp.depto
-                                    + ", Sueldo: " + temp.sueldo);
+                    String mensaje = temp.numEmp + "  " + temp.nombre + "  " + temp.depto + "  " + temp.sueldo+"\n";
+                    JOptionPane.showMessageDialog(null, mensaje);
                 } // end if
                 temp = temp.next;
             } // end while
