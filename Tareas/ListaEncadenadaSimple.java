@@ -155,7 +155,7 @@ public class ListaEncadenadaSimple {
             }//end while
         }//end if
         
-        System.out.println("La cantidad de epleados es dees de: "+contador);
+        System.out.println("La cantidad de epleados es de: "+contador);
     }//end Tamano
 
     public void ImprimirPorSueldo(double xSal) {
