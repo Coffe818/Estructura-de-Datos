@@ -1,6 +1,9 @@
 package Tareas;
 
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 public class ListaEncadenadaSimple {
 
@@ -24,6 +27,9 @@ public class ListaEncadenadaSimple {
     Nodo ant;
     Nodo temp;
     Nodo nuevoNodo;
+    DefaultTableModel modelo = new DefaultTableModel();
+    JTable tabla = new JTable();
+    JScrollPane scrollPane = new JScrollPane();
 
     public ListaEncadenadaSimple() {
         this.first = null;
@@ -93,38 +99,60 @@ public class ListaEncadenadaSimple {
     public void ImprimirTodo() {
         if (!Vacia()) {
             temp = first;
-            String mensaje="";
+            modelo = new DefaultTableModel();
+            modelo.addColumn("Num. Emp");
+            modelo.addColumn("Nombre");
+            modelo.addColumn("Depto");
+            modelo.addColumn("Sueldo");
             while (temp != null) {
-                mensaje += temp.numEmp + "  " + temp.nombre + "  " + temp.depto + "  " + temp.sueldo+"\n";
-                
+                Object[] fila = { temp.numEmp, temp.nombre, temp.depto, temp.sueldo };
+                modelo.addRow(fila);
                 temp = temp.next;
             } // end while para imprimir
-            JOptionPane.showMessageDialog(null, mensaje);
+            tabla = new JTable(modelo);
+            scrollPane = new JScrollPane(tabla);
+            JOptionPane.showMessageDialog(null, scrollPane);
         } else {
-            System.out.println("La lista esta vacia");
+            JOptionPane.showMessageDialog(null, "La lista esta vacia");
         } // end if else
     }// en imprimir todo
 
     public void ImprimirPorDepto(int depto) {
         if (!Vacia()) {
             temp = first;
-            String mensaje="";
+            modelo = new DefaultTableModel();
+            modelo.addColumn("Num. Emp");
+            modelo.addColumn("Nombre");
+            modelo.addColumn("Depto");
+            modelo.addColumn("Sueldo");
+
             while (temp != null) {
                 if (temp.depto == depto) {
-                    mensaje += temp.numEmp + "  " + temp.nombre + "  " + temp.depto + "  " + temp.sueldo+"\n";                    
+                    Object[] fila = { temp.numEmp, temp.nombre, temp.depto, temp.sueldo };
+                    modelo.addRow(fila);
                 } // end if para imprimir al empleado
 
                 temp = temp.next;
             } // end while que recorre siempre e imprime siempre que sea el depto
               // correspondiente
-              JOptionPane.showMessageDialog(null, mensaje);
+            tabla = new JTable(modelo);
+            scrollPane = new JScrollPane(tabla);
+            JOptionPane.showMessageDialog(null, scrollPane);
         } // end if
     }// end Imprimir Por Depto
 
     public void ImprimirPrimerElemento() {
         if (!Vacia()) {
-            String mensaje = first.numEmp + "  " + first.nombre + "  " + first.depto + "  " + first.sueldo+"\n";
-            JOptionPane.showMessageDialog(null, mensaje);
+            modelo = new DefaultTableModel();
+            modelo.addColumn("Num. Emp");
+            modelo.addColumn("Nombre");
+            modelo.addColumn("Depto");
+            modelo.addColumn("Sueldo");
+            Object[] fila = { first.numEmp, first.nombre, first.depto, first.sueldo };
+            modelo.addRow(fila);
+            tabla = new JTable(modelo);
+            scrollPane = new JScrollPane(tabla);
+            JOptionPane.showMessageDialog(null, scrollPane);
         } else {
             JOptionPane.showMessageDialog(null, "La lista esta vacia");
         } // end if else
@@ -147,16 +175,23 @@ public class ListaEncadenadaSimple {
 
     public void ImprimirPorSueldo(double xSal) {
         temp = first;
-        String mensaje="";
+        modelo = new DefaultTableModel();
+        modelo.addColumn("Num. Emp");
+        modelo.addColumn("Nombre");
+        modelo.addColumn("Depto");
+        modelo.addColumn("Sueldo");
         if (!Vacia()) {
             while (temp != null) {
                 if (temp.sueldo >= xSal) {
-                    mensaje += temp.numEmp + "  " + temp.nombre + "  " + temp.depto + "  " + temp.sueldo+"\n";
-                    
+                    Object[] fila = { temp.numEmp, temp.nombre, temp.depto, temp.sueldo };
+                    modelo.addRow(fila);
+
                 } // end if
                 temp = temp.next;
             } // end while
-            JOptionPane.showMessageDialog(null, mensaje);
+            tabla = new JTable(modelo);
+            scrollPane = new JScrollPane(tabla);
+            JOptionPane.showMessageDialog(null, scrollPane);
         } else {
             JOptionPane.showMessageDialog(null, "Vacia");
         } // end if
@@ -228,13 +263,13 @@ public class ListaEncadenadaSimple {
                     break;
                 case 8:
                     lista.Invertir();
-                    JOptionPane.showMessageDialog(null,"La lista ha sido invertida");
+                    JOptionPane.showMessageDialog(null, "La lista ha sido invertida");
                     break;
                 case 9:
-                JOptionPane.showMessageDialog(null,"Saliendo del programa...");
+                    JOptionPane.showMessageDialog(null, "Saliendo del programa...");
                     break;
                 default:
-                JOptionPane.showMessageDialog(null,"Opción inválida");
+                    JOptionPane.showMessageDialog(null, "Opción inválida");
                     break;
             }// end switch
         } while (opcion != 0);
