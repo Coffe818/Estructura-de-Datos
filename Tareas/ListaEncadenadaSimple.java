@@ -105,6 +105,18 @@ public class ListaEncadenadaSimple {
             System.out.println("Esta vacia la lista");
         }//end if else que verifica si esta vacia o no
     }//end Borrar
+    public void IimprimirTodo() {
+        if (!Vacia()) {
+            temp = first;
+            
+            while (temp != null) {
+                System.out.println(temp.numEmp + "\t" + temp.nombre + "\t" + temp.depto + "\t" + temp.sueldo);
+                temp = temp.next;
+            }//end while para imprimir
+        }else{
+            System.out.println("La lista esta vacia");
+        }//end if else
+    }//en imprimir todo
 
     public void ImprimirPorDepto(int depto) {
         if (!Vacia()) {
