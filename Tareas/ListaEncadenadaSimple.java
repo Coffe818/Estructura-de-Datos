@@ -76,11 +76,9 @@ public class ListaEncadenadaSimple {
                     if (temp == first) {
                         nuevoNodo.next = first;
                         first = nuevoNodo;
-                        Contador++;
                     } else {
                         nuevoNodo.next = ant.next;
                         ant.next = nuevoNodo;
-                        Contador++;
                     }//end if else que agrega los datos
                 } // end if else que contirne los while
             }//end if donde se valida qeu se repita el numero de empleado           
@@ -98,11 +96,9 @@ public class ListaEncadenadaSimple {
             
             if (temp != null) {
                 if (ant == null) {
-                    first = temp.next; //en caso de que sea el primero
-                    Contador--;
+                    first = temp.next; //en caso de que sea el primero                    
                 } else {
-                    ant.next = temp.next; 
-                    Contador--;
+                    ant.next = temp.next;                     
                 }//end if else para borrar el elemento dependiendo del caso
                 System.out.println("Se ha borrado el empleado numero: "+ numEmp);
             }// end if para borrar elemento
@@ -118,10 +114,34 @@ public class ListaEncadenadaSimple {
             while (temp != null) {
                 if (temp.depto == depto) {
                     System.out.println(temp.numEmp + "\t" + temp.nombre + "\t" + temp.depto + "\t" + temp.sueldo);
-                }// end if para imprimir
+                }// end if para imprimir al empleado 
                 
                 temp = temp.next;
             }//end while que recorre siempre e imprime siempre que sea el depto correspondiente
         }//end if
     }//end Imprimir Por Depto
+
+    
+    public void ImprimirPrimerElemento() {
+        if (!Vacia()) {
+            System.out.println(first.numEmp + "\t" + first.nombre + "\t" + first.depto + "\t" + first.sueldo);
+        }else{
+            System.out.println("La pila esta vacia");
+        }// end if else
+    }//end Imprimir primer elemento
+
+    public void Tamano() {
+        int contador = 0;
+        
+        if (!Vacia()) {
+            temp = first;
+            
+            while (temp != null) {
+                contador++;
+                temp = temp.next;
+            }//end while
+        }//end if
+        
+        System.out.println("La cantidad de epleados es dees de: "+contador);
+    }//end Tamano
 }// end class
