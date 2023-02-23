@@ -147,14 +147,16 @@ public class ListaEncadenadaSimple {
 
     public void ImprimirPorSueldo(double xSal) {
         temp = first;
+        String mensaje="";
         if (!Vacia()) {
             while (temp != null) {
                 if (temp.sueldo >= xSal) {
-                    String mensaje = temp.numEmp + "  " + temp.nombre + "  " + temp.depto + "  " + temp.sueldo+"\n";
-                    JOptionPane.showMessageDialog(null, mensaje);
+                    mensaje += temp.numEmp + "  " + temp.nombre + "  " + temp.depto + "  " + temp.sueldo+"\n";
+                    
                 } // end if
                 temp = temp.next;
             } // end while
+            JOptionPane.showMessageDialog(null, mensaje);
         } else {
             JOptionPane.showMessageDialog(null, "Vacia");
         } // end if
@@ -226,16 +228,15 @@ public class ListaEncadenadaSimple {
                     break;
                 case 8:
                     lista.Invertir();
-                    System.out.println("La lista ha sido invertida");
+                    JOptionPane.showMessageDialog(null,"La lista ha sido invertida");
                     break;
-                case 0:
-                    System.out.println("Saliendo del programa...");
+                case 9:
+                JOptionPane.showMessageDialog(null,"Saliendo del programa...");
                     break;
                 default:
-                    System.out.println("Opción inválida");
+                JOptionPane.showMessageDialog(null,"Opción inválida");
                     break;
             }// end switch
-            System.out.println();
         } while (opcion != 0);
 
     }// end main
