@@ -1,6 +1,6 @@
 package Tareas;
 
-import java.util.Scanner;
+import javax.swing.JOptionPane;
 
 public class ListaEncadenadaSimple {
 
@@ -38,34 +38,32 @@ public class ListaEncadenadaSimple {
 
     public void Insertar(int numEmp, String nombre, int depto, float sueldo) {
         nuevoNodo = new Nodo(numEmp, nombre, depto, sueldo);
-        
-           
-     
-            if (first==null) {
-                first = nuevoNodo;
-            } else {
-                ant = null;
-                temp = first;
-               
-                while (temp != null && temp.depto <= depto && temp.numEmp < numEmp) {// Recore ant y temp 
-                                                                                     // hasta que se  acomode 
-                                                                                     // primero por departamento
-                                                                                     // y luego por
-                                                                                     // num empleado
-                    ant = temp;
-                    temp = temp.next;
-                } // end while para numEmp
 
-                if (ant == null) {
-                    first = nuevoNodo;
-                    System.out.println("elementos agregados correctamente");
-                } else {
-                    ant.next = nuevoNodo;
-                    System.out.println("elementos agregados correctamente");
-                } // end if else que agrega los datos
-                nuevoNodo.next=temp;
-            } // end if else que contirne los while
-        
+        if (first == null) {
+            first = nuevoNodo;
+        } else {
+            ant = null;
+            temp = first;
+
+            while (temp != null && temp.depto <= depto && temp.numEmp < numEmp) {// Recore ant y temp
+                                                                                 // hasta que se acomode
+                                                                                 // primero por departamento
+                                                                                 // y luego por
+                                                                                 // num empleado
+                ant = temp;
+                temp = temp.next;
+            } // end while para numEmp
+
+            if (ant == null) {
+                first = nuevoNodo;
+                JOptionPane.showMessageDialog(null, "elementos agregados correctamente");
+            } else {
+                ant.next = nuevoNodo;
+                JOptionPane.showMessageDialog(null, "elementos agregados correctamente");
+            } // end if else que agrega los datos
+            nuevoNodo.next = temp;
+        } // end if else que contirne los while
+
     }// end Insertar
 
     public void Borrar(int numEmp) {
@@ -85,10 +83,10 @@ public class ListaEncadenadaSimple {
                 } else {
                     ant.next = temp.next;
                 } // end if else para borrar el elemento dependiendo del caso
-                System.out.println("Se ha borrado el empleado numero: " + numEmp);
+                JOptionPane.showMessageDialog(null, "Se ha borrado el empleado numero: " + numEmp);
             } // end if para borrar elemento
         } else {
-            System.out.println("Esta vacia la lista");
+            JOptionPane.showMessageDialog(null, "Esta vacia la lista");
         } // end if else que verifica si esta vacia o no
     }// end Borrar
 
@@ -97,7 +95,8 @@ public class ListaEncadenadaSimple {
             temp = first;
 
             while (temp != null) {
-                System.out.println(temp.numEmp + "\t" + temp.nombre + "\t" + temp.depto + "\t" + temp.sueldo);
+                JOptionPane.showMessageDialog(null,
+                        temp.numEmp + "\t" + temp.nombre + "\t" + temp.depto + "\t" + temp.sueldo);
                 temp = temp.next;
             } // end while para imprimir
         } else {
@@ -111,7 +110,8 @@ public class ListaEncadenadaSimple {
 
             while (temp != null) {
                 if (temp.depto == depto) {
-                    System.out.println(temp.numEmp + "\t" + temp.nombre + "\t" + temp.depto + "\t" + temp.sueldo);
+                    JOptionPane.showMessageDialog(null,
+                            temp.numEmp + "\t" + temp.nombre + "\t" + temp.depto + "\t" + temp.sueldo);
                 } // end if para imprimir al empleado
 
                 temp = temp.next;
@@ -122,9 +122,10 @@ public class ListaEncadenadaSimple {
 
     public void ImprimirPrimerElemento() {
         if (!Vacia()) {
-            System.out.println(first.numEmp + "\t" + first.nombre + "\t" + first.depto + "\t" + first.sueldo);
+            JOptionPane.showMessageDialog(null,
+                    first.numEmp + "\t" + first.nombre + "\t" + first.depto + "\t" + first.sueldo);
         } else {
-            System.out.println("La lista esta vacia");
+            JOptionPane.showMessageDialog(null, "La lista esta vacia");
         } // end if else
     }// end Imprimir primer elemento
 
@@ -140,7 +141,7 @@ public class ListaEncadenadaSimple {
             } // end while
         } // end if
 
-        System.out.println("La cantidad de epleados es de: " + contador);
+        JOptionPane.showMessageDialog(null, "La cantidad de epleados es de: " + contador);
     }// end Tamano
 
     public void ImprimirPorSueldo(double xSal) {
@@ -148,14 +149,15 @@ public class ListaEncadenadaSimple {
         if (!Vacia()) {
             while (temp != null) {
                 if (temp.sueldo >= xSal) {
-                    System.out.println("NumEmp: " + temp.numEmp + ", Nombre: " + temp.nombre + ", Depto: " + temp.depto
-                            + ", Sueldo: " + temp.sueldo);
+                    JOptionPane.showMessageDialog(null,
+                            "NumEmp: " + temp.numEmp + ", Nombre: " + temp.nombre + ", Depto: " + temp.depto
+                                    + ", Sueldo: " + temp.sueldo);
                 } // end if
                 temp = temp.next;
             } // end while
-        }else{
-            System.out.println("Vacia");
-        }//end if
+        } else {
+            JOptionPane.showMessageDialog(null, "Vacia");
+        } // end if
     }// end Imprimir por sueldo
 
     public void Invertir() {
@@ -174,49 +176,41 @@ public class ListaEncadenadaSimple {
     // main
     public static void main(String[] args) {
         ListaEncadenadaSimple lista = new ListaEncadenadaSimple();
-        Scanner scanner = new Scanner(System.in);
         int opcion;
 
         do {
-            System.out.println("====== MENU LISTA SIMPLE ======");
-            System.out.println("1. Insertar elemento ordenado por número de empleado");
-            System.out.println("2. Borrar elemento por número de empleado");
-            System.out.println("3. Imprimir todos los elementos de la lista");
-            System.out.println("4. Imprimir nodos con departamento X");
-            System.out.println("5. Imprimir primer elemento de la lista");
-            System.out.println("6. Imprimir tamaño de la lista");
-            System.out.println("7. Imprimir nodos con sueldo mayor o igual a XSAL");
-            System.out.println("8. Invertir lista");
-            System.out.println("9. Salir");
-            System.out.print("Ingrese opción: ");
-            opcion = scanner.nextInt();
-            scanner.nextLine();
+
+            opcion = Integer.parseInt(JOptionPane.showInputDialog(null, "====== MENU LISTA SIMPLE ======\n"
+                    + "1. Insertar elemento ordenado por número de empleado\n"
+                    + "2. Borrar elemento por número de empleado\n"
+                    + "3. Imprimir todos los elementos de la lista\n"
+                    + "4. Imprimir nodos con departamento X\n"
+                    + "5. Imprimir primer elemento de la lista\n"
+                    + "6. Imprimir tamaño de la lista\n"
+                    + "7. Imprimir nodos con sueldo mayor o igual a XSAL\n"
+                    + "8. Invertir lista\n"
+                    + "9. Salir\n"
+                    + "Ingrese opción: \n"));
 
             switch (opcion) {
                 case 1:
-                    System.out.print("Ingrese número de empleado: ");
-                    int numemp = scanner.nextInt();
-                    System.out.print("Ingrese nombre: ");
-                    String nombre = scanner.next();
-                    System.out.print("Ingrese departamento: ");
-                    int depto = scanner.nextInt();
-                    System.out.print("Ingrese sueldo: ");
-                    float sueldo = scanner.nextFloat();
+                    int numemp = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese numero de empleado: "));
+                    String nombre = JOptionPane.showInputDialog(null, "Ingrese nombre: ");
+                    int depto = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese departamento: "));
+                    float sueldo = Float.parseFloat(JOptionPane.showInputDialog(null, "Ingrese sueldo"));
 
                     lista.Insertar(numemp, nombre, depto, sueldo);
 
                     break;
                 case 2:
-                    System.out.print("Ingrese número de empleado a borrar: ");
-                    numemp = scanner.nextInt();
+                    numemp = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese numero de empleado: "));
                     lista.Borrar(numemp);
                     break;
                 case 3:
                     lista.ImprimirTodo();
                     break;
                 case 4:
-                    System.out.print("Ingrese departamento a buscar: ");
-                    depto = scanner.nextInt();
+                    depto = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese departamento: "));
                     lista.ImprimirPorDepto(depto);
                     break;
                 case 5:
@@ -226,8 +220,8 @@ public class ListaEncadenadaSimple {
                     lista.Tamano();
                     break;
                 case 7:
-                    System.out.print("Ingrese salario mínimo: ");
-                    float xsal = scanner.nextFloat();
+                    float xsal = Float.parseFloat(JOptionPane.showInputDialog(null, "Ingrese salario minimo"));
+
                     lista.ImprimirPorSueldo(xsal);
                     break;
                 case 8:
@@ -243,7 +237,7 @@ public class ListaEncadenadaSimple {
             }// end switch
             System.out.println();
         } while (opcion != 0);
-        scanner.close();
+
     }// end main
 
 }// end class
