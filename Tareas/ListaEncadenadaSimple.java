@@ -1,5 +1,7 @@
 package Tareas;
 
+import java.util.Scanner;
+
 public class ListaEncadenadaSimple {
 
     public class Nodo {
@@ -106,7 +108,7 @@ public class ListaEncadenadaSimple {
         }//end if else que verifica si esta vacia o no
     }//end Borrar
 
-    public void IimprimirTodo() {
+    public void ImprimirTodo() {
         if (!Vacia()) {
             temp = first;
             
@@ -178,5 +180,79 @@ public class ListaEncadenadaSimple {
             }// end while que recorre e invierte la direccion de los apuntadores, para asi invertirlos
     }//end Invertir
         
+    //main
+    public static void main(String[] args) {
+        ListaEncadenadaSimple lista = new ListaEncadenadaSimple();
+        Scanner scanner = new Scanner(System.in);
+        int opcion;
+        
+        do {
+            System.out.println("====== MENÚ LISTA ENLAZADA SIMPLE ======");
+            System.out.println("1. Insertar elemento ordenado por número de empleado");
+            System.out.println("2. Borrar elemento por número de empleado");
+            System.out.println("3. Imprimir todos los elementos de la lista");
+            System.out.println("4. Imprimir nodos con departamento X");
+            System.out.println("5. Imprimir primer elemento de la lista");
+            System.out.println("6. Imprimir tamaño de la lista");
+            System.out.println("7. Imprimir nodos con sueldo mayor o igual a XSAL");
+            System.out.println("8. Invertir lista");
+            System.out.println("9. Salir");
+            System.out.print("Ingrese opción: ");
+            opcion = scanner.nextInt();
+            scanner.nextLine();
+            
+            switch (opcion) {
+                case 1:
+                    System.out.print("Ingrese número de empleado: ");
+                    int numemp = scanner.nextInt();
+                    scanner.nextLine();
+                    System.out.print("Ingrese nombre: ");
+                    String nombre = scanner.nextLine();
+                    System.out.print("Ingrese departamento: ");
+                    int depto = scanner.nextInt();
+                    System.out.print("Ingrese sueldo: ");
+                    float sueldo = scanner.nextFloat();
+
+                    lista.Insertar(numemp, nombre, depto, sueldo);
+                    break;
+                case 2:
+                    System.out.print("Ingrese número de empleado a borrar: ");
+                    numemp = scanner.nextInt();
+                    lista.Borrar(numemp);
+                    break;
+                case 3:
+                    lista.ImprimirTodo();
+                    break;
+                case 4:
+                    System.out.print("Ingrese departamento a buscar: ");
+                    depto = scanner.nextInt();
+                    lista.ImprimirPorDepto(depto);
+                    break;
+                case 5:
+                    lista.ImprimirPrimerElemento();
+                    break;
+                case 6:
+                    lista.Tamano();
+                    break;
+                case 7:
+                    System.out.print("Ingrese salario mínimo: ");
+                    float xsal = scanner.nextFloat();
+                    lista.ImprimirPorSueldo(xsal);
+                    break;
+                case 8:
+                    lista.Invertir();
+                    System.out.println("La lista ha sido invertida");
+                    break;
+                case 0:
+                    System.out.println("Saliendo del programa...");
+                    break;
+                default:
+                    System.out.println("Opción inválida");
+                    break;
+            }//end switch
+            System.out.println();
+        } while (opcion != 0);
+        scanner.close();
+    }//end main
     
 }// end class
