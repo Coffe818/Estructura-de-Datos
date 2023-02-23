@@ -38,51 +38,34 @@ public class ListaEncadenadaSimple {
 
     public void Insertar(int numEmp, String nombre, int depto, float sueldo) {
         nuevoNodo = new Nodo(numEmp, nombre, depto, sueldo);
-        boolean repite = true;
-        while (temp != null && temp.numEmp <= numEmp) {// recorre y compara los numEmp para que no se repitan
-            ant = temp;
-            temp = temp.next;
-
-            if (temp.numEmp == numEmp) {
-                System.out.println("No se puede repetir numero de empleado");
-                repite = true;
-            } else {
-                repite = false;
-            }
-        } // end while
-
-        if (!repite) {
-            if (Vacia()) {
+        
+           
+     
+            if (first==null) {
                 first = nuevoNodo;
             } else {
+                ant = null;
                 temp = first;
-                ant = temp;
-
-                while (temp != null && temp.depto < depto) {// aqui es un while que recorre el temp y el ant hasta
-                                                            // que el
-                                                            // departamento sea menor que el que se esta insertando
-                    ant = temp;
-                    temp = temp.next;
-                } // end while para depto
-
-                while (temp != null && temp.depto == depto && temp.numEmp < numEmp) {// una vez ya ordenado por
-                                                                                     // departametno
-                                                                                     // este lo recorre por numero
-                                                                                     // de
-                                                                                     // elempleado
+               
+                while (temp != null && temp.depto <= depto && temp.numEmp < numEmp) {// Recore ant y temp 
+                                                                                     // hasta que se  acomode 
+                                                                                     // primero por departamento
+                                                                                     // y luego por
+                                                                                     // num empleado
                     ant = temp;
                     temp = temp.next;
                 } // end while para numEmp
 
-                if (temp == first) {
-                    nuevoNodo.next = first;
+                if (ant == null) {
                     first = nuevoNodo;
+                    System.out.println("elementos agregados correctamente");
                 } else {
-                    nuevoNodo.next = ant.next;
                     ant.next = nuevoNodo;
+                    System.out.println("elementos agregados correctamente");
                 } // end if else que agrega los datos
+                nuevoNodo.next=temp;
             } // end if else que contirne los while
-        } // end if donde se valida qeu se repita el numero de empleado
+        
     }// end Insertar
 
     public void Borrar(int numEmp) {
@@ -141,7 +124,7 @@ public class ListaEncadenadaSimple {
         if (!Vacia()) {
             System.out.println(first.numEmp + "\t" + first.nombre + "\t" + first.depto + "\t" + first.sueldo);
         } else {
-            System.out.println("La pila esta vacia");
+            System.out.println("La lista esta vacia");
         } // end if else
     }// end Imprimir primer elemento
 
@@ -162,13 +145,17 @@ public class ListaEncadenadaSimple {
 
     public void ImprimirPorSueldo(double xSal) {
         temp = first;
-        while (temp != null) {
-            if (temp.sueldo >= xSal) {
-                System.out.println("NumEmp: " + temp.numEmp + ", Nombre: " + temp.nombre + ", Depto: " + temp.depto
-                        + ", Sueldo: " + temp.sueldo);
-            } // end if
-            temp = temp.next;
-        } // end while
+        if (!Vacia()) {
+            while (temp != null) {
+                if (temp.sueldo >= xSal) {
+                    System.out.println("NumEmp: " + temp.numEmp + ", Nombre: " + temp.nombre + ", Depto: " + temp.depto
+                            + ", Sueldo: " + temp.sueldo);
+                } // end if
+                temp = temp.next;
+            } // end while
+        }else{
+            System.out.println("Vacia");
+        }//end if
     }// end Imprimir por sueldo
 
     public void Invertir() {
@@ -209,16 +196,14 @@ public class ListaEncadenadaSimple {
                 case 1:
                     System.out.print("Ingrese número de empleado: ");
                     int numemp = scanner.nextInt();
-                    scanner.nextLine();
                     System.out.print("Ingrese nombre: ");
-                    String nombre = scanner.nextLine();
+                    String nombre = scanner.next();
                     System.out.print("Ingrese departamento: ");
                     int depto = scanner.nextInt();
                     System.out.print("Ingrese sueldo: ");
                     float sueldo = scanner.nextFloat();
 
-                    Nodo nodo = lista.new Nodo(numemp, nombre, depto, sueldo);
-                    lista.Insertar(nodo);
+                    lista.Insertar(numemp, nombre, depto, sueldo);
 
                     break;
                 case 2:
