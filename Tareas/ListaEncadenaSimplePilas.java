@@ -88,7 +88,11 @@ public class ListaEncadenaSimplePilas {
 
     public void ImprimirUltimo() {
         if (!Vacia()) {
-            System.out.println(top.numEmp + "\t" + top.nombre + "\t" + top.depto + "\t" + top.sueldo);
+            temp=top;
+            while (temp.next != null) {
+                temp = temp.next;
+            }
+            System.out.println(temp.numEmp + "\t" + temp.nombre + "\t" + temp.depto + "\t" + temp.sueldo);
         } else {
             System.out.println("La lista esta vacia");
         }//end if else
