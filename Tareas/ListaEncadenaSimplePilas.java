@@ -28,7 +28,7 @@ public class ListaEncadenaSimplePilas {
         top = null;
         temp = null;
         ant = null;
-        cantidad=0;
+        cantidad = 0;
     }// end contructor
 
     public boolean Vacia() {
@@ -46,7 +46,7 @@ public class ListaEncadenaSimplePilas {
             } // end while
             temp.next = nuevoNodo;
         } // end fi else recorre el top hasta el final y ahi agrega el nodod
-          cantidad++;
+        cantidad++;
     }// end Insertar elemento
 
     public void Borrar() {
@@ -88,29 +88,48 @@ public class ListaEncadenaSimplePilas {
 
     public void ImprimirUltimo() {
         if (!Vacia()) {
-            temp=top;
+            temp = top;
             while (temp.next != null) {
                 temp = temp.next;
             }
             System.out.println(temp.numEmp + "\t" + temp.nombre + "\t" + temp.depto + "\t" + temp.sueldo);
         } else {
             System.out.println("La lista esta vacia");
-        }//end if else
-    }//ens imprimir ultimo
+        } // end if else
+    }// ens imprimir ultimo
 
     public void Tamano() {
         System.out.println("Tamaño de la lista: " + cantidad);
-    }//end tamano
+    }// end tamano
 
     public void ImprimirSueldo(float xsal) {
-        temp = top;
+        if (!Vacia()) {
+            temp = top;
+            while (temp != null) {
+                if (temp.sueldo >= xsal) {
+                    System.out.println(temp.numEmp + "\t" + temp.nombre + "\t" + temp.depto + "\t" + temp.sueldo);
+                } // end for
+                temp = temp.next;
+            } // end while
+        } else {
+            System.out.println("La lista esta vacia");
+        }
+    }// end Imprimir Sueldo
 
-        while (temp != null) {
-            if (temp.sueldo >= xsal) {
-                System.out.println(temp.numEmp + "\t" + temp.nombre + "\t" + temp.depto + "\t" + temp.sueldo);
-            }//end for
-            temp = temp.next;
-        }//end while
-    }//end Imprimir Sueldo
+    public void Invertir() {
+        if (!Vacia()) {
+            temp = top;
+            ant = null;
+            while (temp != null) {
+                Nodo siguiente = temp.next;// se agrego esta variable
+                temp.next = ant;
+                ant = temp;
+                temp = siguiente;
+            } // end while
+            top = ant;
+        } else {
+            System.out.println("La lista esta vacia");
+        } // end if else
+    }// ens Invertir
 
 }// end class
