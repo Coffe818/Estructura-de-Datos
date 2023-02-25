@@ -62,12 +62,23 @@ public class ListaEncadenaSimplePilas {
         if (!Vacia()) {
             temp = top;
             while (temp != null) {
-                System.out.println(temp.numEmp+"\t"+temp.nombre+"\t"+temp.depto+"\t"+temp.sueldo);
+                System.out.println(temp.numEmp + "\t" + temp.nombre + "\t" + temp.depto + "\t" + temp.sueldo);
                 temp = temp.next;
-            }//recorre el temp y imprime los datos
-        }else{
+            } // recorre el temp y imprime los datos
+        } else {
             System.out.println("La lista esta vacia");
-        }//end if else
+        } // end if else
     }// end Imprimir todo
+
+    public void ImprimirDept(int depto) {
+        temp = top;
+
+        while (temp != null) {
+            if (temp.depto == depto) {
+                System.out.println(temp.numEmp + "\t" + temp.nombre + "\t" + temp.depto + "\t" + temp.sueldo);
+            }//end if que imprime siempre que sea del dapartamento
+            temp = temp.next;
+        }// end while
+    }//end Imprimir Dept
 
 }// end class
