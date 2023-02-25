@@ -47,5 +47,15 @@ public class ListaEncadenaSimplePilas {
           // size++;
     }// end Insertar elemento
     
+    public void borrarElemento() {
+        if (!Vacia()) {
+            temp = top;
+            top = top.next;
+            System.out.println("Se ha eliminado el empleado: "+temp);
+            //size--;
+        } else {
+            System.out.println("La lista esta vaica");
+        }// if else
+    }// end Borrar Elemento
 
 }// end class
