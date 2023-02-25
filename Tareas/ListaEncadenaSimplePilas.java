@@ -46,16 +46,28 @@ public class ListaEncadenaSimplePilas {
         } // end fi else recorre el top hasta el final y ahi agrega el nodod
           // size++;
     }// end Insertar elemento
-    
+
     public void Borrar() {
         if (!Vacia()) {
             temp = top;
             top = top.next;
-            System.out.println("Se ha eliminado el empleado: "+temp);
-            //size--;
+            System.out.println("Se ha eliminado el empleado: " + temp);
+            // size--;
         } else {
             System.out.println("La lista esta vaica");
-        }// if else
-    }// end Borrar Elemento
+        } // if else
+    }// end Borrar
+
+    public void ImprimirTodo() {
+        if (!Vacia()) {
+            temp = top;
+            while (temp != null) {
+                System.out.println(temp.numEmp+"\t"+temp.nombre+"\t"+temp.depto+"\t"+temp.sueldo);
+                temp = temp.next;
+            }//recorre el temp y imprime los datos
+        }else{
+            System.out.println("La lista esta vacia");
+        }//end if else
+    }// end Imprimir todo
 
 }// end class
