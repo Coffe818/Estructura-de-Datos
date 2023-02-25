@@ -21,12 +21,14 @@ public class ListaEncadenaSimplePilas {
     Nodo temp;
     Nodo ant;
     Nodo nuevoNodo;
+    int cantidad;
 
     // constructor
     public ListaEncadenaSimplePilas() {
         top = null;
         temp = null;
         ant = null;
+        cantidad=0;
     }// end contructor
 
     public boolean Vacia() {
@@ -44,7 +46,7 @@ public class ListaEncadenaSimplePilas {
             } // end while
             temp.next = nuevoNodo;
         } // end fi else recorre el top hasta el final y ahi agrega el nodod
-          // size++;
+          cantidad++;
     }// end Insertar elemento
 
     public void Borrar() {
@@ -52,7 +54,7 @@ public class ListaEncadenaSimplePilas {
             temp = top;
             top = top.next;
             System.out.println("Se ha eliminado el empleado: " + temp);
-            // size--;
+            cantidad--;
         } else {
             System.out.println("La lista esta vaica");
         } // if else
@@ -91,5 +93,20 @@ public class ListaEncadenaSimplePilas {
             System.out.println("La lista esta vacia");
         }//end if else
     }//ens imprimir ultimo
+
+    public void Tamano() {
+        System.out.println("Tamaño de la lista: " + cantidad);
+    }//end tamano
+
+    public void ImprimirSueldo(float xsal) {
+        temp = top;
+
+        while (temp != null) {
+            if (temp.sueldo >= xsal) {
+                System.out.println(temp.numEmp + "\t" + temp.nombre + "\t" + temp.depto + "\t" + temp.sueldo);
+            }//end for
+            temp = temp.next;
+        }//end while
+    }//end Imprimir Sueldo
 
 }// end class
