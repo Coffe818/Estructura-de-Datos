@@ -47,7 +47,7 @@ public class ListaEncadenaSimplePilas {
           // size++;
     }// end Insertar elemento
     
-    public void borrarElemento() {
+    public void Borrar() {
         if (!Vacia()) {
             temp = top;
             top = top.next;
