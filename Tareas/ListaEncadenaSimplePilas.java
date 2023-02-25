@@ -22,7 +22,30 @@ public class ListaEncadenaSimplePilas {
     Nodo ant;
     Nodo nuevoNodo;
 
+    // constructor
+    public ListaEncadenaSimplePilas() {
+        top = null;
+        temp = null;
+        ant = null;
+    }// end contructor
+
+    public boolean Vacia() {
+        return top == null;
+    }// end vacia
+
+    public void InsertarElemento(int numEmp, String nombre, int depto, float sueldo) {
+        Nodo nuevoNodo = new Nodo(numEmp, nombre, depto, sueldo);
+        if (Vacia()) {
+            top = nuevoNodo;
+        } else {
+            temp = top;
+            while (temp.next != null) {
+                temp = temp.next;
+            } // end while
+            temp.next = nuevoNodo;
+        } // end fi else recorre el top hasta el final y ahi agrega el nodod
+          // size++;
+    }// end Insertar elemento
     
 
-
-}//end class
+}// end class
