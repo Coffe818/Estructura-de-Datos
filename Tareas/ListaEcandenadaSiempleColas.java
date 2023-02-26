@@ -22,53 +22,54 @@ public class ListaEcandenadaSiempleColas {
     Nodo temp;
     Nodo ant;
     Nodo nuevoNodo;
-    //constructor
-    public ListaEcandenadaSiempleColas(){
-        inicio=null;
-        fin =null;
-        temp=null;
-        ant=null;
-    }//end constructor
+
+    // constructor
+    public ListaEcandenadaSiempleColas() {
+        inicio = null;
+        fin = null;
+        temp = null;
+        ant = null;
+    }// end constructor
 
     public boolean Vacia() {
         return inicio == null;
     }// end vacia
 
     public void Insertar(int numEmp, String nombre, int depto, float sueldo) {
-        nuevoNodo= new Nodo(numEmp, nombre, depto, sueldo);
-        if(!Vacia()){
-            fin.next=nuevoNodo;
-            fin=nuevoNodo;
-        }else{
-            inicio=nuevoNodo;
-            fin=nuevoNodo;
-        }//end if else
+        nuevoNodo = new Nodo(numEmp, nombre, depto, sueldo);
+        if (!Vacia()) {
+            fin.next = nuevoNodo;
+            fin = nuevoNodo;
+        } else {
+            inicio = nuevoNodo;
+            fin = nuevoNodo;
+        } // end if else
     }// end insertar
 
-    public void Borrar(){
-        if(!Vacia()){
-            temp=inicio;
-            inicio=inicio.next;
-            if (inicio==null) {
-                fin=null;
-            }//significa que ahora esta vacia
-            System.out.println("Se ha eliminado el emplado numero: "+temp.numEmp);
-        }else{
-            System.out.println("La lista esta vacia");
-        }//end if else
-    }//end borrar
-
-    public void ImprimirTodo(){
+    public void Borrar() {
         if (!Vacia()) {
-            temp=inicio;
-            while (temp!=null) {
+            temp = inicio;
+            inicio = inicio.next;
+            if (inicio == null) {
+                fin = null;
+            } // significa que ahora esta vacia
+            System.out.println("Se ha eliminado el emplado numero: " + temp.numEmp);
+        } else {
+            System.out.println("La lista esta vacia");
+        } // end if else
+    }// end borrar
+
+    public void ImprimirTodo() {
+        if (!Vacia()) {
+            temp = inicio;
+            while (temp != null) {
                 System.out.println(temp.numEmp + "\t" + temp.nombre + "\t" + temp.depto + "\t" + temp.sueldo);
                 temp = temp.next;
-            }//end while
+            } // end while
         } else {
             System.out.println("La cola esta vacia");
-        }//end if else
-    }//end imprimir todo
+        } // end if else
+    }// end imprimir todo
 
     public void ImprimirDept(int depto) {
         if (!Vacia()) {
@@ -84,4 +85,22 @@ public class ListaEcandenadaSiempleColas {
         } // end if else
     }// end Imprimir Dept
 
-}//end class
+    public void ImprimirPrimer() {
+        if (!Vacia()) {
+            temp = inicio;
+            System.out.println(temp.numEmp + "\t" + temp.nombre + "\t" + temp.depto + "\t" + temp.sueldo);
+        } else {
+            System.out.println("La lista esta vacia");
+        } // end if else
+    }// end imprimir ultimo
+
+    public void ImprimirUltimo() {
+        if (!Vacia()) {
+            temp = fin;
+            System.out.println(temp.numEmp + "\t" + temp.nombre + "\t" + temp.depto + "\t" + temp.sueldo);
+        } else {
+            System.out.println("La lista esta vacia");
+        } // end if else
+    }// end imprimir ultimo
+    
+}// end class
