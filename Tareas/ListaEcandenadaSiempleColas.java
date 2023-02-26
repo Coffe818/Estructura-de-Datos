@@ -38,9 +38,24 @@ public class ListaEcandenadaSiempleColas {
         nuevoNodo= new Nodo(numEmp, nombre, depto, sueldo);
         if(!Vacia()){
             fin.next=nuevoNodo;
+            fin=nuevoNodo;
         }else{
             inicio=nuevoNodo;
+            fin=nuevoNodo;
         }//end if else
     }// end insertar
-    
+
+    public void Borrar(){
+        if(!Vacia()){
+            temp=inicio;
+            inicio=inicio.next;
+            if (inicio==null) {
+                fin=null;
+            }//significa que ahora esta vacia
+            System.out.println("Se ha eliminado el emplado numero: "+temp.numEmp);
+        }else{
+            System.out.println("La lista esta vacia");
+        }//end if else
+    }//end borrar
+
 }//end class
