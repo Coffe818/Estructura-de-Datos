@@ -128,7 +128,7 @@ public class ListaEncadenaSimplePilas {
             } // end while
         } else {
             System.out.println("La lista esta vacia");
-        }
+        }//end if else
     }// end Imprimir Sueldo
 
     public void Invertir() {
