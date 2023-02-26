@@ -185,9 +185,9 @@ public class ListaEncadenaSimplePilas {
         int opcion;
 
         do {
-            opcion = Integer.parseInt(JOptionPane.showInputDialog(null, "====== MENU LISTA SIMPLE ======\n"
+            opcion = Integer.parseInt(JOptionPane.showInputDialog(null, "====== MENU LISTA SIMPLE PILAS======\n"
                     + "1. Insertar elemento ordenado por número de empleado\n"
-                    + "2. Borrar elemento por número de empleado\n"
+                    + "2. Borrar ULTIMO elemento insertado\n"
                     + "3. Imprimir todos los elementos de la lista\n"
                     + "4. Imprimir nodos con departamento X\n"
                     + "5. Imprimir ULTIMO elemento insertado en la lista\n"
