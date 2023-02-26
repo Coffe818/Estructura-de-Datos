@@ -33,5 +33,14 @@ public class ListaEcandenadaSiempleColas {
     public boolean Vacia() {
         return inicio == null;
     }// end vacia
+
+    public void Insertar(int numEmp, String nombre, int depto, float sueldo) {
+        nuevoNodo= new Nodo(numEmp, nombre, depto, sueldo);
+        if(!Vacia()){
+            fin.next=nuevoNodo;
+        }else{
+            inicio=nuevoNodo;
+        }//end if else
+    }// end insertar
     
 }//end class
