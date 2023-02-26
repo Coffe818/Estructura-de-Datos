@@ -70,4 +70,18 @@ public class ListaEcandenadaSiempleColas {
         }//end if else
     }//end imprimir todo
 
+    public void ImprimirDept(int depto) {
+        if (!Vacia()) {
+            temp = inicio;
+            while (temp != null) {
+                if (temp.depto == depto) {
+                    System.out.println(temp.numEmp + "\t" + temp.nombre + "\t" + temp.depto + "\t" + temp.sueldo);
+                } // end if que imprime siempre que sea del dapartamento
+                temp = temp.next;
+            } // end while
+        } else {
+            System.out.println("La lista esta vacia");
+        } // end if else
+    }// end Imprimir Dept
+
 }//end class
