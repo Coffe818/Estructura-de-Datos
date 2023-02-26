@@ -38,7 +38,7 @@ public class ListaEncadenaSimplePilas {
     }// end vacia
 
     public void InsertarElemento(int numEmp, String nombre, int depto, float sueldo) {
-        Nodo nuevoNodo = new Nodo(numEmp, nombre, depto, sueldo);
+        nuevoNodo = new Nodo(numEmp, nombre, depto, sueldo);
         if (Vacia()) {
             top = nuevoNodo;
         } else {
