@@ -68,7 +68,7 @@ public class ListaEncadenaSimplePilas {
             } // borra dependiendo de si es el primero y deja la cola vacia o sino y borra el
               // ultimo
 
-            System.out.println("Se borro el empleado numero: "+ temp.numEmp);
+            System.out.println("Se borro el empleado numero: " + temp.numEmp);
             cantidad--;
         } else {
             System.out.println("La lista esta vaica");
@@ -128,20 +128,20 @@ public class ListaEncadenaSimplePilas {
             } // end while
         } else {
             System.out.println("La lista esta vacia");
-        }//end if else
+        } // end if else
     }// end Imprimir Sueldo
 
     public void Invertir() {
         if (!Vacia()) {
-            temp = top;
             ant = null;
+            temp = top;
+            top = null;
             while (temp != null) {
-                Nodo siguiente = temp.next;// se agrego esta variable
-                temp.next = ant;
                 ant = temp;
-                temp = siguiente;
+                temp = temp.next;
+                ant.next = top;
+                top = ant;
             } // end while
-            top = ant;
         } else {
             System.out.println("La lista esta vacia");
         } // end if else
