@@ -48,7 +48,7 @@ public class ListaEncadenaSimplePilas {
         tabla = new JTable(modelo);
         scrollPane = new JScrollPane(tabla);
         JOptionPane.showMessageDialog(null, scrollPane);
-    }
+    }// end imprimir tabla
 
     // constructor
     public ListaEncadenaSimplePilas() {
