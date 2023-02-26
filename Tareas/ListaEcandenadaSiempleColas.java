@@ -58,4 +58,16 @@ public class ListaEcandenadaSiempleColas {
         }//end if else
     }//end borrar
 
+    public void ImprimirTodo(){
+        if (!Vacia()) {
+            temp=inicio;
+            while (temp!=null) {
+                System.out.println(temp.numEmp + "\t" + temp.nombre + "\t" + temp.depto + "\t" + temp.sueldo);
+                temp = temp.next;
+            }//end while
+        } else {
+            System.out.println("La cola esta vacia");
+        }//end if else
+    }//end imprimir todo
+
 }//end class
