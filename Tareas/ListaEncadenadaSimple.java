@@ -48,7 +48,7 @@ public class ListaEncadenadaSimple {
         tabla = new JTable(modelo);
         scrollPane = new JScrollPane(tabla);
         JOptionPane.showMessageDialog(null, scrollPane);
-    }
+    }//end imprimirTabla
 
     public ListaEncadenadaSimple() {
         this.first = null;
