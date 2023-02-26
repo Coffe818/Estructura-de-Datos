@@ -27,9 +27,17 @@ public class ListaEncadenadaSimple {
     Nodo ant;
     Nodo temp;
     Nodo nuevoNodo;
-    DefaultTableModel modelo = new DefaultTableModel();
-    JTable tabla = new JTable();
-    JScrollPane scrollPane = new JScrollPane();
+    DefaultTableModel modelo = new DefaultTableModel();//aqui agrego los datos
+    JTable tabla = new JTable();//aqui se agregan a la tabla
+    JScrollPane scrollPane = new JScrollPane();//con este se le agrega el nombre de columnas
+
+    public void NombreColumnas() {
+        modelo = new DefaultTableModel();
+        modelo.addColumn("Num. Emp");
+        modelo.addColumn("Nombre");
+        modelo.addColumn("Depto");
+        modelo.addColumn("Sueldo");
+    }//end Nombre columnas
 
     public ListaEncadenadaSimple() {
         this.first = null;
@@ -99,11 +107,8 @@ public class ListaEncadenadaSimple {
     public void ImprimirTodo() {
         if (!Vacia()) {
             temp = first;
-            modelo = new DefaultTableModel();
-            modelo.addColumn("Num. Emp");
-            modelo.addColumn("Nombre");
-            modelo.addColumn("Depto");
-            modelo.addColumn("Sueldo");
+            
+            NombreColumnas();
             while (temp != null) {
                 Object[] fila = { temp.numEmp, temp.nombre, temp.depto, temp.sueldo };
                 modelo.addRow(fila);
@@ -121,10 +126,7 @@ public class ListaEncadenadaSimple {
         if (!Vacia()) {
             temp = first;
             modelo = new DefaultTableModel();
-            modelo.addColumn("Num. Emp");
-            modelo.addColumn("Nombre");
-            modelo.addColumn("Depto");
-            modelo.addColumn("Sueldo");
+            NombreColumnas();
 
             while (temp != null) {
                 if (temp.depto == depto) {
@@ -144,10 +146,7 @@ public class ListaEncadenadaSimple {
     public void ImprimirPrimerElemento() {
         if (!Vacia()) {
             modelo = new DefaultTableModel();
-            modelo.addColumn("Num. Emp");
-            modelo.addColumn("Nombre");
-            modelo.addColumn("Depto");
-            modelo.addColumn("Sueldo");
+            NombreColumnas();
             Object[] fila = { first.numEmp, first.nombre, first.depto, first.sueldo };
             modelo.addRow(fila);
             tabla = new JTable(modelo);
@@ -176,10 +175,7 @@ public class ListaEncadenadaSimple {
     public void ImprimirPorSueldo(double xSal) {
         temp = first;
         modelo = new DefaultTableModel();
-        modelo.addColumn("Num. Emp");
-        modelo.addColumn("Nombre");
-        modelo.addColumn("Depto");
-        modelo.addColumn("Sueldo");
+        NombreColumnas();
         if (!Vacia()) {
             while (temp != null) {
                 if (temp.sueldo >= xSal) {
@@ -226,7 +222,7 @@ public class ListaEncadenadaSimple {
                     + "6. Imprimir tamaño de la lista\n"
                     + "7. Imprimir nodos con sueldo mayor o igual a XSAL\n"
                     + "8. Invertir lista\n"
-                    + "9. Salir\n"
+                    + "0. Salir\n"
                     + "Ingrese opción: \n"));
 
             switch (opcion) {
@@ -265,7 +261,7 @@ public class ListaEncadenadaSimple {
                     lista.Invertir();
                     JOptionPane.showMessageDialog(null, "La lista ha sido invertida");
                     break;
-                case 9:
+                case 0:
                     JOptionPane.showMessageDialog(null, "Saliendo del programa...");
                     break;
                 default:
