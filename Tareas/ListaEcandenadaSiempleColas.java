@@ -102,5 +102,17 @@ public class ListaEcandenadaSiempleColas {
             System.out.println("La lista esta vacia");
         } // end if else
     }// end imprimir ultimo
+
+    public void Tamano() {
+        int contador = 0;
+        if (!Vacia()) {
+            temp = inicio;
+            while (temp != null) {
+                contador++;
+                temp = temp.next;
+            } // end while
+        } // end if
+        System.out.println("La cantidad de epleados es de: " + contador);
+    }// end Tamano
     
 }// end class
