@@ -27,9 +27,9 @@ public class ListaEncadenadaSimple {
     Nodo ant;
     Nodo temp;
     Nodo nuevoNodo;
-    DefaultTableModel modelo = new DefaultTableModel();//aqui agrego los datos
-    JTable tabla = new JTable();//aqui se agregan a la tabla
-    JScrollPane scrollPane = new JScrollPane();//con este se le agrega el nombre de columnas
+    DefaultTableModel modelo = new DefaultTableModel();// aqui agrego los datos
+    JTable tabla = new JTable();// aqui se agregan a la tabla
+    JScrollPane scrollPane = new JScrollPane();// en cso de que sea muy grande y necesite parras de desplasamiento
 
     public void NombreColumnas() {
         modelo = new DefaultTableModel();
@@ -37,7 +37,18 @@ public class ListaEncadenadaSimple {
         modelo.addColumn("Nombre");
         modelo.addColumn("Depto");
         modelo.addColumn("Sueldo");
-    }//end Nombre columnas
+    }// end Nombre columnas
+
+    public void AgregarDatos(int numEmp, String nombre, int depto, float  sueldo){
+        Object[] fila = { numEmp, nombre, depto, sueldo };
+                modelo.addRow(fila);
+    }// end agregar datos
+
+    public void ImprimirTabla(){
+        tabla = new JTable(modelo);
+        scrollPane = new JScrollPane(tabla);
+        JOptionPane.showMessageDialog(null, scrollPane);
+    }
 
     public ListaEncadenadaSimple() {
         this.first = null;
@@ -70,10 +81,8 @@ public class ListaEncadenadaSimple {
 
             if (ant == null) {
                 first = nuevoNodo;
-                JOptionPane.showMessageDialog(null, "elementos agregados correctamente");
             } else {
                 ant.next = nuevoNodo;
-                JOptionPane.showMessageDialog(null, "elementos agregados correctamente");
             } // end if else que agrega los datos
             nuevoNodo.next = temp;
         } // end if else que contirne los while
@@ -107,16 +116,13 @@ public class ListaEncadenadaSimple {
     public void ImprimirTodo() {
         if (!Vacia()) {
             temp = first;
-            
+
             NombreColumnas();
             while (temp != null) {
-                Object[] fila = { temp.numEmp, temp.nombre, temp.depto, temp.sueldo };
-                modelo.addRow(fila);
+                AgregarDatos(temp.numEmp,temp.nombre, temp.depto,temp.sueldo);
                 temp = temp.next;
             } // end while para imprimir
-            tabla = new JTable(modelo);
-            scrollPane = new JScrollPane(tabla);
-            JOptionPane.showMessageDialog(null, scrollPane);
+            ImprimirTabla();
         } else {
             JOptionPane.showMessageDialog(null, "La lista esta vacia");
         } // end if else
@@ -130,16 +136,13 @@ public class ListaEncadenadaSimple {
 
             while (temp != null) {
                 if (temp.depto == depto) {
-                    Object[] fila = { temp.numEmp, temp.nombre, temp.depto, temp.sueldo };
-                    modelo.addRow(fila);
+                    AgregarDatos(temp.numEmp, temp.nombre, temp.depto, temp.sueldo);
                 } // end if para imprimir al empleado
 
                 temp = temp.next;
             } // end while que recorre siempre e imprime siempre que sea el depto
               // correspondiente
-            tabla = new JTable(modelo);
-            scrollPane = new JScrollPane(tabla);
-            JOptionPane.showMessageDialog(null, scrollPane);
+              ImprimirTabla();
         } // end if
     }// end Imprimir Por Depto
 
@@ -147,11 +150,8 @@ public class ListaEncadenadaSimple {
         if (!Vacia()) {
             modelo = new DefaultTableModel();
             NombreColumnas();
-            Object[] fila = { first.numEmp, first.nombre, first.depto, first.sueldo };
-            modelo.addRow(fila);
-            tabla = new JTable(modelo);
-            scrollPane = new JScrollPane(tabla);
-            JOptionPane.showMessageDialog(null, scrollPane);
+            AgregarDatos(first.numEmp, first.nombre, first.depto, first.sueldo );
+            ImprimirTabla();
         } else {
             JOptionPane.showMessageDialog(null, "La lista esta vacia");
         } // end if else
@@ -179,15 +179,11 @@ public class ListaEncadenadaSimple {
         if (!Vacia()) {
             while (temp != null) {
                 if (temp.sueldo >= xSal) {
-                    Object[] fila = { temp.numEmp, temp.nombre, temp.depto, temp.sueldo };
-                    modelo.addRow(fila);
-
+                    AgregarDatos(temp.numEmp, temp.nombre, temp.depto, temp.sueldo);
                 } // end if
                 temp = temp.next;
             } // end while
-            tabla = new JTable(modelo);
-            scrollPane = new JScrollPane(tabla);
-            JOptionPane.showMessageDialog(null, scrollPane);
+            ImprimirTabla();
         } else {
             JOptionPane.showMessageDialog(null, "Vacia");
         } // end if
