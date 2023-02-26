@@ -114,6 +114,21 @@ public class ListaEncadenadaSimpleColas {
         } // end if
         System.out.println("La cantidad de epleados es de: " + contador);
     }// end Tamano
+    
+    public void ImprimirSueldo(float xsal) {
+        if (!Vacia()) {
+            temp = inicio;
+            while (temp != null) {
+                if (temp.sueldo >= xsal) {
+                    System.out.println(temp.numEmp + "\t" + temp.nombre + "\t" + temp.depto + "\t" + temp.sueldo);
+                } // end for
+                temp = temp.next;
+            } // end while
+        } else {
+            System.out.println("La lista esta vacia");
+        } // end if else
+    }// end Imprimir Sueldo
+
     public void Invertir() {
         if (!Vacia()) {
             ant = null;
