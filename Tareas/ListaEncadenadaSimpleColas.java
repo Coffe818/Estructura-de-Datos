@@ -1,6 +1,9 @@
 package Tareas;
 
-import java.util.Scanner;
+import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 public class ListaEncadenadaSimpleColas {
     public class Nodo {
@@ -24,6 +27,28 @@ public class ListaEncadenadaSimpleColas {
     Nodo temp;
     Nodo ant;
     Nodo nuevoNodo;
+    DefaultTableModel modelo = new DefaultTableModel();// aqui agrego los datos
+    JTable tabla = new JTable();// aqui se agregan a la tabla
+    JScrollPane scrollPane = new JScrollPane();// en cso de que sea muy grande y necesite parras de desplasamiento
+
+    public void NombreColumnas() {
+        modelo = new DefaultTableModel();
+        modelo.addColumn("Num. Emp");
+        modelo.addColumn("Nombre");
+        modelo.addColumn("Depto");
+        modelo.addColumn("Sueldo");
+    }// end Nombre columnas
+
+    public void AgregarDatos(int numEmp, String nombre, int depto, float sueldo) {
+        Object[] fila = { numEmp, nombre, depto, sueldo };
+        modelo.addRow(fila);
+    }// end agregar datos
+
+    public void ImprimirTabla() {
+        tabla = new JTable(modelo);
+        scrollPane = new JScrollPane(tabla);
+        JOptionPane.showMessageDialog(null, scrollPane);
+    }// end imprimir tabla
 
     // constructor
     public ListaEncadenadaSimpleColas() {
@@ -55,53 +80,62 @@ public class ListaEncadenadaSimpleColas {
             if (inicio == null) {
                 fin = null;
             } // significa que ahora esta vacia
-            System.out.println("Se ha eliminado el emplado numero: " + temp.numEmp);
+            JOptionPane.showMessageDialog(null, "Se ha borrado el empleado numero: " + temp.numEmp);
         } else {
-            System.out.println("La lista esta vacia");
+            JOptionPane.showMessageDialog(null, "La lista esta vacia");
         } // end if else
     }// end borrar
 
     public void ImprimirTodo() {
         if (!Vacia()) {
             temp = inicio;
+            NombreColumnas();
             while (temp != null) {
-                System.out.println(temp.numEmp + "\t" + temp.nombre + "\t" + temp.depto + "\t" + temp.sueldo);
+                AgregarDatos(temp.numEmp, temp.nombre, temp.depto, temp.sueldo);
                 temp = temp.next;
             } // end while
+            ImprimirTabla();
         } else {
-            System.out.println("La cola esta vacia");
+            JOptionPane.showMessageDialog(null, "La lista esta vacia");
         } // end if else
     }// end imprimir todo
 
     public void ImprimirDept(int depto) {
         if (!Vacia()) {
             temp = inicio;
+            NombreColumnas();
             while (temp != null) {
                 if (temp.depto == depto) {
-                    System.out.println(temp.numEmp + "\t" + temp.nombre + "\t" + temp.depto + "\t" + temp.sueldo);
+                    AgregarDatos(temp.numEmp, temp.nombre, temp.depto, temp.sueldo);
+                    ;
                 } // end if que imprime siempre que sea del dapartamento
                 temp = temp.next;
             } // end while
+            ImprimirTabla();
         } else {
-            System.out.println("La lista esta vacia");
+            JOptionPane.showMessageDialog(null, "La lista esta vacia");
         } // end if else
     }// end Imprimir Dept
 
     public void ImprimirPrimer() {
         if (!Vacia()) {
             temp = inicio;
-            System.out.println(temp.numEmp + "\t" + temp.nombre + "\t" + temp.depto + "\t" + temp.sueldo);
+            NombreColumnas();
+            AgregarDatos(temp.numEmp, temp.nombre, temp.depto, temp.sueldo);
+            ImprimirTabla();
         } else {
-            System.out.println("La lista esta vacia");
+            JOptionPane.showMessageDialog(null, "La lista esta vacia");
         } // end if else
     }// end imprimir ultimo
 
     public void ImprimirUltimo() {
         if (!Vacia()) {
             temp = fin;
-            System.out.println(temp.numEmp + "\t" + temp.nombre + "\t" + temp.depto + "\t" + temp.sueldo);
+            NombreColumnas();
+            AgregarDatos(temp.numEmp, temp.nombre, temp.depto, temp.sueldo);
+            ImprimirTabla();
         } else {
-            System.out.println("La lista esta vacia");
+            JOptionPane.showMessageDialog(null, "La lista esta vacia");
         } // end if else
     }// end imprimir ultimo
 
@@ -114,20 +148,22 @@ public class ListaEncadenadaSimpleColas {
                 temp = temp.next;
             } // end while
         } // end if
-        System.out.println("La cantidad de epleados es de: " + contador);
+        JOptionPane.showMessageDialog(null, "El tamano de la lista es de: " + contador);
     }// end Tamano
 
     public void ImprimirSueldo(float xsal) {
         if (!Vacia()) {
             temp = inicio;
+            NombreColumnas();
             while (temp != null) {
                 if (temp.sueldo >= xsal) {
-                    System.out.println(temp.numEmp + "\t" + temp.nombre + "\t" + temp.depto + "\t" + temp.sueldo);
+                    AgregarDatos(temp.numEmp, temp.nombre, temp.depto, temp.sueldo);
                 } // end for
                 temp = temp.next;
             } // end while
+            ImprimirTabla();
         } else {
-            System.out.println("La lista esta vacia");
+            JOptionPane.showMessageDialog(null, "La lista esta vacia");
         } // end if else
     }// end Imprimir Sueldo
 
@@ -143,42 +179,35 @@ public class ListaEncadenadaSimpleColas {
                 inicio = ant;
             } // end while
         } else {
-            System.out.println("La lista esta vacia");
+            JOptionPane.showMessageDialog(null, "La lista esta vacia");
         } // end if else
     }// ens Invertir
 
     public static void main(String[] args) {
-        Scanner s = new Scanner(System.in);
+
         ListaEncadenadaSimpleColas lista = new ListaEncadenadaSimpleColas();
         int opcion;
 
         do {
-            System.out.println("\nMenu");
-            System.out.println("1. Insertar un elemento" +
-                    "\n2. Borrar un elemento" +
-                    "\n3. Imprimir todos los elementos" +
-                    "\n4. Imprimir los nodos con el DEPTO igual a X" +
-                    "\n5. Imprimir el ULTIMO elemento" +
-                    "\n6. Imprimir el PRIMER elemento" +
-                    "\n7. Imprimir el tamaño de la lista" +
-                    "\n8. Imprimir los nodos con SUELDO >= XSAL" +
-                    "\n9. Invertir la lista" +
-                    "\n0. Salir" +
-                    "\nIngrese una opcion: ");
-            opcion = s.nextInt();
-
+            opcion = Integer.parseInt(JOptionPane.showInputDialog(null, "====== MENU LISTA SIMPLE COLAS======\n"
+                    + "1. Insertar elemento\n"
+                    + "2. Borrar PRIMER elemento insertado\n"
+                    + "3. Imprimir todos los elementos de la lista\n"
+                    + "4. Imprimir nodos con departamento X\n"
+                    + "5. Imprimir ULTIMO elemento insertado en la lista\n"
+                    + "6. Imprimir PRIMER elemento insertado\n"
+                    + "7. Imprimir tamaño de la lista\n"
+                    + "8. Imprimir nodos con sueldo mayor o igual a XSAL\n"
+                    + "9. Invertir lista\n"
+                    + "0. Salir\n"
+                    + "Ingrese opción: \n"));
             switch (opcion) {
                 case 1:
-                    System.out.print("Ingrese el numero de empleado: ");
-                    int numemp = s.nextInt();
-                    System.out.print("Ingrese el nombre: ");
-                    String nombre = s.next();
-                    System.out.print("Ingrese el departamento: ");
-                    int depto = s.nextInt();
-                    System.out.print("Ingrese el sueldo: ");
-                    float sueldo = s.nextFloat();
+                    int numemp = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese numero de empleado: "));
+                    String nombre = JOptionPane.showInputDialog(null, "Ingrese nombre: ");
+                    int depto = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese departamento: "));
+                    float sueldo = Float.parseFloat(JOptionPane.showInputDialog(null, "Ingrese sueldo"));
                     lista.Insertar(numemp, nombre, depto, sueldo);
-                    System.out.println("Elemento insertado correctamente");
                     break;
                 case 2:
                     lista.Borrar();
@@ -187,8 +216,7 @@ public class ListaEncadenadaSimpleColas {
                     lista.ImprimirTodo();
                     break;
                 case 4:
-                    System.out.print("Ingrese el departamento: ");
-                    depto = s.nextInt();
+                    depto = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese departamento: "));
                     lista.ImprimirDept(depto);
                     break;
                 case 5:
@@ -201,24 +229,22 @@ public class ListaEncadenadaSimpleColas {
                     lista.Tamano();
                     break;
                 case 8:
-                    System.out.print("Ingrese el sueldo: ");
-                    sueldo = s.nextFloat();
-                    lista.ImprimirSueldo(sueldo);
+                    float xsal = Float.parseFloat(JOptionPane.showInputDialog(null, "Ingrese salario minimo"));
+                    lista.ImprimirSueldo(xsal);
                     break;
                 case 9:
                     lista.Invertir();
-                    System.out.println("La lista se ha invertido correctamente");
+                    JOptionPane.showMessageDialog(null, "La lista se ha invertido correctamente");
                     break;
                 case 0:
-                    System.out.println("Saliendo...");
+                    JOptionPane.showMessageDialog(null, "Saliendo...");
                     break;
                 default:
-                    System.out.println("Opcion invalida");
+                    JOptionPane.showMessageDialog(null, "Opcion invalida");
                     break;
-            }
+            }// end swithc
         } while (opcion != 0);
 
-        s.close();
     }// end main
 
 }// end class
