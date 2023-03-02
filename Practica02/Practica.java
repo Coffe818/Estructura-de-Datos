@@ -96,7 +96,7 @@ public class Practica {
 
     private void ImprimirCola(LinkedList<Integer> cola) {
         if (!VaciaCola(cola)) {
-            System.out.println("Elementos de la pila: " + cola);
+            System.out.println("Elementos de la cola: " + cola);
         } else {
             System.out.println("La Cola esta vacia");
         } // end if else
