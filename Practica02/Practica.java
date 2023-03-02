@@ -106,4 +106,9 @@ public class Practica {
         System.out.println("El tamano de la cola es de: "+ cola.size());
     }//end Tamano cola
 
+    private void PrimerElementoCola(LinkedList<Integer> cola){
+        System.out.println("El primer elemento de la cola es: "+ cola.getFirst());
+    }//end Primer elemento cola
+
+
 }// end clas
