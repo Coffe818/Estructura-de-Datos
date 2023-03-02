@@ -5,10 +5,10 @@ import java.util.Scanner;
 import java.util.Stack;
 
 public class Practica {
-    private Stack<Integer> Pila = new Stack<Integer>();
-    private Stack<Integer> PilaTemp = new Stack<Integer>();
-    private LinkedList<Integer> Cola1 = new LinkedList<Integer>();
-    private LinkedList<Integer> Cola2 = new LinkedList<Integer>();
+    private static Stack<Integer> Pila = new Stack<Integer>();
+    private static Stack<Integer> PilaTemp = new Stack<Integer>();
+    private static LinkedList<Integer> Cola1 = new LinkedList<Integer>();
+    private static LinkedList<Integer> Cola2 = new LinkedList<Integer>();
     private int ElementoBorrado = 0;
 
     // los metodos vacia reciven una pila o una cola y luego verifica si esta vacia,
@@ -55,6 +55,7 @@ public class Practica {
 
     private void BorrarColaInsertarPila() {
         BorrarCola(Cola1);
+        System.out.println("Se borro el elemento " + ElementoBorrado + " y se agrego a Pila");
         InsertarPila(Pila, ElementoBorrado);
     }// end borrar cola e insertar pila
 
@@ -74,6 +75,7 @@ public class Practica {
                     InsertarPila(Pila, ElementoBorrado); // se van insertando los ElementoBorrado a la Pila
                 } // end whilw
             } // end ifn else
+            System.out.println("Se elimino de Pila y se agrego a Cola2 el cliente: " + ElementoBorrado);
         } else {
             System.out.println("La pila esta vacia");
         }
@@ -100,13 +102,11 @@ public class Practica {
         } // end if else
     }// end imprimir cola
 
-    private void TamanoPila() {
-        System.out.println("EL tamano de la pila es de: " + Pila.size());
-    }// end Tamabo pila
-
-    private void TamanoCola(LinkedList<Integer> cola) {
-        System.out.println("El tamano de la cola es de: " + cola.size());
-    }// end Tamano cola
+    private void TamanoGeneral() {
+        System.out.println("EL tamano de la pila es de: " + Pila.size()
+                + "\nEl tamano de Cola1 es de: " + Cola1.size()
+                + "\nEl tamano de Cola2 es de: " + Cola2.size());
+    }// end Tamabo general
 
     private void PrimerElementoCola(LinkedList<Integer> cola) {
         System.out.println("El primer elemento de la cola es: " + cola.getFirst());
@@ -128,7 +128,7 @@ public class Practica {
             System.out.println("=========== Menu Practica =========="
                     + "\n 1. Insertar Cliente "
                     + "\n 2. Borra Cola 1 e Inserta en Pila "
-                    + "\n 3. Borrar xelem de Pila "
+                    + "\n 3. Borrar xelem de Pila e insertarlo en Cola2 "
                     + "\n 4. Borrar Cola 2 e imprimir "
                     + "\n 5. Imprimir Pila "
                     + "\n 6. Imprimir Cola1 "
@@ -139,7 +139,53 @@ public class Practica {
                     + "\n 11. Imprimir ultimo elemento de Pila "
                     + "\n 12. Imprimir ultimo elemento de Cola1 ");
             opcion = s.nextInt();
-
+            switch (opcion) {
+                case 1:
+                    System.out.println("Agregue el numero de cliente: ");
+                    int cliente = s.nextInt();
+                    practica.InsertarCola(Cola1, cliente);
+                    break;
+                case 2:
+                    practica.BorrarColaInsertarPila();
+                    break;
+                case 3:
+                    System.out.println("Numero de cliente que quiera borrar: ");
+                    practica.ImprimirPila();
+                    int xclien = s.nextInt();
+                    practica.BorrarPilaInsertarCola(xclien);
+                    break;
+                case 4:
+                    practica.BorraColaImprimeElemto();
+                    break;
+                case 5:
+                    practica.ImprimirPila();
+                    break;
+                case 6:
+                    practica.ImprimirCola(Cola1);
+                    break;
+                case 7:
+                    practica.ImprimirCola(Cola2);
+                    break;
+                case 8:
+                    practica.TamanoGeneral();
+                    break;
+                case 9:
+                    practica.PrimerElementoCola(Cola1);
+                    break;
+                case 10:
+                    practica.PrimerElementoCola(Cola2);
+                    break;
+                case 11:
+                    practica.UltimoElementoPila();
+                    break;
+                case 12:
+                    practica.UltimoElementoCola(Cola1);
+                    break;
+                default:
+                    System.out.println("Ingrese una opcion Valida");
+                    break;
+            }// end swithc
         } while (opcion != 0);
+        s.close();
     }// end main
 }// end clas
