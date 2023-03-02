@@ -99,4 +99,11 @@ public class Practica {
         }//end if else
     }//end imprimir cola
 
+    private void TamanoPila() {
+        System.out.println("EL tamano de la pila es de: "+ Pila.size());
+    }//end Tamabo pila
+    private void TamanoCola(LinkedList<Integer> cola) {
+        System.out.println("El tamano de la cola es de: "+ cola.size());
+    }//end Tamano cola
+
 }// end clas
