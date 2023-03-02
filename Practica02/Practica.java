@@ -18,6 +18,7 @@ public class Practica {
     private boolean VaciaPila(Stack<Integer> pila) {
         return pila.isEmpty();
     }// end Vacia Pila
+
     //Los metodos insertar tienen la misma logica que Vacia() solo que recibe un elemto para insertarlo
     private void InsertarCola(LinkedList<Integer> cola, int elemento) {
         cola.add(elemento);
@@ -25,5 +26,24 @@ public class Practica {
     private void InsertarPila(Stack<Integer> pila, int elemento){
         pila.push(elemento);
     }// end Insertar Pila
+
+    //lso metod insertar piden un linkedlist o un Stack para saber en cual de las dos colas o cual de las dos pilas elimina el elemento
+    private void BorrarCola(LinkedList<Integer> cola) {
+        if (!VaciaCola(cola)) {
+            int elemento = cola.poll();
+            System.out.println("Se elimino cliente: "+ elemento);
+        } else {
+            System.out.println("La cola esta vacia");
+        }//end if else
+    }// end Borrar Cola
+    private void BorrarPila(Stack<Integer> pila) {
+        if (!VaciaPila(pila)) {
+            int elemento = pila.peek();
+            pila.pop();
+            System.out.println("Elemento eliminado: " + elemento);
+        } else {
+            System.out.println("La pila está vacía");
+        } // end if else
+    }//end Borrar Pila
 
 }// end clas
