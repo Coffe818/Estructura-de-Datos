@@ -1,6 +1,7 @@
 package Practica02;
 
 import java.util.LinkedList;
+import java.util.Scanner;
 import java.util.Stack;
 
 public class Practica {
@@ -57,63 +58,88 @@ public class Practica {
         InsertarPila(Pila, ElementoBorrado);
     }// end borrar cola e insertar pila
 
-    private void BorrarPilaInsertarCola(int xelem){
+    private void BorrarPilaInsertarCola(int xelem) {
         if (!VaciaPila(Pila)) {
-            if(Pila.peek().equals(xelem)){
+            if (Pila.peek().equals(xelem)) {
                 BorrarPila(Pila);
                 InsertarCola(Cola2, xelem);
-            }else{
-                while (!Pila.peek().equals(xelem)) {            // mientras que el ultimo elemtento no sea igual a xelem
-                    BorrarPila(Pila);                           // se borrara el elemento y se guarda en ElemtoBorrado
-                    InsertarPila(PilaTemp, ElementoBorrado);    // se van insertando los ElementoBorrado a la Pila Temp
-                }//end while                                    //
-                BorrarPila(Pila);                               //  Ya es el elemento que queriamos borrar y lo borramos
-                while (!VaciaPila(PilaTemp)) {                  // mienras que le PilaTem este vacia 
-                    BorrarPila(PilaTemp);                       //  se borra el elemeto y se guarda en ElemtoBorrado
-                    InsertarPila(Pila, ElementoBorrado);        // se van insertando los ElementoBorrado a la Pila
-                }//end whilw
-            }//end ifn else
+            } else {
+                while (!Pila.peek().equals(xelem)) { // mientras que el ultimo elemtento no sea igual a xelem
+                    BorrarPila(Pila); // se borrara el elemento y se guarda en ElemtoBorrado
+                    InsertarPila(PilaTemp, ElementoBorrado); // se van insertando los ElementoBorrado a la Pila Temp
+                } // end while //
+                BorrarPila(Pila); // Ya es el elemento que queriamos borrar y lo borramos
+                while (!VaciaPila(PilaTemp)) { // mienras que le PilaTem este vacia
+                    BorrarPila(PilaTemp); // se borra el elemeto y se guarda en ElemtoBorrado
+                    InsertarPila(Pila, ElementoBorrado); // se van insertando los ElementoBorrado a la Pila
+                } // end whilw
+            } // end ifn else
         } else {
             System.out.println("La pila esta vacia");
         }
-    }//end Borrar pila e insertar cola
+    }// end Borrar pila e insertar cola
 
     private void BorraColaImprimeElemto() {
         BorrarCola(Cola2);
-        System.out.println("EL elemto borrado de Cola2 es: "+ ElementoBorrado);
+        System.out.println("EL elemto borrado de Cola2 es: " + ElementoBorrado);
     }// end borrar cola imprimmir elemento
 
-    private void ImprimirPila(){
+    private void ImprimirPila() {
         if (!VaciaPila(Pila)) {
-            System.out.println("Elementos de la pila: "+ Pila);   
+            System.out.println("Elementos de la pila: " + Pila);
         } else {
             System.out.println("La Pila esta vacia");
-        }//end if else
-    }//end imprimir pila
+        } // end if else
+    }// end imprimir pila
 
     private void ImprimirCola(LinkedList<Integer> cola) {
         if (!VaciaCola(cola)) {
-            System.out.println("Elementos de la pila: "+ cola);   
+            System.out.println("Elementos de la pila: " + cola);
         } else {
             System.out.println("La Cola esta vacia");
-        }//end if else
-    }//end imprimir cola
+        } // end if else
+    }// end imprimir cola
 
     private void TamanoPila() {
-        System.out.println("EL tamano de la pila es de: "+ Pila.size());
-    }//end Tamabo pila
-    private void TamanoCola(LinkedList<Integer> cola) {
-        System.out.println("El tamano de la cola es de: "+ cola.size());
-    }//end Tamano cola
+        System.out.println("EL tamano de la pila es de: " + Pila.size());
+    }// end Tamabo pila
 
-    private void PrimerElementoCola(LinkedList<Integer> cola){
-        System.out.println("El primer elemento de la cola es: "+ cola.getFirst());
-    }//end Primer elemento cola
+    private void TamanoCola(LinkedList<Integer> cola) {
+        System.out.println("El tamano de la cola es de: " + cola.size());
+    }// end Tamano cola
+
+    private void PrimerElementoCola(LinkedList<Integer> cola) {
+        System.out.println("El primer elemento de la cola es: " + cola.getFirst());
+    }// end Primer elemento cola
 
     private void UltimoElementoCola(LinkedList<Integer> cola) {
-        System.out.println("El ultimo elemento de la cola es: "+ cola.getLast());
-    }//end ultimo elemento cola
-    private void UltimoElementoPila(){
-        System.out.println("EL ultimo elemento de la pla es: "+ Pila.peek() );
-    }//end ultimo elemento pila
+        System.out.println("El ultimo elemento de la cola es: " + cola.getLast());
+    }// end ultimo elemento cola
+
+    private void UltimoElementoPila() {
+        System.out.println("EL ultimo elemento de la pla es: " + Pila.peek());
+    }// end ultimo elemento pila
+
+    public static void main(String[] args) {
+        Practica practica = new Practica();
+        int opcion;
+        Scanner s = new Scanner(System.in);
+        do {
+            System.out.println("=========== Menu Practica =========="
+                    + "\n 1. Insertar Cliente "
+                    + "\n 2. Borra Cola 1 e Inserta en Pila "
+                    + "\n 3. Borrar xelem de Pila "
+                    + "\n 4. Borrar Cola 2 e imprimir "
+                    + "\n 5. Imprimir Pila "
+                    + "\n 6. Imprimir Cola1 "
+                    + "\n 7. Imprimir Cola2 "
+                    + "\n 8. Tamano de Pila, Cola1, Cola2 "
+                    + "\n 9. Imprimir primer elemento de Cola1 "
+                    + "\n 10. Imprimir primer elemento de Cola2 "
+                    + "\n 11. Imprimir ultimo elemento de Pila "
+                    + "\n 12. Imprimir ultimo elemento de Cola1 ");
+            opcion = s.nextInt();
+
+        } while (opcion != 0);
+    }// end main
 }// end clas
