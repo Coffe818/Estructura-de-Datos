@@ -110,5 +110,10 @@ public class Practica {
         System.out.println("El primer elemento de la cola es: "+ cola.getFirst());
     }//end Primer elemento cola
 
-
+    private void UltimoElementoCola(LinkedList<Integer> cola) {
+        System.out.println("El ultimo elemento de la cola es: "+ cola.getLast());
+    }//end ultimo elemento cola
+    private void UltimoElementoPila(){
+        System.out.println("EL ultimo elemento de la pla es: "+ Pila.peek() );
+    }//end ultimo elemento pila
 }// end clas
