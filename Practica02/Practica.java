@@ -9,6 +9,12 @@ public class Practica {
     static LinkedList <Integer> Cola1 = new LinkedList<Integer>();
     static LinkedList <Integer> Cola2 = new LinkedList<Integer>();
     
-
+    private boolean VaciaCola(LinkedList<Integer> cola) {
+        return cola.isEmpty();
+    }// 
+    private boolean VaciaPila(Stack<Integer> pila) {
+        return pila.isEmpty();
+    }
     
+
 }// end clas
