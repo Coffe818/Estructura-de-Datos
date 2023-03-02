@@ -81,6 +81,22 @@ public class Practica {
     private void BorraColaImprimeElemto() {
         BorrarCola(Cola2);
         System.out.println("EL elemto borrado de Cola2 es: "+ ElementoBorrado);
-    }
+    }// end borrar cola imprimmir elemento
+
+    private void ImprimirPila(){
+        if (!VaciaPila(Pila)) {
+            System.out.println("Elementos de la pila: "+ Pila);   
+        } else {
+            System.out.println("La Pila esta vacia");
+        }//end if else
+    }//end imprimir pila
+
+    private void ImprimirCola(LinkedList<Integer> cola) {
+        if (!VaciaCola(cola)) {
+            System.out.println("Elementos de la pila: "+ cola);   
+        } else {
+            System.out.println("La Cola esta vacia");
+        }//end if else
+    }//end imprimir cola
 
 }// end clas
