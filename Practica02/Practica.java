@@ -8,7 +8,7 @@ public class Practica {
     private Stack<Integer> PilaTemp = new Stack<Integer>();
     private LinkedList<Integer> Cola1 = new LinkedList<Integer>();
     private LinkedList<Integer> Cola2 = new LinkedList<Integer>();
-    private int elemento = 0;
+    private int ElementoBorrado = 0;
 
     // los metodos vacia reciven una pila o una cola y luego verifica si esta vacia,
     // esto para ahorrar escribir un metodo Vacia(), para cada pila y cada cola
@@ -35,8 +35,8 @@ public class Practica {
     // variable
     private void BorrarCola(LinkedList<Integer> cola) {
         if (!VaciaCola(cola)) {
-            this.elemento = cola.poll();
-            System.out.println("Se elimino cliente: " + elemento);
+            this.ElementoBorrado = cola.poll();
+            System.out.println("Se elimino cliente: " + ElementoBorrado);
         } else {
             System.out.println("La cola esta vacia");
         } // end if else
@@ -44,9 +44,9 @@ public class Practica {
 
     private void BorrarPila(Stack<Integer> pila) {
         if (!VaciaPila(pila)) {
-            this.elemento = pila.peek();
+            this.ElementoBorrado = pila.peek();
             pila.pop();
-            System.out.println("Elemento eliminado: " + elemento);
+            System.out.println("Elemento eliminado: " + ElementoBorrado);
         } else {
             System.out.println("La pila está vacía");
         } // end if else
@@ -54,7 +54,33 @@ public class Practica {
 
     private void BorrarColaInsertarPila() {
         BorrarCola(Cola1);
-        InsertarPila(Pila, elemento);
-    }// end borrar e insertar
+        InsertarPila(Pila, ElementoBorrado);
+    }// end borrar cola e insertar pila
+
+    private void BorrarPilaInsertarCola(int xelem){
+        if (!VaciaPila(Pila)) {
+            if(Pila.peek().equals(xelem)){
+                BorrarPila(Pila);
+                InsertarCola(Cola2, xelem);
+            }else{
+                while (!Pila.peek().equals(xelem)) {            // mientras que el ultimo elemtento no sea igual a xelem
+                    BorrarPila(Pila);                           // se borrara el elemento y se guarda en ElemtoBorrado
+                    InsertarPila(PilaTemp, ElementoBorrado);    // se van insertando los ElementoBorrado a la Pila Temp
+                }//end while                                    //
+                BorrarPila(Pila);                               //  Ya es el elemento que queriamos borrar y lo borramos
+                while (!VaciaPila(PilaTemp)) {                  // mienras que le PilaTem este vacia 
+                    BorrarPila(PilaTemp);                       //  se borra el elemeto y se guarda en ElemtoBorrado
+                    InsertarPila(Pila, ElementoBorrado);        // se van insertando los ElementoBorrado a la Pila
+                }//end whilw
+            }//end ifn else
+        } else {
+            System.out.println("La pila esta vacia");
+        }
+    }//end Borrar pila e insertar cola
+
+    private void BorraColaImprimeElemto() {
+        BorrarCola(Cola2);
+        System.out.println("EL elemto borrado de Cola2 es: "+ ElementoBorrado);
+    }
 
 }// end clas
