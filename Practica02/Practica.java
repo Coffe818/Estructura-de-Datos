@@ -17,7 +17,7 @@ public class Practica {
         return cola.isEmpty();
     }// end Vacia Cola
 
-    private boolean VaciaPila(Stack<Integer> pila) {
+    private boolean VaciaPila(Stack<Integer> pila) { 
         return pila.isEmpty();
     }// end Vacia Pila
 
