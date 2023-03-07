@@ -89,7 +89,30 @@ public class ListaEncadenadaSimpleCircular {
             }
         } else {
             System.err.println("La lista esta vacia");
-        }//end if else
-    }//end Imprimir Todo
+        } // end if else
+    }// end Imprimir Todo
+
+    public void ImprimirPorDepto(int depto) {
+        if (!Vacia()) {
+            temp = nc;
+            while (temp != null) {
+                if (temp.depto == depto) {
+                    System.out.println(temp.numEmp + "\t" + temp.nombre + "\t" + temp.depto + "\t" + temp.sueldo);
+                } // end if para imprimir al empleado
+                temp = temp.next;
+            } // end while que recorre siempre e imprime siempre que sea el depto
+              // correspondiente
+        } // end if
+    }// end Imprimir Por Depto
+
+    public void ImprimirPrimerElemento() {
+        temp = nc;
+        temp = temp.next;
+        if (!Vacia()) {
+            System.out.println(temp.numEmp + "\t" + temp.nombre + "\t" + temp.depto + "\t" + temp.sueldo);
+        } else {
+            System.out.println("La pila esta vacia");
+        } // end if else
+    }// end Imprimir primer elemento
 
 }// end class
