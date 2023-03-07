@@ -115,4 +115,16 @@ public class ListaEncadenadaSimpleCircular {
         } // end if else
     }// end Imprimir primer elemento
 
+    public void Tamano() {
+        int contador = 0;
+        if (!Vacia()) {
+            temp = nc;
+            while (temp != nc) {
+                contador++;
+                temp = temp.next;
+            } // end while
+            System.out.println("La cantidad de la lista es de: "+contador );
+        } // end if
+    }//end tamano
+    
 }// end class
