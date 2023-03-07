@@ -70,6 +70,7 @@ public class Practica {
                     InsertarPila(PilaTemp, ElementoBorrado); // se van insertando los ElementoBorrado a la Pila Temp
                 } // end while //
                 BorrarPila(Pila); // Ya es el elemento que queriamos borrar y lo borramos
+                InsertarCola(Cola2, xelem);// e inserta en cola
                 while (!VaciaPila(PilaTemp)) { // mienras que le PilaTem este vacia
                     BorrarPila(PilaTemp); // se borra el elemeto y se guarda en ElemtoBorrado
                     InsertarPila(Pila, ElementoBorrado); // se van insertando los ElementoBorrado a la Pila
@@ -137,7 +138,8 @@ public class Practica {
                     + "\n 9. Imprimir primer elemento de Cola1 "
                     + "\n 10. Imprimir primer elemento de Cola2 "
                     + "\n 11. Imprimir ultimo elemento de Pila "
-                    + "\n 12. Imprimir ultimo elemento de Cola1 ");
+                    + "\n 12. Imprimir ultimo elemento de Cola1 "
+                    + "\n Seleccione la opcion");
             opcion = s.nextInt();
             switch (opcion) {
                 case 1:
