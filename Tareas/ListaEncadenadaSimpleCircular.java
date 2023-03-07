@@ -1,6 +1,5 @@
 package Tareas;
 
-import java.time.temporal.Temporal;
 import java.util.Scanner;
 
 public class ListaEncadenadaSimpleCircular {
@@ -39,10 +38,7 @@ public class ListaEncadenadaSimpleCircular {
 
     public void Insertar(int numEmp, String nombre, int depto, float sueldo) {
         nuevoNodo = new Nodo(numEmp, nombre, depto, sueldo);
-        /*if (Vacia()) {
-            nc.next = nuevoNodo;
-            nuevoNodo.next = nc;
-        } else {*/
+        
             temp = nc.next;
             ant = nc;
             while (temp != nc && temp.depto <= depto && temp.numEmp < numEmp) {// Recore ant y temp
@@ -56,7 +52,6 @@ public class ListaEncadenadaSimpleCircular {
 
             nuevoNodo.next = temp;
             ant.next = nuevoNodo;
-        //} // end if else que contirne los while
 
     }// end insertar
 
