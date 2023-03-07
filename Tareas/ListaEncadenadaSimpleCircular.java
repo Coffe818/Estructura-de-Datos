@@ -39,7 +39,7 @@ public class ListaEncadenadaSimpleCircular {
             temp = nuevoNodo;
         } else {
             temp = nc;
-            ant = nc;
+            ant = temp;
             while (temp != null && temp.depto <= depto && temp.numEmp < numEmp) {// Recore ant y temp
                                                                                  // hasta que se acomode
                                                                                  // primero por departamento
@@ -61,7 +61,7 @@ public class ListaEncadenadaSimpleCircular {
     public void Borrar(int numEmp) {
         if (!Vacia()) {
             temp = nc;
-            ant = nc;
+            ant = temp;
             while (temp != null && temp.numEmp != numEmp) {
                 ant = temp;
                 temp = temp.next;
@@ -73,11 +73,23 @@ public class ListaEncadenadaSimpleCircular {
             } else {
                 ant.next = temp.next;
                 System.out.println("Se ha eliminado el numero de empleado: " + numEmp);
-            }//end if else que borra
+            } // end if else que borra
 
         } else {
-            System.out.println("Esta vacia");
-        }//end if else que verifica Vacia()
+            System.out.println("La lista esta vacia");
+        } // end if else que verifica Vacia()
     }// end borrar
+
+    public void ImprimirTodo() {
+        if (!Vacia()) {
+            temp = nc;
+            while (temp.next != nc) {
+                System.out.println(temp.numEmp + "\t" + temp.nombre + "\t" + temp.depto + "\t" + temp.sueldo);
+                temp = temp.next;
+            }
+        } else {
+            System.err.println("La lista esta vacia");
+        }//end if else
+    }//end Imprimir Todo
 
 }// end class
