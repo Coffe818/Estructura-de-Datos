@@ -1,7 +1,7 @@
 package Tareas;
 
 public class ListaEncadenadaSimpleCircular {
-    
+
     public class Nodo {
         int numEmp;
         String nombre;
@@ -23,23 +23,23 @@ public class ListaEncadenadaSimpleCircular {
     Nodo nuevoNodo;
     Nodo nc;
 
-    public void AgregarNC(){
+    public void AgregarNC() {
         nuevoNodo = new Nodo(0, null, 0, 0);
-        nc=nuevoNodo;
-    }//end AgregarNC
+        nc = nuevoNodo;
+    }// end AgregarNC
 
-    public boolean Vacia(){
-        return temp==nc;
-    }//end Vacia
+    public boolean Vacia() {
+        return temp == nc;
+    }// end Vacia
 
     public void Insertar(int numEmp, String nombre, int depto, float sueldo) {
         nuevoNodo = new Nodo(numEmp, nombre, depto, sueldo);
         if (Vacia()) {
             nc.next = nuevoNodo;
-            temp=nuevoNodo;
+            temp = nuevoNodo;
         } else {
-            temp=nc;
-            ant=nc;
+            temp = nc;
+            ant = nc;
             while (temp != null && temp.depto <= depto && temp.numEmp < numEmp) {// Recore ant y temp
                                                                                  // hasta que se acomode
                                                                                  // primero por departamento
@@ -56,7 +56,28 @@ public class ListaEncadenadaSimpleCircular {
             } // end if else que agrega los datos
             nuevoNodo.next = temp;
         } // end if else que contirne los while
-    }//end insertar
+    }// end insertar
 
+    public void Borrar(int numEmp) {
+        if (!Vacia()) {
+            temp = nc;
+            ant = nc;
+            while (temp != null && temp.numEmp != numEmp) {
+                ant = temp;
+                temp = temp.next;
+            } // end while que recorre el numEmp siempre y que sea diferente al que queramos
+              // borrar
 
-}//end class
+            if (temp == nc) {
+                System.out.println("numero de empleado no eiste  " + numEmp);
+            } else {
+                ant.next = temp.next;
+                System.out.println("Se ha eliminado el numero de empleado: " + numEmp);
+            }//end if else que borra
+
+        } else {
+            System.out.println("Esta vacia");
+        }//end if else que verifica Vacia()
+    }// end borrar
+
+}// end class
