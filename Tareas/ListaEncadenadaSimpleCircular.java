@@ -84,7 +84,8 @@ public class ListaEncadenadaSimpleCircular {
         if (!Vacia()) {
             temp = nc;
             while (temp.next != nc) {
-                System.out.println(temp.numEmp + "\t" + temp.nombre + "\t" + temp.depto + "\t" + temp.sueldo);
+                System.out.println("NumEmp: " + temp.numEmp + "\tNombre: " + temp.nombre + "\tDepto: " + temp.depto
+                            + "\tSueldo: " + temp.sueldo);
                 temp = temp.next;
             }
         } else {
@@ -97,7 +98,8 @@ public class ListaEncadenadaSimpleCircular {
             temp = nc;
             while (temp != null) {
                 if (temp.depto == depto) {
-                    System.out.println(temp.numEmp + "\t" + temp.nombre + "\t" + temp.depto + "\t" + temp.sueldo);
+                    System.out.println("NumEmp: " + temp.numEmp + "\tNombre: " + temp.nombre + "\tDepto: " + temp.depto
+                            + "\tSueldo: " + temp.sueldo);
                 } // end if para imprimir al empleado
                 temp = temp.next;
             } // end while que recorre siempre e imprime siempre que sea el depto
@@ -109,7 +111,8 @@ public class ListaEncadenadaSimpleCircular {
         temp = nc;
         temp = temp.next;
         if (!Vacia()) {
-            System.out.println(temp.numEmp + "\t" + temp.nombre + "\t" + temp.depto + "\t" + temp.sueldo);
+            System.out.println("NumEmp: " + temp.numEmp + "\tNombre: " + temp.nombre + "\tDepto: " + temp.depto
+            + "\tSueldo: " + temp.sueldo);
         } else {
             System.out.println("La pila esta vacia");
         } // end if else
@@ -126,5 +129,19 @@ public class ListaEncadenadaSimpleCircular {
             System.out.println("La cantidad de la lista es de: "+contador );
         } // end if
     }//end tamano
-    
+
+    public void ImprimirPorSueldo(double xSal) {
+        temp = nc;
+        if (!Vacia()) {
+            while (temp != null) {
+                if (temp.sueldo >= xSal) {
+                    System.out.println("NumEmp: " + temp.numEmp + "\tNombre: " + temp.nombre + "\tDepto: " + temp.depto
+                            + "\tSueldo: " + temp.sueldo);
+                } // end if
+                temp = temp.next;
+            } // end while
+        }else{
+            System.out.println("Vacia");
+        }//end if
+    }// end Imprimir por sueldo
 }// end class
