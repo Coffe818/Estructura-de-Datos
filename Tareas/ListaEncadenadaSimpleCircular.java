@@ -36,11 +36,11 @@ public class ListaEncadenadaSimpleCircular {
         nuevoNodo = new Nodo(numEmp, nombre, depto, sueldo);
         if (Vacia()) {
             nc.next = nuevoNodo;
-            temp = nuevoNodo;
+            nuevoNodo.next=nc;
         } else {
-            temp = nc;
-            ant = temp;
-            while (temp != null && temp.depto <= depto && temp.numEmp < numEmp) {// Recore ant y temp
+            temp = nc.next;
+            ant = nc;
+            while (temp != nc && temp.depto <= depto && temp.numEmp < numEmp) {// Recore ant y temp
                                                                                  // hasta que se acomode
                                                                                  // primero por departamento
                                                                                  // y luego por
@@ -49,12 +49,8 @@ public class ListaEncadenadaSimpleCircular {
                 temp = temp.next;
             } // end while para numEmp
 
-            if (ant == nc) {
-                temp.next = nuevoNodo;
-            } else {
-                ant.next = nuevoNodo;
-            } // end if else que agrega los datos
-            nuevoNodo.next = temp;
+            ant.next=nuevoNodo;
+            nuevoNodo.next=temp;
         } // end if else que contirne los while
     }// end insertar
 
@@ -85,7 +81,7 @@ public class ListaEncadenadaSimpleCircular {
             temp = nc;
             while (temp.next != nc) {
                 System.out.println("NumEmp: " + temp.numEmp + "\tNombre: " + temp.nombre + "\tDepto: " + temp.depto
-                            + "\tSueldo: " + temp.sueldo);
+                        + "\tSueldo: " + temp.sueldo);
                 temp = temp.next;
             }
         } else {
@@ -112,7 +108,7 @@ public class ListaEncadenadaSimpleCircular {
         temp = temp.next;
         if (!Vacia()) {
             System.out.println("NumEmp: " + temp.numEmp + "\tNombre: " + temp.nombre + "\tDepto: " + temp.depto
-            + "\tSueldo: " + temp.sueldo);
+                    + "\tSueldo: " + temp.sueldo);
         } else {
             System.out.println("La pila esta vacia");
         } // end if else
@@ -126,9 +122,9 @@ public class ListaEncadenadaSimpleCircular {
                 contador++;
                 temp = temp.next;
             } // end while
-            System.out.println("La cantidad de la lista es de: "+contador );
+            System.out.println("La cantidad de la lista es de: " + contador);
         } // end if
-    }//end tamano
+    }// end tamano
 
     public void ImprimirPorSueldo(double xSal) {
         temp = nc;
@@ -140,8 +136,23 @@ public class ListaEncadenadaSimpleCircular {
                 } // end if
                 temp = temp.next;
             } // end while
-        }else{
+        } else {
             System.out.println("Vacia");
-        }//end if
+        } // end if
     }// end Imprimir por sueldo
+
+    public void Invertir() {
+        Nodo anterior = nc;
+        Nodo p = anterior.next;
+        Nodo i = p;
+        while (i != nc) {
+            i = p.next;
+            p.next = anterior;
+
+            anterior = p;
+            p = i;
+        }//end while para invertir los apuntadores
+        nc.next = anterior;
+        System.out.print("\n LESC INVERTIDA");
+    }//end invertir
 }// end class
