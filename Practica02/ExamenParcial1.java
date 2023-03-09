@@ -1,6 +1,7 @@
 package Practica02;
 
 import java.util.LinkedList;
+import javax.swing.JOptionPane;
 import java.util.Stack;
 
 public class ExamenParcial1 {
@@ -49,10 +50,10 @@ public class ExamenParcial1 {
     public void InsertarNODO(int numcle) {
         nuevoNodo = new Nodo(numcle);
         if (!VaciaNODO()) {
-            fin.next = nuevoNodo;
+            inicio = nuevoNodo;
             fin = nuevoNodo;
         } else {
-            inicio = nuevoNodo;
+            fin.next = nuevoNodo;
             fin = nuevoNodo;
         } // end if else
     }// end insertar
@@ -61,9 +62,9 @@ public class ExamenParcial1 {
     private void BorrarCola() {
         if (!VaciaCola()) {
             this.ElementoBorrado = Cola.poll();
-            System.out.println("Se elimino cliente: " + ElementoBorrado);
+            //JOptionPane.showMessageDialog(null,"Se elimino cliente: " + ElementoBorrado);
         } else {
-            System.out.println("La cola esta vacia");
+            JOptionPane.showMessageDialog(null,"La cola esta vacia");
         } // end if else
     }// end Borrar Cola
 
@@ -71,9 +72,9 @@ public class ExamenParcial1 {
         if (!VaciaPila()) {
             this.ElementoBorrado = Pila.peek();
             Pila.pop();
-            System.out.println("Elemento eliminado: " + ElementoBorrado);
+            //JOptionPane.showMessageDialog(null, "Elemento eliminado: " + ElementoBorrado);
         } else {
-            System.out.println("La pila está vacía");
+            JOptionPane.showMessageDialog(null, "La pila está vacía");
         } // end if else
     }// end Borrar Pila
 
@@ -84,9 +85,10 @@ public class ExamenParcial1 {
             if (inicio == null) {
                 fin = null;
             } // significa que ahora esta vacia
-            System.out.println("Se ha borrado el empleado numero: " + temp.numcle);
+            this.ElementoBorrado=temp.numcle;
+            JOptionPane.showMessageDialog(null, "Se ha borrado el empleado numero: " + ElementoBorrado);
         } else {
-            System.out.println("La lista esta vacia");
+            JOptionPane.showMessageDialog(null, "La lista esta vacia");
         } // end if else
     }// end borrar
 
@@ -97,7 +99,7 @@ public class ExamenParcial1 {
 
     private void BorrarColaInsertarPila() {
         BorrarCola();
-        System.out.println("Se borro el elemento " + ElementoBorrado + " y se agrego a Pila");
+        JOptionPane.showMessageDialog(null, "Se borro el elemento " + ElementoBorrado + " y se agrego a Pila");
         InsertarPila(ElementoBorrado);
     }// end borrar cola e insertar pila
 
@@ -105,12 +107,11 @@ public class ExamenParcial1 {
         if (!VaciaPila()) {
             if (Pila.peek().equals(xelem)) {
                 BorrarPila();
-                InsertarNODO(xelem);
             } else {
                 while (!Pila.peek().equals(xelem)) { // mientras que el ultimo elemtento no sea igual a xelem
                     BorrarPila(); // se borrara el elemento y se guarda en ElemtoBorrado
                     InsertarNODO(ElementoBorrado); // se van insertando los ElementoBorrado al NODO
-                } // end while 
+                } // end while
                 BorrarPila(); // Ya es el elemento que queriamos borrar y lo borramos
 
                 while (!VaciaNODO()) { // mienras que el NODO no este vacia
@@ -118,26 +119,26 @@ public class ExamenParcial1 {
                     InsertarPila(ElementoBorrado); // se van insertando los ElementoBorrado a la Pila
                 } // end whilw
             } // end ifn else
-            System.out.println("Se elimino de Pila y se agrego a Cola2 el cliente: " + ElementoBorrado);
+            JOptionPane.showMessageDialog(null, "Se elimino de Pila el cliente: " + ElementoBorrado);
         } else {
-            System.out.println("La pila esta vacia");
+            JOptionPane.showMessageDialog(null, "La pila esta vacia");
         } // end if else
     }// end Borrar pila e insertar cola
 
     // METODOS PARA IMPRIMIR
     private void ImprimirPila() {
         if (!VaciaPila()) {
-            System.out.println("Elementos de la pila: " + Pila);
+            JOptionPane.showMessageDialog(null, "Elementos de la pila: " + Pila);
         } else {
-            System.out.println("La Pila esta vacia");
+            JOptionPane.showMessageDialog(null, "La Pila esta vacia");
         } // end if else
     }// end imprimir pila
 
     private void ImprimirCola() {
         if (!VaciaCola()) {
-            System.out.println("Elementos de la cola: " + Cola);
+            JOptionPane.showMessageDialog(null, "Elementos de la cola: " + Cola);
         } else {
-            System.out.println("La Cola esta vacia");
+            JOptionPane.showMessageDialog(null, "La Cola esta vacia");
         } // end if else
     }// end imprimir cola
 
@@ -154,22 +155,78 @@ public class ExamenParcial1 {
     }// end Tamano
 
     private void TamanoGeneral() {
-        System.out.println("EL tamano de la pila es de: " + Pila.size()
+        JOptionPane.showMessageDialog(null, "EL tamano de la pila es de: " + Pila.size()
                 + "\nEl tamano de Cola es de: " + Cola.size()
                 + "\nEl tamano de Cola tipo NODO es de: " + TamanoNODO());
     }// end Tamano general
 
     private void PrimerElementoCola() {
-        System.out.println("El primer elemento de la cola es: " + Cola.getFirst());
+        JOptionPane.showMessageDialog(null, "El primer elemento de la cola es: " + Cola.getFirst());
     }// end Primer elemento cola
 
     private void UltimoElementoCola() {
-        System.out.println("El ultimo elemento de la cola es: " + Cola.getLast());
+        JOptionPane.showMessageDialog(null, "El ultimo elemento de la cola es: " + Cola.getLast());
     }// end ultimo elemento cola
 
     private void UltimoElementoPila() {
-        System.out.println("EL ultimo elemento de la pla es: " + Pila.peek());
+        JOptionPane.showMessageDialog(null, "EL ultimo elemento de la pla es: " + Pila.peek());
     }// end ultimo elemento pila
 
+    public static void main(String[] args) {
+        ExamenParcial1 practica2 = new ExamenParcial1();
+        int opcion;
+        do {
+            opcion = Integer.parseInt(JOptionPane.showInputDialog(null, "====== MENU LISTA SIMPLE COLAS======"
+                    + "\n 1. Insertar Cliente "
+                    + "\n 2. Borra Cola e Inserta en Pila "
+                    + "\n 3. Borrar xelem de Pila "
+                    + "\n 4. Imprimir Pila "
+                    + "\n 5. Imprimir Cola1"
+                    + "\n 6. Tamano de Pila, Cola, ColaNODO"
+                    + "\n 7. Imprimir primer elemento de Cola "
+                    + "\n 8. Imprimir ultimo elemento de Pila "
+                    + "\n 9. Imprimir ultimo elemento de Cola "
+                    + "\n 0. SALIR"
+                    + "Ingrese opción: \n"));
 
+            switch (opcion) {
+                case 1:
+                    int cliente = Integer.parseInt(JOptionPane.showInputDialog(null, "Agregue el numero de cliente: "));
+                    practica2.InsertarCola(cliente);
+                    break;
+                case 2:
+                    practica2.BorrarColaInsertarPila();
+                    break;
+                case 3:
+                    int xclien = Integer.parseInt(JOptionPane.showInputDialog(null, "Numero de cliente que quiera borrar: "+Pila));
+
+                    practica2.BorrarPilaInsertarCola(xclien);
+                    break;
+                case 4:
+                    practica2.ImprimirPila();
+                    break;
+                case 5:
+                    practica2.ImprimirCola();
+                    break;
+                case 6:
+                    practica2.TamanoGeneral();
+                    break;
+                case 7:
+                    practica2.PrimerElementoCola();
+                    break;
+                case 8:
+                    practica2.UltimoElementoPila();
+                    break;
+                case 9:
+                    practica2.UltimoElementoCola();
+                    break;
+                case 0:
+                    JOptionPane.showMessageDialog(null, "Saliendo...");
+                    break;
+                default:
+                    JOptionPane.showMessageDialog(null, "Ingrese una opcion Valida");
+                    break;
+            }// end swithc
+        } while (opcion != 0);
+    }// end main
 }// end class
