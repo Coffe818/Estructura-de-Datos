@@ -11,6 +11,7 @@ public class ExamenParcial1 {
     public class Nodo {
         int numcle;
         Nodo next;
+
         public Nodo(int numcle) {
             this.numcle = numcle;
             this.next = null;
@@ -23,12 +24,12 @@ public class ExamenParcial1 {
     Nodo ant;
     Nodo nuevoNodo;
 
-//METODOS VACIA
+    // METODOS VACIA
     private boolean VaciaCola() {
         return Cola.isEmpty();
     }// end Vacia Cola
 
-    private boolean VaciaPila() { 
+    private boolean VaciaPila() {
         return Pila.isEmpty();
     }// end Vacia Pila
 
@@ -36,7 +37,7 @@ public class ExamenParcial1 {
         return inicio == null;
     }// end vacia
 
-//METODOS PARA INSERTAR
+    // METODOS PARA INSERTAR
     private void InsertarCola(int xelem) {
         Cola.add(xelem);
     }// end Insertar Cola
@@ -56,7 +57,7 @@ public class ExamenParcial1 {
         } // end if else
     }// end insertar
 
-//METODOS PARA BORRAR
+    // METODOS PARA BORRAR
     private void BorrarCola() {
         if (!VaciaCola()) {
             this.ElementoBorrado = Cola.poll();
@@ -76,28 +77,28 @@ public class ExamenParcial1 {
         } // end if else
     }// end Borrar Pila
 
-    public void BorrarNODO( ) {
+    public void BorrarNODO() {
         if (!VaciaNODO()) {
             temp = inicio;
             inicio = inicio.next;
             if (inicio == null) {
                 fin = null;
             } // significa que ahora esta vacia
-            System.out.println( "Se ha borrado el empleado numero: " + temp.numcle );
+            System.out.println("Se ha borrado el empleado numero: " + temp.numcle);
         } else {
-            System.out.println( "La lista esta vacia");
+            System.out.println("La lista esta vacia");
         } // end if else
     }// end borrar
 
-//METODOS QUE PIDE EL EXAMEN
+    // METODOS QUE BORRAN DE UN LADO Y LO PASAN A OTRO LADO
     public void InsertarPilaBorrarCola() {
         Pila.push(Cola.poll());
-    }//end Borrr cola e insertar pila
+    }// end Borrr cola e insertar pila
 
     private void BorrarColaInsertarPila() {
         BorrarCola();
         System.out.println("Se borro el elemento " + ElementoBorrado + " y se agrego a Pila");
-        InsertarPila( ElementoBorrado);
+        InsertarPila(ElementoBorrado);
     }// end borrar cola e insertar pila
 
     private void BorrarPilaInsertarCola(int xelem) {
@@ -108,10 +109,10 @@ public class ExamenParcial1 {
             } else {
                 while (!Pila.peek().equals(xelem)) { // mientras que el ultimo elemtento no sea igual a xelem
                     BorrarPila(); // se borrara el elemento y se guarda en ElemtoBorrado
-                    InsertarNODO( ElementoBorrado); // se van insertando los ElementoBorrado a la Pila Temp
-                } // end while //
+                    InsertarNODO(ElementoBorrado); // se van insertando los ElementoBorrado al NODO
+                } // end while 
                 BorrarPila(); // Ya es el elemento que queriamos borrar y lo borramos
-               
+
                 while (!VaciaNODO()) { // mienras que el NODO no este vacia
                     BorrarNODO(); // se borra el elemeto y se guarda en ElemtoBorrado
                     InsertarPila(ElementoBorrado); // se van insertando los ElementoBorrado a la Pila
@@ -120,10 +121,55 @@ public class ExamenParcial1 {
             System.out.println("Se elimino de Pila y se agrego a Cola2 el cliente: " + ElementoBorrado);
         } else {
             System.out.println("La pila esta vacia");
-        }//end if else
+        } // end if else
     }// end Borrar pila e insertar cola
 
-    
+    // METODOS PARA IMPRIMIR
+    private void ImprimirPila() {
+        if (!VaciaPila()) {
+            System.out.println("Elementos de la pila: " + Pila);
+        } else {
+            System.out.println("La Pila esta vacia");
+        } // end if else
+    }// end imprimir pila
+
+    private void ImprimirCola() {
+        if (!VaciaCola()) {
+            System.out.println("Elementos de la cola: " + Cola);
+        } else {
+            System.out.println("La Cola esta vacia");
+        } // end if else
+    }// end imprimir cola
+
+    public int TamanoNODO() {
+        int contador = 0;
+        if (!VaciaNODO()) {
+            temp = inicio;
+            while (temp != null) {
+                contador++;
+                temp = temp.next;
+            } // end while
+        } // end if
+        return contador;
+    }// end Tamano
+
+    private void TamanoGeneral() {
+        System.out.println("EL tamano de la pila es de: " + Pila.size()
+                + "\nEl tamano de Cola es de: " + Cola.size()
+                + "\nEl tamano de Cola tipo NODO es de: " + TamanoNODO());
+    }// end Tamano general
+
+    private void PrimerElementoCola() {
+        System.out.println("El primer elemento de la cola es: " + Cola.getFirst());
+    }// end Primer elemento cola
+
+    private void UltimoElementoCola() {
+        System.out.println("El ultimo elemento de la cola es: " + Cola.getLast());
+    }// end ultimo elemento cola
+
+    private void UltimoElementoPila() {
+        System.out.println("EL ultimo elemento de la pla es: " + Pila.peek());
+    }// end ultimo elemento pila
 
 
-}//end class
+}// end class
