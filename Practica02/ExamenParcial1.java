@@ -21,7 +21,9 @@ public class ExamenParcial1 {
     Nodo fin;
     Nodo temp;
     Nodo ant;
+    Nodo nuevoNodo;
 
+//METODOS VACIA
     private boolean VaciaCola() {
         return Cola.isEmpty();
     }// end Vacia Cola
@@ -30,6 +32,11 @@ public class ExamenParcial1 {
         return Pila.isEmpty();
     }// end Vacia Pila
 
+    public boolean VaciaNODO() {
+        return inicio == null;
+    }// end vacia
+
+//METODOS PARA INSERTAR
     private void InsertarCola(int xelem) {
         Cola.add(xelem);
     }// end Insertar Cola
@@ -38,6 +45,18 @@ public class ExamenParcial1 {
         Pila.push(xelem);
     }// end Insertar Pila
 
+    public void InsertarNODO(int numcle) {
+        nuevoNodo = new Nodo(numcle);
+        if (!VaciaNODO()) {
+            fin.next = nuevoNodo;
+            fin = nuevoNodo;
+        } else {
+            inicio = nuevoNodo;
+            fin = nuevoNodo;
+        } // end if else
+    }// end insertar
+
+//METODOS PARA BORRAR
     private void BorrarCola() {
         if (!VaciaCola()) {
             this.ElementoBorrado = Cola.poll();
@@ -57,7 +76,20 @@ public class ExamenParcial1 {
         } // end if else
     }// end Borrar Pila
 
+    public void BorrarNODO( ) {
+        if (!VaciaNODO()) {
+            temp = inicio;
+            inicio = inicio.next;
+            if (inicio == null) {
+                fin = null;
+            } // significa que ahora esta vacia
+            System.out.println( "Se ha borrado el empleado numero: " + temp.numcle );
+        } else {
+            System.out.println( "La lista esta vacia");
+        } // end if else
+    }// end borrar
 
+//METODOS QUE PIDE EL EXAMEN
     public void InsertarPilaBorrarCola() {
         Pila.push(Cola.poll());
     }//end Borrr cola e insertar pila
@@ -68,7 +100,30 @@ public class ExamenParcial1 {
         InsertarPila( ElementoBorrado);
     }// end borrar cola e insertar pila
 
+    private void BorrarPilaInsertarCola(int xelem) {
+        if (!VaciaPila()) {
+            if (Pila.peek().equals(xelem)) {
+                BorrarPila();
+                InsertarNODO(xelem);
+            } else {
+                while (!Pila.peek().equals(xelem)) { // mientras que el ultimo elemtento no sea igual a xelem
+                    BorrarPila(); // se borrara el elemento y se guarda en ElemtoBorrado
+                    InsertarNODO( ElementoBorrado); // se van insertando los ElementoBorrado a la Pila Temp
+                } // end while //
+                BorrarPila(); // Ya es el elemento que queriamos borrar y lo borramos
+               
+                while (!VaciaNODO()) { // mienras que el NODO no este vacia
+                    BorrarNODO(); // se borra el elemeto y se guarda en ElemtoBorrado
+                    InsertarPila(ElementoBorrado); // se van insertando los ElementoBorrado a la Pila
+                } // end whilw
+            } // end ifn else
+            System.out.println("Se elimino de Pila y se agrego a Cola2 el cliente: " + ElementoBorrado);
+        } else {
+            System.out.println("La pila esta vacia");
+        }//end if else
+    }// end Borrar pila e insertar cola
 
+    
 
 
 }//end class
