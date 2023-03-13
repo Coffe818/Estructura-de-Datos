@@ -123,11 +123,11 @@ public class ExamenParcial {
             } else {
                 while (!Pila.peek().equals(xelem)) { // mientras que el ultimo elemtento no sea igual a xelem
                     BorrarPila(); // se borrara el elemento y se guarda en ElemtoBorrado
-                    InsertarNODO(ElementoBorrado); // se van insertando los ElementoBorrado a la Pila Temp
+                    InsertarNODO(ElementoBorrado); // se van insertando los ElementoBorrado al Nodo
                 } // end while //
                 BorrarPila(); // Ya es el elemento que queriamos borrar y lo borramos
                 InsertarCola(Cola2, ElementoBorrado);// e inserta en cola
-                while (!VaciaNODO()) { // mienras que le PilaTem este vacia
+                while (!VaciaNODO()) { // mienras que el Nodo no este vacia
                     BorrarNODO(); // se borra el elemeto y se guarda en ElemtoBorrado
                     InsertarPila(ElementoBorrado); // se van insertando los ElementoBorrado a la Pila
                 } // end whilw
