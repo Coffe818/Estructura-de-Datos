@@ -178,7 +178,7 @@ public class ExamenParcial {
         ExamenParcial examen = new ExamenParcial();
         int opcion;
         do {
-            opcion = Integer.parseInt(JOptionPane.showInputDialog(null, "====== MENU LISTA SIMPLE COLAS======"
+            opcion = Integer.parseInt(JOptionPane.showInputDialog(null, "====== MENU EXAMEN PARCIAL 1======"
                     + "\n 1. Insertar Cliente "
                     + "\n 2. Borra Cola1 e Inserta en Pila "
                     + "\n 3. Borrar xelem de Pila "
@@ -191,7 +191,7 @@ public class ExamenParcial {
                     + "\n 10. Imprimir ultimo elemento de Pila "
                     + "\n 11. Imprimir ultimo elemento de Cola1 "
                     + "\n 0. SALIR"
-                    + "Ingrese opción: \n"));
+                    + "\nIngrese opción: \n"));
 
             switch (opcion) {
                 case 1:
