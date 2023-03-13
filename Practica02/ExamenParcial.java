@@ -98,12 +98,43 @@ public class ExamenParcial {
                 ant.next = null;
             } // borra dependiendo de si es el primero y deja la cola vacia o sino y borra el
               // ultimo
-
-            JOptionPane.showMessageDialog(null, "Se ha borrado el empleado numero: " + temp.numcle);
+            ElementoBorrado= temp.numcle;
+            JOptionPane.showMessageDialog(null, "Se ha borrado el empleado numero: " + ElementoBorrado);
             cantidad--;
         } else {
             JOptionPane.showMessageDialog(null, "Esta vacia la lista");
         } // if else
     }// end Borrar
 
+    //METODOS PARA BORRAR DE UN LADO E INSERTAR EL OTRO LADO
+    private void BorrarColaInsertarPila() {
+        BorrarCola(Cola1);
+        JOptionPane.showMessageDialog(null,"Se borro el elemento " + ElementoBorrado + " y se agrego a Pila");
+        InsertarPila(ElementoBorrado);
+    }// end borrar cola e insertar pila
+
+    private void BorrarPilaInsertarCola(int xelem) {
+        if (!VaciaPila()) {
+            if (Pila.peek().equals(xelem)) {
+                BorrarPila();
+                InsertarCola(Cola2, xelem);
+            } else {
+                while (!Pila.peek().equals(xelem)) { // mientras que el ultimo elemtento no sea igual a xelem
+                    BorrarPila(); // se borrara el elemento y se guarda en ElemtoBorrado
+                    InsertarNODO( ElementoBorrado); // se van insertando los ElementoBorrado a la Pila Temp
+                } // end while //
+                BorrarPila(); // Ya es el elemento que queriamos borrar y lo borramos
+                InsertarCola(Cola2, ElementoBorrado);// e inserta en cola
+                while (!VaciaPila()) { // mienras que le PilaTem este vacia
+                    BorrarNODO(); // se borra el elemeto y se guarda en ElemtoBorrado
+                    InsertarPila(ElementoBorrado); // se van insertando los ElementoBorrado a la Pila
+                } // end whilw
+            } // end ifn else
+            JOptionPane.showMessageDialog(null,"Se elimino de Pila y se agrego a Cola2 el cliente: " + ElementoBorrado);
+        } else {
+            JOptionPane.showMessageDialog(null,"La pila esta vacia");
+        }//end if else
+    }// end Borrar pila e insertar cola
+
+    
 }// end class
