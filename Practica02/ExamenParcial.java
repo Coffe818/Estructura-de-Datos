@@ -77,7 +77,7 @@ public class ExamenParcial {
     private void BorrarCola(LinkedList<Integer> cola) {
         if (!VaciaCola(cola)) {
             this.ElementoBorrado = cola.poll();
-            JOptionPane.showMessageDialog(null, "Se elimino cliente: " + ElementoBorrado);
+            //JOptionPane.showMessageDialog(null, "Se elimino cliente: " + ElementoBorrado);
         } else {
             JOptionPane.showMessageDialog(null, "La cola esta vacia");
         } // end if else
@@ -99,12 +99,13 @@ public class ExamenParcial {
                 ant.next = null;
             } // borra dependiendo de si es el primero y deja la cola vacia o sino y borra el
               // ultimo
-            ElementoBorrado = temp.numcle;
-            JOptionPane.showMessageDialog(null, "Se ha borrado el empleado numero: " + ElementoBorrado);
+            this.ElementoBorrado=temp.numcle;
+            
             cantidad--;
         } else {
             JOptionPane.showMessageDialog(null, "Esta vacia la lista");
         } // if else
+        
     }// end Borrar
 
     // METODOS PARA BORRAR DE UN LADO E INSERTAR EL OTRO LADO
@@ -118,7 +119,7 @@ public class ExamenParcial {
         if (!VaciaPila()) {
             if (Pila.peek().equals(xelem)) {
                 BorrarPila();
-                InsertarCola(Cola2, xelem);
+                InsertarCola(Cola2, ElementoBorrado);
             } else {
                 while (!Pila.peek().equals(xelem)) { // mientras que el ultimo elemtento no sea igual a xelem
                     BorrarPila(); // se borrara el elemento y se guarda en ElemtoBorrado
@@ -126,7 +127,7 @@ public class ExamenParcial {
                 } // end while //
                 BorrarPila(); // Ya es el elemento que queriamos borrar y lo borramos
                 InsertarCola(Cola2, ElementoBorrado);// e inserta en cola
-                while (!VaciaPila()) { // mienras que le PilaTem este vacia
+                while (!VaciaNODO()) { // mienras que le PilaTem este vacia
                     BorrarNODO(); // se borra el elemeto y se guarda en ElemtoBorrado
                     InsertarPila(ElementoBorrado); // se van insertando los ElementoBorrado a la Pila
                 } // end whilw
@@ -156,23 +157,88 @@ public class ExamenParcial {
     }// end imprimir cola
 
     private void TamanoGeneral() {
-        JOptionPane.showMessageDialog(null,"EL tamano de la pila es de: " + Pila.size()
+        JOptionPane.showMessageDialog(null, "EL tamano de la pila es de: " + Pila.size()
                 + "\nEl tamano de Cola1 es de: " + Cola1.size()
                 + "\nEl tamano de Cola2 es de: " + Cola2.size());
     }// end Tamabo general
 
-    private void PrimerElementoCola(    ) {
-        JOptionPane.showMessageDialog(null,"El primer elemento de la cola es: " + Cola1.getFirst());
+    private void PrimerElementoCola() {
+        JOptionPane.showMessageDialog(null, "El primer elemento de la cola es: " + Cola1.getFirst());
     }// end Primer elemento cola
-    
+
     private void UltimoElementoPila() {
-        JOptionPane.showMessageDialog(null,"EL ultimo elemento de la pla es: " + Pila.peek());
+        JOptionPane.showMessageDialog(null, "EL ultimo elemento de la pla es: " + Pila.peek());
     }// end ultimo elemento pila
 
     private void UltimoElementoCola() {
-        JOptionPane.showMessageDialog(null,"El ultimo elemento de la cola es: " + Cola1.getLast());
+        JOptionPane.showMessageDialog(null, "El ultimo elemento de la cola es: " + Cola1.getLast());
     }// end ultimo elemento cola
 
-    
+    public static void main(String[] args) {
+        ExamenParcial examen = new ExamenParcial();
+        int opcion;
+        do {
+            opcion = Integer.parseInt(JOptionPane.showInputDialog(null, "====== MENU LISTA SIMPLE COLAS======"
+                    + "\n 1. Insertar Cliente "
+                    + "\n 2. Borra Cola1 e Inserta en Pila "
+                    + "\n 3. Borrar xelem de Pila "
+                    + "\n 4. Borrar un elemento Cola2"
+                    + "\n 5. Imprimir Pila "
+                    + "\n 6. Imprimir Cola1"
+                    + "\n 7. Imprimir Cola2"
+                    + "\n 8. Tamano de Pila, Cola1, Cola2"
+                    + "\n 9. Imprimir primer elemento de Cola1 "
+                    + "\n 10. Imprimir ultimo elemento de Pila "
+                    + "\n 11. Imprimir ultimo elemento de Cola1 "
+                    + "\n 0. SALIR"
+                    + "Ingrese opción: \n"));
+
+            switch (opcion) {
+                case 1:
+                    int cliente = Integer.parseInt(JOptionPane.showInputDialog(null, "Agregue el numero de cliente: "));
+                    examen.InsertarCola(Cola1, cliente);
+                    break;
+                case 2:
+                    examen.BorrarColaInsertarPila();
+                    break;
+                case 3:
+                    int xclien = Integer.parseInt(
+                            JOptionPane.showInputDialog(null, "Numero de cliente que quiera borrar: " + Pila));
+
+                    examen.BorrarPilaInsertarCola(xclien);
+                    break;
+                case 4: 
+                    examen.BorrarCola(Cola2);
+                    JOptionPane.showMessageDialog(null, "El elimino el primer cliente ");
+                case 5:
+                    examen.ImprimirPila();
+                    break;
+                case 6:
+                    examen.ImprimirCola(Cola1);
+                    break;
+                case 7: 
+                    examen.ImprimirCola(Cola2);
+                    break;
+                case 8:
+                    examen.TamanoGeneral();
+                    break;
+                case 9:
+                    examen.PrimerElementoCola();
+                    break;
+                case 10:
+                    examen.UltimoElementoPila();
+                    break;
+                case 11:
+                    examen.UltimoElementoCola();
+                    break;
+                case 0:
+                    JOptionPane.showMessageDialog(null, "Saliendo...");
+                    break;
+                default:
+                    JOptionPane.showMessageDialog(null, "Ingrese una opcion Valida");
+                    break;
+            }// end swithc
+        } while (opcion != 0);
+    }// end main
 
 }// end class
