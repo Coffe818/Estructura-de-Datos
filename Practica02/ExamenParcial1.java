@@ -49,7 +49,7 @@ public class ExamenParcial1 {
 
     public void InsertarNODO(int numcle) {
         nuevoNodo = new Nodo(numcle);
-        if (!VaciaNODO()) {
+        if (VaciaNODO()) {
             inicio = nuevoNodo;
             fin = nuevoNodo;
         } else {
@@ -70,8 +70,7 @@ public class ExamenParcial1 {
 
     private void BorrarPila() {
         if (!VaciaPila()) {
-            this.ElementoBorrado = Pila.peek();
-            Pila.pop();
+            this.ElementoBorrado = Pila.pop();
             //JOptionPane.showMessageDialog(null, "Elemento eliminado: " + ElementoBorrado);
         } else {
             JOptionPane.showMessageDialog(null, "La pila está vacía");
