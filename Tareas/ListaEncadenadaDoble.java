@@ -123,24 +123,26 @@ public class ListaEncadenadaDoble {
 
             temp = temp.next;
         } // end while que imprime y recorre temp a la izquierda
-
+        System.out.println("NumArt: " + Mayor.numArt + "\t Nombre: " + Mayor.nombre + "\tExistencia: " + Mayor.existencia
+        + "\tPrecio: " + Mayor.precio);
     }// end Precio Mayor
 
     public static void main(String[] args) {
         ListaEncadenadaDoble lis = new ListaEncadenadaDoble();
         int opcion;
         Scanner s = new Scanner(System.in);
-        System.out.println("============Menu Lista Doble=========="
-                + "\n1. Insertar elemento"
-                + "\n2. Eliminar un x Nodo"
-                + "\n3. Imprimir Cantidad de elementos"
-                + "\n4. Imprimir hacia la derecha "
-                + "\n5. Imprimir hacia la izquierda"
-                + "\n6. Imprimir el que tiene precio Mayor"
-                + "\n0. Salir"
-                + "\nSELECCIONE UNA OPCION");
-        opcion = s.nextInt();
+
         do {
+            System.out.println("============Menu Lista Doble=========="
+                    + "\n1. Insertar elemento"
+                    + "\n2. Eliminar un x Nodo"
+                    + "\n3. Imprimir Cantidad de elementos"
+                    + "\n4. Imprimir hacia la derecha "
+                    + "\n5. Imprimir hacia la izquierda"
+                    + "\n6. Imprimir el que tiene precio Mayor"
+                    + "\n0. Salir"
+                    + "\nSELECCIONE UNA OPCION");
+            opcion = s.nextInt();
             switch (opcion) {
                 case 1:
                     System.out.println("Ingrese el numero del articulo: ");
@@ -152,11 +154,11 @@ public class ListaEncadenadaDoble {
                     System.out.println("Ingrese el precio del articulo");
                     float precio = s.nextFloat();
 
-                    lis.Insertar(numArt,nombre, existencia, precio);
+                    lis.Insertar(numArt, nombre, existencia, precio);
                     break;
                 case 2:
                     System.out.println("Ingrese numero de articulo que desea eliminar: ");
-                    numArt= s.nextInt();
+                    numArt = s.nextInt();
                     lis.Borrar(numArt);
                     break;
                 case 3:
