@@ -1,6 +1,6 @@
 package Tareas;
 
-import java.time.temporal.Temporal;
+
 import java.util.Scanner;
 
 public class ListaEncadenadaDoble {
