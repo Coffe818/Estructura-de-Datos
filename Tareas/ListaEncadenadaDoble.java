@@ -26,6 +26,12 @@ public class ListaEncadenadaDoble {
     Nodo nuevoNodo;
     Nodo nc;
 
+    public ListaEncadenadaDoble(){
+        nuevoNodo = new Nodo(0, "", 0, 0);
+        nc = nuevoNodo;
+        nc.next=nc;
+        nc.prev=nc;
+    }
     public boolean Vacia() {
         return nc.next == nc;
     }// end vacia
@@ -34,7 +40,7 @@ public class ListaEncadenadaDoble {
         nuevoNodo = new Nodo(numArt, nombre, existencia, precio);
 
         temp = nc.next;
-        
+
         while (temp != nc && temp.numArt <= numArt) {
             temp = temp.next;
         } // end while para recorrer el temp
@@ -59,9 +65,34 @@ public class ListaEncadenadaDoble {
             sig.prev = ant;
 
         } else {
-            System.out.println("La pila esta vacia");
+            System.out.println("La lista esta vacia");
         }//end if else
-
     }// end Borrar
+
+    public void ImprimirNext(){
+        temp=nc.next;
+        if (!Vacia()) {
+            while(temp!=nc ){
+                System.out.println("NumArt: " + temp.numArt + "\t Nombre: " + temp.nombre + "\tExistencia: " + temp.existencia
+                + "\tPrecio: " + temp.precio);
+                temp=temp.next;
+            }//end while que imprime y recorre temp a la derecha
+        }else{
+            System.out.println("La lista esta vacia");
+        }
+    }//end Imprimir Next
+
+    public void ImprimirPrev(){
+        temp=nc.prev;
+        if (!Vacia()) {
+            while(temp!=nc ){
+                System.out.println("NumArt: " + temp.numArt + "\t Nombre: " + temp.nombre + "\tExistencia: " + temp.existencia
+                + "\tPrecio: " + temp.precio);
+                temp=temp.prev;
+            }//end while que imprime y recorre temp a la izquierda  
+        }else{
+            System.out.println("La lista esta vacia");
+        }
+    }//end Imprimir Prev
 
 }// end class
