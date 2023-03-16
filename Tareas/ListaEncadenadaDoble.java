@@ -1,6 +1,7 @@
 package Tareas;
 
 import java.time.temporal.Temporal;
+import java.util.Scanner;
 
 public class ListaEncadenadaDoble {
     public class Nodo {
@@ -26,12 +27,13 @@ public class ListaEncadenadaDoble {
     Nodo nuevoNodo;
     Nodo nc;
 
-    public ListaEncadenadaDoble(){
+    public ListaEncadenadaDoble() {
         nuevoNodo = new Nodo(0, "", 0, 0);
         nc = nuevoNodo;
-        nc.next=nc;
-        nc.prev=nc;
+        nc.next = nc;
+        nc.prev = nc;
     }
+
     public boolean Vacia() {
         return nc.next == nc;
     }// end vacia
@@ -66,33 +68,120 @@ public class ListaEncadenadaDoble {
 
         } else {
             System.out.println("La lista esta vacia");
-        }//end if else
+        } // end if else
     }// end Borrar
 
-    public void ImprimirNext(){
-        temp=nc.next;
+    public void ImprimirNext() {
+        temp = nc.next;
         if (!Vacia()) {
-            while(temp!=nc ){
-                System.out.println("NumArt: " + temp.numArt + "\t Nombre: " + temp.nombre + "\tExistencia: " + temp.existencia
-                + "\tPrecio: " + temp.precio);
-                temp=temp.next;
-            }//end while que imprime y recorre temp a la derecha
-        }else{
+            while (temp != nc) {
+                System.out.println(
+                        "NumArt: " + temp.numArt + "\t Nombre: " + temp.nombre + "\tExistencia: " + temp.existencia
+                                + "\tPrecio: " + temp.precio);
+                temp = temp.next;
+            } // end while que imprime y recorre temp a la derecha
+        } else {
             System.out.println("La lista esta vacia");
         }
-    }//end Imprimir Next
+    }// end Imprimir Next
 
-    public void ImprimirPrev(){
-        temp=nc.prev;
+    public void ImprimirPrev() {
+        temp = nc.prev;
         if (!Vacia()) {
-            while(temp!=nc ){
-                System.out.println("NumArt: " + temp.numArt + "\t Nombre: " + temp.nombre + "\tExistencia: " + temp.existencia
-                + "\tPrecio: " + temp.precio);
-                temp=temp.prev;
-            }//end while que imprime y recorre temp a la izquierda  
-        }else{
+            while (temp != nc) {
+                System.out.println(
+                        "NumArt: " + temp.numArt + "\t Nombre: " + temp.nombre + "\tExistencia: " + temp.existencia
+                                + "\tPrecio: " + temp.precio);
+                temp = temp.prev;
+            } // end while que imprime y recorre temp a la izquierda
+        } else {
             System.out.println("La lista esta vacia");
         }
-    }//end Imprimir Prev
+    }// end Imprimir Prev
+
+    public void Tamano() {
+        int contador = 0;
+        temp = nc.next;
+        while (temp != nc) {
+            contador++;
+            temp = temp.next;
+        } // end while
+        System.out.println("La cantidad de la lista es de: " + contador);
+
+    }// end tamano
+
+    public void PrecioMayor() {
+
+        Nodo Mayor = nc;
+        temp = temp.next;
+        while (temp != nc) {
+
+            if (temp.precio > Mayor.precio) {
+                Mayor = temp;
+            } // si el precio de temporal es mayor al precio mayor que ya tenia el mayor se
+              // mueve al temporal
+
+            temp = temp.next;
+        } // end while que imprime y recorre temp a la izquierda
+
+    }// end Precio Mayor
+
+    public static void main(String[] args) {
+        ListaEncadenadaDoble lis = new ListaEncadenadaDoble();
+        int opcion;
+        Scanner s = new Scanner(System.in);
+        System.out.println("============Menu Lista Doble=========="
+                + "\n1. Insertar elemento"
+                + "\n2. Eliminar un x Nodo"
+                + "\n3. Imprimir Cantidad de elementos"
+                + "\n4. Imprimir hacia la derecha "
+                + "\n5. Imprimir hacia la izquierda"
+                + "\n6. Imprimir el que tiene precio Mayor"
+                + "\n0. Salir"
+                + "\nSELECCIONE UNA OPCION");
+        opcion = s.nextInt();
+        do {
+            switch (opcion) {
+                case 1:
+                    System.out.println("Ingrese el numero del articulo: ");
+                    int numArt = s.nextInt();
+                    System.out.println("Ingrese en nombre del articulo: ");
+                    String nombre = s.next();
+                    System.out.println("Ingrese la existencia de articulo: ");
+                    int existencia = s.nextInt();
+                    System.out.println("Ingrese el precio del articulo");
+                    float precio = s.nextFloat();
+
+                    lis.Insertar(numArt,nombre, existencia, precio);
+                    break;
+                case 2:
+                    System.out.println("Ingrese numero de articulo que desea eliminar: ");
+                    numArt= s.nextInt();
+                    lis.Borrar(numArt);
+                    break;
+                case 3:
+                    lis.Tamano();
+                    break;
+                case 4:
+                    lis.ImprimirNext();
+                    break;
+                case 5:
+                    lis.ImprimirPrev();
+                    break;
+                case 6:
+                    lis.PrecioMayor();
+                    break;
+                case 0:
+                    System.out.println("Saliendo...");
+                    break;
+
+                default:
+                    System.out.println("Ingrece una opcion valida");
+                    break;
+            }
+        } while (opcion != 0);
+
+        s.close();
+    }// end main
 
 }// end class
