@@ -1,7 +1,11 @@
 package Tareas;
 
-
 import java.util.Scanner;
+
+import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 public class ListaEncadenadaDoble {
     public class Nodo {
@@ -26,6 +30,29 @@ public class ListaEncadenadaDoble {
     Nodo sig;
     Nodo nuevoNodo;
     Nodo nc;
+    DefaultTableModel modelo = new DefaultTableModel();// aqui agrego los datos
+    JTable tabla = new JTable();// aqui se agregan a la tabla
+    JScrollPane scrollPane = new JScrollPane();// en cso de que sea muy grande y necesite parras de desplasamiento
+
+
+    public void NombreColumnas() {
+        modelo = new DefaultTableModel();
+        modelo.addColumn("Num. Art");
+        modelo.addColumn("Nombre");
+        modelo.addColumn("Existenca");
+        modelo.addColumn("Precio");
+    }// end Nombre columnas
+
+    public void AgregarDatos(int numArt, String nombre, int existencia, float precio) {
+        Object[] fila = { numArt, nombre, existencia, precio };
+        modelo.addRow(fila);
+    }// end agregar datos
+
+    public void ImprimirTabla() {
+        tabla = new JTable(modelo);
+        scrollPane = new JScrollPane(tabla);
+        JOptionPane.showMessageDialog(null, scrollPane);
+    }// end imprimir tabla
 
     public ListaEncadenadaDoble() {
         nuevoNodo = new Nodo(0, "", 0, 0);
@@ -40,7 +67,6 @@ public class ListaEncadenadaDoble {
 
     public void Insertar(int numArt, String nombre, int existencia, float precio) {
         nuevoNodo = new Nodo(numArt, nombre, existencia, precio);
-
         temp = nc.next;
 
         while (temp != nc && temp.numArt <= numArt) {
@@ -65,37 +91,39 @@ public class ListaEncadenadaDoble {
             sig = temp.next;
             ant.next = sig;
             sig.prev = ant;
+            JOptionPane.showMessageDialog(null, "Se ha borrado el empleado numero: " + temp.numArt);
 
         } else {
-            System.out.println("La lista esta vacia");
+            JOptionPane.showMessageDialog(null, "La lista esta vacia");
         } // end if else
     }// end Borrar
 
     public void ImprimirNext() {
         temp = nc.next;
         if (!Vacia()) {
+            NombreColumnas();
             while (temp != nc) {
-                System.out.println(
-                        "NumArt: " + temp.numArt + "\t Nombre: " + temp.nombre + "\tExistencia: " + temp.existencia
-                                + "\tPrecio: " + temp.precio);
+                AgregarDatos(temp.numArt, temp.nombre, temp.existencia, temp.precio);
                 temp = temp.next;
             } // end while que imprime y recorre temp a la derecha
+            ImprimirTabla();
+
         } else {
-            System.out.println("La lista esta vacia");
+            JOptionPane.showMessageDialog(null, "La lista esta vacia");
         }
     }// end Imprimir Next
 
     public void ImprimirPrev() {
         temp = nc.prev;
         if (!Vacia()) {
+            NombreColumnas();
             while (temp != nc) {
-                System.out.println(
-                        "NumArt: " + temp.numArt + "\t Nombre: " + temp.nombre + "\tExistencia: " + temp.existencia
-                                + "\tPrecio: " + temp.precio);
+                AgregarDatos(temp.numArt, temp.nombre, temp.existencia, temp.precio);
                 temp = temp.prev;
             } // end while que imprime y recorre temp a la izquierda
+            ImprimirTabla();
         } else {
-            System.out.println("La lista esta vacia");
+            JOptionPane.showMessageDialog(null, "La lista esta vacia");
         }
     }// end Imprimir Prev
 
@@ -106,7 +134,7 @@ public class ListaEncadenadaDoble {
             contador++;
             temp = temp.next;
         } // end while
-        System.out.println("La cantidad de la lista es de: " + contador);
+        JOptionPane.showMessageDialog(null, "La cantidad de la lista es de: " + contador);
 
     }// end tamano
 
@@ -114,6 +142,7 @@ public class ListaEncadenadaDoble {
 
         Nodo Mayor = nc;
         temp = temp.next;
+        NombreColumnas();
         while (temp != nc) {
 
             if (temp.precio > Mayor.precio) {
@@ -123,8 +152,8 @@ public class ListaEncadenadaDoble {
 
             temp = temp.next;
         } // end while que imprime y recorre temp a la izquierda
-        System.out.println("NumArt: " + Mayor.numArt + "\t Nombre: " + Mayor.nombre + "\tExistencia: " + Mayor.existencia
-        + "\tPrecio: " + Mayor.precio);
+        AgregarDatos(Mayor.numArt, Mayor.nombre, Mayor.existencia, Mayor.precio);
+        ImprimirTabla();
     }// end Precio Mayor
 
     public static void main(String[] args) {
@@ -133,7 +162,7 @@ public class ListaEncadenadaDoble {
         Scanner s = new Scanner(System.in);
 
         do {
-            System.out.println("============Menu Lista Doble=========="
+            opcion = Integer.parseInt(JOptionPane.showInputDialog("============Menu Lista Doble=========="
                     + "\n1. Insertar elemento"
                     + "\n2. Eliminar un x Nodo"
                     + "\n3. Imprimir Cantidad de elementos"
@@ -141,24 +170,23 @@ public class ListaEncadenadaDoble {
                     + "\n5. Imprimir hacia la izquierda"
                     + "\n6. Imprimir el que tiene precio Mayor"
                     + "\n0. Salir"
-                    + "\nSELECCIONE UNA OPCION");
-            opcion = s.nextInt();
+                    + "\nSELECCIONE UNA OPCION"));
+
             switch (opcion) {
                 case 1:
-                    System.out.println("Ingrese el numero del articulo: ");
-                    int numArt = s.nextInt();
-                    System.out.println("Ingrese en nombre del articulo: ");
-                    String nombre = s.next();
-                    System.out.println("Ingrese la existencia de articulo: ");
-                    int existencia = s.nextInt();
-                    System.out.println("Ingrese el precio del articulo");
-                    float precio = s.nextFloat();
+                    int numArt = Integer
+                            .parseInt(JOptionPane.showInputDialog(null, "Ingrese el numero del articulo: "));
+                    String nombre = JOptionPane.showInputDialog(null, "Ingrese en nombre del articulo: ");
+                    int existencia = Integer
+                            .parseInt(JOptionPane.showInputDialog(null, "Ingrese la existencia de articulo: "));
+                    float precio = Float
+                            .parseFloat(JOptionPane.showInputDialog(null, "Ingrese el precio del articulo"));
 
                     lis.Insertar(numArt, nombre, existencia, precio);
                     break;
                 case 2:
-                    System.out.println("Ingrese numero de articulo que desea eliminar: ");
-                    numArt = s.nextInt();
+                    numArt = Integer.parseInt(JOptionPane.showInputDialog(null,
+                            "Ingrese numero de articulo que desea eliminar: "));
                     lis.Borrar(numArt);
                     break;
                 case 3:
@@ -174,11 +202,11 @@ public class ListaEncadenadaDoble {
                     lis.PrecioMayor();
                     break;
                 case 0:
-                    System.out.println("Saliendo...");
+                    JOptionPane.showMessageDialog(null, "Saliendo...");
                     break;
 
                 default:
-                    System.out.println("Ingrece una opcion valida");
+                    JOptionPane.showMessageDialog(null, "Ingrece una opcion valida");
                     break;
             }
         } while (opcion != 0);
