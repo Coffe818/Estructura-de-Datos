@@ -158,6 +158,24 @@ public class ListaEncadenadaDoble2 {
         ImprimirTabla();
     }// end Precio Mayor
 
+    public void ImprimirPorDepto(int depto) {
+        if (!Vacia()) {
+            temp = nc.next;
+            modelo = new DefaultTableModel();
+            NombreColumnas();
+
+            while (temp != nc) {
+                if (temp.depto == depto) {
+                    AgregarDatos(temp.numEmp, temp.nombre, temp.depto, temp.sueldo);
+                } // end if para imprimir al empleado
+
+                temp = temp.next;
+            } // end while que recorre siempre e imprime siempre que sea el depto
+              // correspondiente
+            ImprimirTabla();
+        } // end if
+    }// end Imprimir Por Depto
+
     public static void main(String[] args) {
         ListaEncadenadaDoble2 lis = new ListaEncadenadaDoble2();
         int opcion;
@@ -171,6 +189,7 @@ public class ListaEncadenadaDoble2 {
                     + "\n4. Imprimir hacia la derecha "
                     + "\n5. Imprimir hacia la izquierda"
                     + "\n6. Imprimir el que tiene suedlo Mayor"
+                    + "\n7. Imprimir los de cierto departamento"
                     + "\n0. Salir"
                     + "\nSELECCIONE UNA OPCION"));
 
@@ -199,6 +218,11 @@ public class ListaEncadenadaDoble2 {
                     break;
                 case 6:
                     lis.PrecioMayor();
+                    break;
+                case 7:
+                    depto = Integer.parseInt(JOptionPane.showInputDialog(null,
+                            "Ingrese numero de articulo que desea eliminar: "));
+                    lis.ImprimirPorDepto(depto);
                     break;
                 case 0:
                     JOptionPane.showMessageDialog(null, "Saliendo...");
