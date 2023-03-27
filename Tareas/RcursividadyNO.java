@@ -43,6 +43,23 @@ public class RcursividadyNO {
         return b;
     }//end Fibonacci NO recursivo
 
+    public static int SeparaSumaNORecursivo(int num){
+        int suma = 0;
+        while (num != 0) {
+            int digito = num % 10;
+            suma += digito;
+            num /= 10;
+        }//end while
+        return suma;
+    }// end separa los digitos y los suma No Recursivo
+
+    public static int SeparaSumaRecursivo(int num){
+        if (num < 10) {
+            return num;
+        }
+        return num % 10 + SeparaSumaRecursivo(num / 10);
+    }//end separa los digitos y los suma Recursivo
+
     public static void main(String[] args) {
         int opcion;
         do {
@@ -51,6 +68,8 @@ public class RcursividadyNO {
                     "\n2. Factorial NO Recursivo" +
                     "\n3. Fibonacci Recursivo" +
                     "\n4. Fibonacci NO Recursivo" +
+                    "\n5. Separa los numeros y los suma Recursivo" +
+                    "\n6. Separa los numeros y los suma NO Recursivo" +
                     "\n0. Salir"));
             int num;
             switch (opcion) {
@@ -70,9 +89,17 @@ public class RcursividadyNO {
                     num = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese el numero: "));
                     JOptionPane.showMessageDialog(null,"El numero fibonacci de " + num + " es: " + FibonacciNORecursivo(num));
                     break;
+                case 5:
+                    num = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese el numero: "));
+                    JOptionPane.showMessageDialog(null,"La suma de los digitos del "+num +" es de : " + SeparaSumaRecursivo(num));
+                    break;
+                case 6:
+                    num = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese el numero: "));
+                    JOptionPane.showMessageDialog(null,"La suma de los digitos del "+num +" es de : " + SeparaSumaNORecursivo(num));
+                    break;
                 
                 case 0:
-                    JOptionPane.showMessageDialog(null,"Saliendo");
+                    JOptionPane.showMessageDialog(null,"Saliendo...");
                     break;
 
                 default:
