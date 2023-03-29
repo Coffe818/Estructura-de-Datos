@@ -11,7 +11,7 @@ public class TorresDeHanoi {
     static int origen;
     static int destino;
 
-    public static void MoverDisco(Stack<Integer> pilaOrigen, int destino, int n) {
+    public static void MoverDisco(Stack<Integer> pilaOrigen, int destino) {
         Stack<Integer> pilaDestino = null;
         switch (destino) {
             case 1:
@@ -28,53 +28,54 @@ public class TorresDeHanoi {
                 return;
         }//end switch
         if (!pilaOrigen.empty() && (pilaDestino.empty() || pilaDestino.peek() > pilaOrigen.peek())) {
-            int disco = pilaOrigen.pop();
-            pilaDestino.push(disco);
-            System.out.println("Mover disco " + disco + " de " + origen + " a " + destino);
+            int DiscoEliminado = pilaOrigen.pop();
+            pilaDestino.push(DiscoEliminado);
+            System.out.println("Mover disco " + DiscoEliminado + " de pila " + origen + " a pila " + destino);
         } else {
             System.out.println("Movimiento no válido");
         }//end if else
     }// end Mover Disco
-
     
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.print("Ingrese la cantidad de discos: ");
-        int n = sc.nextInt();
+        int CantidadElementos = sc.nextInt();
 
-        for (int i = n; i >= 1; i--) {
+        for (int i = CantidadElementos; i >= 1; i--) {
             pila1.push(i);
-        }
+        }//end for para llena la pila 1
+
         boolean juegoTerminado = false;
         while (!juegoTerminado) {
-            System.out.println("Pila A: " + pila1.toString());
-            System.out.println("Pila B: " + pila2.toString());
-            System.out.println("Pila C: " + pila3.toString());
+            System.out.println("Pila 1: " + pila1.toString());
+            System.out.println("Pila 2: " + pila2.toString());
+            System.out.println("Pila 3: " + pila3.toString());
+
             System.out.print("Ingrese la pila de origen (1, 2, 3): ");
-            origen = sc.next().charAt(0);
+            origen = sc.nextInt();
             System.out.print("Ingrese la pila de destino (1, 2, 3): ");
-            destino = sc.next().charAt(0);
+            destino = sc.nextInt();
+
             switch (origen) {
                 case 1:
-                    MoverDisco(pila1, destino, n);
+                    MoverDisco(pila1, destino);
                     break;
                 case 2:
-                    MoverDisco(pila2, destino, n);
+                    MoverDisco(pila2, destino);
                     break;
                 case 3:
-                    MoverDisco(pila3, destino, n);
+                    MoverDisco(pila3, destino);
                     break;
                 default:
                     System.out.println("Pila no válida");
                     break;
-            }
-            if (pila3.size() == n) {
+            }// end swithc
+
+            if (pila3.size() == CantidadElementos) {
                 System.out.println("¡Juego terminado!");
                 juegoTerminado = true;
-            }
-        }
+            }//end if 
+        }//end while
         sc.close();
-    }
-
-    
+    }//end main
 }// end class
