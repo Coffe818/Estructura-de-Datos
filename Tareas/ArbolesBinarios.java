@@ -102,7 +102,7 @@ public class ArbolesBinarios {
     // RECORRIDOS//
     public void PreOrder(Nodo nodo) {
         if (nodo != null) {
-            System.out.print(nodo.matricula + " ");
+            System.out.print(nodo.matricula + " "+ nodo.nombre);
             PreOrder(nodo.Hijoizq);
             PreOrder(nodo.Hijoder);
         }
@@ -111,7 +111,7 @@ public class ArbolesBinarios {
     public void InOrder(Nodo nodo) {
         if (nodo != null) {
             InOrder(nodo.Hijoizq);
-            System.out.print(nodo.matricula + " ");
+            System.out.print(nodo.matricula + " "+ nodo.nombre);
             InOrder(nodo.Hijoder);
         }
     }// end InOrder
@@ -120,8 +120,22 @@ public class ArbolesBinarios {
         if (nodo != null) {
             PostOrder(nodo.Hijoizq);
             PostOrder(nodo.Hijoder);
-            System.out.print(nodo.matricula + " ");
+            System.out.print(nodo.matricula + " "+nodo.nombre);
         }
     }// end PostOrder
 
+    public int Profundidad(Nodo nodo) {
+        if (nodo == null) {
+            return 0;
+        } else {
+            int leftDepth = Profundidad(nodo.Hijoizq);
+            int rightDepth = Profundidad(nodo.Hijoder);
+            if (leftDepth > rightDepth) {
+                return leftDepth + 1;
+            } else {
+                return rightDepth + 1;
+            }//end if else que lleva el conteo
+        }//end if else
+    }//end Profundidad
+    
 }// end calss
