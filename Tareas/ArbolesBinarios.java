@@ -137,5 +137,24 @@ public class ArbolesBinarios {
             }//end if else que lleva el conteo
         }//end if else
     }//end Profundidad
+
+    public void Raiz(Nodo nodo) {
+        if (nodo != null) {
+            System.out.println("Matrícula: " + nodo.matricula);
+            System.out.println("Nombre: " + nodo.nombre);
+            System.out.println("Estatus: " + nodo.estatus);
+        }//end if
+    }//end Raiz
+
+    public int CantidadNodos(Nodo nodo) {
+        if (nodo == null) {
+            return 0;
+        } else {
+            int count = 1;
+            count += CantidadNodos(nodo.Hijoizq);
+            count += CantidadNodos(nodo.Hijoder);
+            return count;
+        }//end if else que lleva el conteo
+    }// end CantidadNodos
     
 }// end calss
