@@ -1,5 +1,7 @@
 package Tareas;
 
+import javax.swing.JOptionPane;
+
 public class ArbolesBinarios {
     class Nodo {
         Nodo Hijoizq;
@@ -18,7 +20,7 @@ public class ArbolesBinarios {
 
     }// end nodo
 
-    Nodo raiz;
+    static Nodo raiz;
     Nodo NuevoNodo;
 
     public void AgregarNodo(int matricula, String nombre) {
@@ -102,7 +104,9 @@ public class ArbolesBinarios {
     // RECORRIDOS//
     public void PreOrder(Nodo nodo) {
         if (nodo != null) {
-            System.out.print(nodo.matricula + " "+ nodo.nombre);
+            if (nodo.estatus != 'B') {
+                System.out.print(", " + nodo.matricula + " " + nodo.nombre);
+            }
             PreOrder(nodo.Hijoizq);
             PreOrder(nodo.Hijoder);
         }
@@ -111,7 +115,9 @@ public class ArbolesBinarios {
     public void InOrder(Nodo nodo) {
         if (nodo != null) {
             InOrder(nodo.Hijoizq);
-            System.out.print(nodo.matricula + " "+ nodo.nombre);
+            if (nodo.estatus != 'B') {
+                System.out.print(", " + nodo.matricula + " " + nodo.nombre);
+            }
             InOrder(nodo.Hijoder);
         }
     }// end InOrder
@@ -120,7 +126,9 @@ public class ArbolesBinarios {
         if (nodo != null) {
             PostOrder(nodo.Hijoizq);
             PostOrder(nodo.Hijoder);
-            System.out.print(nodo.matricula + " "+nodo.nombre);
+            if (nodo.estatus != 'B') {
+                System.out.print(", " + nodo.matricula + " " + nodo.nombre);
+            }
         }
     }// end PostOrder
 
@@ -134,17 +142,17 @@ public class ArbolesBinarios {
                 return leftDepth + 1;
             } else {
                 return rightDepth + 1;
-            }//end if else que lleva el conteo
-        }//end if else
-    }//end Profundidad
+            } // end if else que lleva el conteo
+        } // end if else
+    }// end Profundidad
 
-    public void Raiz(Nodo nodo) {
-        if (nodo != null) {
-            System.out.println("Matrícula: " + nodo.matricula);
-            System.out.println("Nombre: " + nodo.nombre);
-            System.out.println("Estatus: " + nodo.estatus);
-        }//end if
-    }//end Raiz
+    public void Raiz() {
+        if (raiz != null) {
+            System.out.println("Matrícula: " + raiz.matricula);
+            System.out.println("Nombre: " + raiz.nombre);
+            System.out.println("Estatus: " + raiz.estatus);
+        } // end if
+    }// end Raiz
 
     public int CantidadNodos(Nodo nodo) {
         if (nodo == null) {
@@ -154,7 +162,68 @@ public class ArbolesBinarios {
             count += CantidadNodos(nodo.Hijoizq);
             count += CantidadNodos(nodo.Hijoder);
             return count;
-        }//end if else que lleva el conteo
+        } // end if else que lleva el conteo
     }// end CantidadNodos
-    
+
+    public static void main(String[] args) {
+        ArbolesBinarios Arbol = new ArbolesBinarios();
+        int opcion;
+
+        do {
+
+            opcion = Integer.parseInt(JOptionPane.showInputDialog(null, "====== MENU ARBOL BINARIO ======\n"
+                    + "1. Alta de elemento\n"
+                    + "2. Baja Logica de elemento\n"
+                    + "3. Baja fisica\n"
+                    + "4. Recorrido PREORDER \n"
+                    + "5. Recorrido INORDER\n"
+                    + "6. Recorrido POSTORDER\n"
+                    + "7. Profundidad\n"
+                    + "8. Imprimir Nodo Raiz\n"
+                    + "9. Cantidad de Nodos\n"
+                    + "0. Salir\n"
+                    + "Ingrese opción: \n"));
+
+            switch (opcion) {
+                case 1:
+                    int matricula = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese matricula: "));
+                    String nombre = JOptionPane.showInputDialog(null, "Ingrese nombre: ");
+                    Arbol.AgregarNodo(matricula, nombre);
+                    break;
+                case 2:
+                    matricula = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese matricula: "));
+                    Arbol.BajaLogica(matricula);
+                    break;
+                case 3:
+                    matricula = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese matricula: "));
+                    Arbol.BajaFisica(matricula);
+                    break;
+                case 4:
+                    Arbol.PreOrder(raiz);
+                    break;
+                case 5:
+                    Arbol.InOrder(raiz);
+                    break;
+                case 6:
+                    Arbol.PostOrder(raiz);
+                    break;
+                case 7:
+                    JOptionPane.showMessageDialog(null, Arbol.Profundidad(raiz));
+                    break;
+                case 8:
+                    Arbol.Raiz();
+                    break;
+                case 9:
+                    JOptionPane.showMessageDialog(null, Arbol.CantidadNodos(raiz));
+                    break;
+                case 0:
+                    break;
+                default:
+                    JOptionPane.showMessageDialog(null, "Opción inválida");
+                    break;
+
+            }// end switch
+            System.out.println();
+        } while (opcion != 0);
+    }// end main
 }// end calss
