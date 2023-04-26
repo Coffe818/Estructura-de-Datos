@@ -1,6 +1,9 @@
 package Tareas;
 
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 public class ArbolesBinarios {
     class Nodo {
@@ -22,6 +25,26 @@ public class ArbolesBinarios {
 
     static Nodo raiz;
     Nodo NuevoNodo;
+    DefaultTableModel modelo = new DefaultTableModel();// aqui agrego los datos
+    JTable tabla = new JTable();// aqui se agregan a la tabla
+    JScrollPane scrollPane = new JScrollPane();// en cso de que sea muy grande y necesite parras de desplasamiento
+
+    public void NombreColumnas() {
+        modelo = new DefaultTableModel();
+        modelo.addColumn("Matricula");
+        modelo.addColumn("Nombre");
+    }// end Nombre columnas
+
+    public void AgregarDatos(int matricula, String nombre) {
+        Object[] fila = { matricula, nombre };
+        modelo.addRow(fila);
+    }// end agregar datos
+
+    public void ImprimirTabla() {
+        tabla = new JTable(modelo);
+        scrollPane = new JScrollPane(tabla);
+        JOptionPane.showMessageDialog(null, scrollPane);
+    }// end imprimirTabla
 
     public void AgregarNodo(int matricula, String nombre) {
         NuevoNodo = new Nodo(matricula, nombre);
@@ -105,19 +128,19 @@ public class ArbolesBinarios {
     public void PreOrder(Nodo nodo) {
         if (nodo != null) {
             if (nodo.estatus != 'B') {
-                System.out.print(", " + nodo.matricula + " " + nodo.nombre);
-            }
+                AgregarDatos(nodo.matricula, nodo.nombre);
+            } // end if para agregar datos
             PreOrder(nodo.Hijoizq);
             PreOrder(nodo.Hijoder);
         }
-    }// end preOrder
+    }// end PreOrder
 
     public void InOrder(Nodo nodo) {
         if (nodo != null) {
             InOrder(nodo.Hijoizq);
             if (nodo.estatus != 'B') {
-                System.out.print(", " + nodo.matricula + " " + nodo.nombre);
-            }
+                AgregarDatos(nodo.matricula, nodo.nombre);
+            } // end if para agregar datos
             InOrder(nodo.Hijoder);
         }
     }// end InOrder
@@ -127,10 +150,29 @@ public class ArbolesBinarios {
             PostOrder(nodo.Hijoizq);
             PostOrder(nodo.Hijoder);
             if (nodo.estatus != 'B') {
-                System.out.print(", " + nodo.matricula + " " + nodo.nombre);
-            }
+                AgregarDatos(nodo.matricula, nodo.nombre);
+            } // end if para agregar datos
         }
     }// end PostOrder
+     // metodos para imprimir
+
+    public void ImprimirPreOrder() {
+        NombreColumnas();
+        PreOrder(raiz);
+        ImprimirTabla();
+    }// end ImprimirPreOrder
+
+    public void ImprimirInOrder() {
+        NombreColumnas();
+        InOrder(raiz);
+        ImprimirTabla();
+    }// end ImprimirInOrder
+
+    public void ImprimirPostOrder() {
+        NombreColumnas();
+        PostOrder(raiz);
+        ImprimirTabla();
+    }// end ImprimirPostOrder
 
     public int Profundidad(Nodo nodo) {
         if (nodo == null) {
@@ -148,9 +190,8 @@ public class ArbolesBinarios {
 
     public void Raiz() {
         if (raiz != null) {
-            System.out.println("Matrícula: " + raiz.matricula);
-            System.out.println("Nombre: " + raiz.nombre);
-            System.out.println("Estatus: " + raiz.estatus);
+            JOptionPane.showMessageDialog(null, "Matrícula: " + raiz.matricula +
+                    "\nNombre: " + raiz.nombre + "\nEstatus: " + raiz.estatus);
         } // end if
     }// end Raiz
 
@@ -199,13 +240,13 @@ public class ArbolesBinarios {
                     Arbol.BajaFisica(matricula);
                     break;
                 case 4:
-                    Arbol.PreOrder(raiz);
+                    Arbol.ImprimirPreOrder();
                     break;
                 case 5:
-                    Arbol.InOrder(raiz);
+                    Arbol.ImprimirInOrder();
                     break;
                 case 6:
-                    Arbol.PostOrder(raiz);
+                    Arbol.ImprimirPostOrder();
                     break;
                 case 7:
                     JOptionPane.showMessageDialog(null, Arbol.Profundidad(raiz));
