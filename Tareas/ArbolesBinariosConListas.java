@@ -4,35 +4,75 @@ import java.util.LinkedList;
 
 public class ArbolesBinariosConListas {
     //esta clase es para el arbol
-    public class NODOB{
+    public class NodoB{
         int NumEmp;
         String NomEmp;
         float Sueldo;
-        NODOB LCHILD;
-        NODOB RCHILD;
+        NodoB LCHILD;
+        NodoB RCHILD;
 
-        public NODOB(int NumEmp, String NomEmp, float Sueldo) {
+        public NodoB(int NumEmp, String NomEmp, float Sueldo) {
             this.NumEmp = NumEmp;
             this.NomEmp = NomEmp;
             this.Sueldo = Sueldo;
             this.LCHILD = null;
             this.RCHILD = null;
         }//end constructor
-    }//end class NODOB
+    }//end class NodoB
+    NodoB raiz;
+    NodoB NuevoNodoB;
 
     //esta clase es para la lista
     LinkedList <Integer> cola = new LinkedList<Integer>();
-    public class NODOL{
+    public class NodoL{
         int NumEmp;
         String NomEmp;
         float Sueldo;
-        NODOL Next;
+        NodoL next;
 
-        public NODOL(int NumEmp, String NomEmp, float Sueldo) {
+        public NodoL(int NumEmp, String NomEmp, float Sueldo) {
             this.NumEmp = NumEmp;
             this.NomEmp = NomEmp;
             this.Sueldo = Sueldo;
         }//end constructor
     }//end class NODOB
+    NodoL ant;
+    NodoL temp;
+    NodoL NuevoNodoL;
+    NodoL nc;
+
+    public ArbolesBinariosConListas() {
+        NuevoNodoL = new NodoL(0, null, 0);
+        nc = NuevoNodoL;
+        nc.next=nc;
+        temp=nc;
+    }// end contstructor y deja nc vacio
+
+    public void AgregarNodo(int numEmp, String nombre, float sueldo) {
+        NuevoNodoB = new NodoB(numEmp, nombre, sueldo);
+        if (raiz == null) {
+            raiz = NuevoNodoB;
+        } else {
+            NodoB actual = raiz;
+            NodoB padre;
+            while (true) {
+                padre = actual;
+                if (numEmp < actual.NumEmp) {
+                    actual = actual.LCHILD;
+                    if (actual == null) {
+                        padre.LCHILD = NuevoNodoB;
+                        return;
+                    } // end if para agregar el nodo
+                } else {
+                    actual = actual.RCHILD;
+                    if (actual == null) {
+                        padre.RCHILD = NuevoNodoB;
+                        return;
+                    } // end if para agregar el nodo
+                } // end if para agregar el nodo ya sea derecha o izquierda
+            } // end while para saber a donde dirigirse
+        } // end if else de raiz
+    }// end Agregar Nodo o alta de un nodo en el arbol
+
     
 }// end class
