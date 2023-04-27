@@ -199,7 +199,10 @@ public class ArbolesBinarios {
         if (nodo == null) {
             return 0;
         } else {
-            int count = 1;
+            int count=0;
+            if (nodo.estatus != 'B') {
+            count = 1;
+            }
             count += CantidadNodos(nodo.Hijoizq);
             count += CantidadNodos(nodo.Hijoder);
             return count;
