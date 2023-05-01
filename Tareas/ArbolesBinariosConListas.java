@@ -51,6 +51,10 @@ public class ArbolesBinariosConListas {
         temp = nc;
     }// end contstructor y deja nc vacio
 
+    public boolean Vacia() {
+        return nc.next == nc;
+    }// end Vacia
+
     public void AltaEnArbol(int numEmp, String nombre, float sueldo) {
         NuevoNodoB = new NodoB(numEmp, nombre, sueldo);
         if (raiz == null) {
@@ -92,20 +96,21 @@ public class ArbolesBinariosConListas {
         ant.next = NuevoNodoL;
     }// end insertar
 
-    public void PasarArbolaLista(NodoB nodo,  NodoL nodopasar) {
+    public void PasarArbolaLista(NodoB nodo, NodoL nodopasar) {
         if (nodo != null) {
-            PasarArbolaLista(nodo.LCHILD,  nodopasar);
-            if (nodo.NumEmp==nodopasar.NumEmp) {
+            PasarArbolaLista(nodo.LCHILD, nodopasar);
+            if (nodo.NumEmp == nodopasar.NumEmp) {
                 AltaEnLista(nodo.NumEmp, nodo.NomEmp, nodo.Sueldo);
-            }//end if para pasar el nodo si es igual al numemp que queremos
-            PasarArbolaLista(nodo.RCHILD,  nodopasar);
-        }//en if    
-    }//end PasarArbolaLista
+            } // end if para pasar el nodo si es igual al numemp que queremos
+            PasarArbolaLista(nodo.RCHILD, nodopasar);
+        } // en if
+    }// end PasarArbolaLista
 
-     // RECORRIDOS//
-     public void PreOrder(NodoB nodo) {
+    // RECORRIDOS//
+    public void PreOrder(NodoB nodo) {
         if (nodo != null) {
-            System.out.println("NumEmp: "+nodo.NumEmp+", NomEmp: "+nodo.NomEmp+" ,Sueldo: "+nodo.Sueldo+"\n");
+            System.out
+                    .println("NumEmp: " + nodo.NumEmp + ", NomEmp: " + nodo.NomEmp + " ,Sueldo: " + nodo.Sueldo + "\n");
             PreOrder(nodo.LCHILD);
             PreOrder(nodo.RCHILD);
         }
@@ -114,7 +119,8 @@ public class ArbolesBinariosConListas {
     public void InOrder(NodoB nodo) {
         if (nodo != null) {
             InOrder(nodo.LCHILD);
-            System.out.println("NumEmp: "+nodo.NumEmp+", NomEmp: "+nodo.NomEmp+" ,Sueldo: "+nodo.Sueldo+"\n");
+            System.out
+                    .println("NumEmp: " + nodo.NumEmp + ", NomEmp: " + nodo.NomEmp + " ,Sueldo: " + nodo.Sueldo + "\n");
             InOrder(nodo.RCHILD);
         }
     }// end InOrder
@@ -123,7 +129,22 @@ public class ArbolesBinariosConListas {
         if (nodo != null) {
             PostOrder(nodo.LCHILD);
             PostOrder(nodo.RCHILD);
-            System.out.println("NumEmp: "+nodo.NumEmp+", NomEmp: "+nodo.NomEmp+" ,Sueldo: "+nodo.Sueldo+"\n");
+            System.out
+                    .println("NumEmp: " + nodo.NumEmp + ", NomEmp: " + nodo.NomEmp + " ,Sueldo: " + nodo.Sueldo + "\n");
         }
     }// end PostOrder
+
+    public void ImprimirLista() {
+        if (!Vacia()) {
+            temp = nc.next;
+            while (temp != nc) {
+                System.out
+                    .println("NumEmp: " + temp.NumEmp + ", NomEmp: " + temp.NomEmp + " ,Sueldo: " + temp.Sueldo + "\n");
+                temp = temp.next;
+            }
+        } else {
+            System.out.println("La lista esta vacia");
+        } // end if else
+    }// end Imprimir Todo
+
 }// end class
