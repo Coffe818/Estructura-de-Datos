@@ -100,13 +100,11 @@ public class ArbolesBinariosConListas {
         ant.next = NuevoNodoL;
     }// end insertar
 
-    public void PasarArbolaCola(NodoB nodo, NodoL nodopasar) {
+    public void PasarArbolaCola(NodoB nodo) {
         if (nodo != null) {
-            PasarArbolaCola(nodo.LCHILD, nodopasar);
-            if (nodo.NumEmp == nodopasar.NumEmp) {
-                cola.add(nodo.NumEmp);
-            } // end if para pasar el nodo si es igual al numemp que queremos
-            PasarArbolaCola(nodo.RCHILD, nodopasar);
+            PasarArbolaCola(nodo.LCHILD);
+            cola.add(nodo.NumEmp);
+            PasarArbolaCola(nodo.RCHILD);
         } // en if
     }// end PasarArbolaCola
 
@@ -200,8 +198,8 @@ public class ArbolesBinariosConListas {
         nc.next = nc;
     }// end BorrarLista
      // los puse separados porque sino se estaria borrando cadavez que vuelva a
-     // iniciar el metodo PasasArbolLista, cuando quiera este, primero tengo 
-     //que llamar BorrarLista y luego PasarArbolaLista
+     // iniciar el metodo PasasArbolLista, cuando quiera este, primero tengo
+     // que llamar BorrarLista y luego PasarArbolaLista
 
     public void PasarArbolaLista(NodoB nodo) {
         if (nodo != null) {
@@ -212,10 +210,12 @@ public class ArbolesBinariosConListas {
     }// end BorrarLista
 
     public void PasarListaaArbol() {
-        temp=nc.next;
-        while (temp!=nc) {
-            AltaEnArbol(temp.NumEmp,temp.NomEmp, temp.Sueldo);
-            temp=temp.next;
-        }//end while
-    }//end Pasar Lista a Arbol
+        temp = nc.next;
+        while (temp != nc) {
+            AltaEnArbol(temp.NumEmp, temp.NomEmp, temp.Sueldo);
+            temp = temp.next;
+        } // end while
+    }// end Pasar Lista a Arbol
+
+   
 }// end class
