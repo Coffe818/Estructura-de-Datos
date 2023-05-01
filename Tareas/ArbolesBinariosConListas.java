@@ -57,7 +57,7 @@ public class ArbolesBinariosConListas {
 
     private boolean VaciaCola() {
         return cola.isEmpty();
-    }//end vacia
+    }// end vacia
 
     public void AltaEnArbol(int numEmp, String nombre, float sueldo) {
         NuevoNodoB = new NodoB(numEmp, nombre, sueldo);
@@ -108,7 +108,7 @@ public class ArbolesBinariosConListas {
             } // end if para pasar el nodo si es igual al numemp que queremos
             PasarArbolaCola(nodo.RCHILD, nodopasar);
         } // en if
-    }// end PasarArbolaLista
+    }// end PasarArbolaCola
 
     // RECORRIDOS//
     public void PreOrder(NodoB nodo) {
@@ -143,7 +143,8 @@ public class ArbolesBinariosConListas {
             temp = nc.next;
             while (temp != nc) {
                 System.out
-                    .println("NumEmp: " + temp.NumEmp + ", NomEmp: " + temp.NomEmp + " ,Sueldo: " + temp.Sueldo + "\n");
+                        .println("NumEmp: " + temp.NumEmp + ", NomEmp: " + temp.NomEmp + " ,Sueldo: " + temp.Sueldo
+                                + "\n");
                 temp = temp.next;
             }
         } else {
@@ -153,11 +154,11 @@ public class ArbolesBinariosConListas {
 
     public void ImpimirCola() {
         if (!VaciaCola()) {
-           System.out.println(cola.toString()); 
+            System.out.println(cola.toString());
         } else {
             System.out.println("La cola esta vacia");
-        }//end if
-    }//end Imprimir Cola
+        } // end if
+    }// end Imprimir Cola
 
     public void CantidadNodosLista() {
         int contador = 0;
@@ -166,14 +167,14 @@ public class ArbolesBinariosConListas {
             contador++;
             temp = temp.next;
         } // end while
-        System.out.println("La cantidad de nodos en la lista es de: " + contador );
-    }// end  Catidades Nodos Lista
+        System.out.println("La cantidad de nodos en la lista es de: " + contador);
+    }// end Catidades Nodos Lista
 
     public int CantidadNodosArbol(NodoB nodo) {
         if (nodo == null) {
             return 0;
         } else {
-            int count=0;
+            int count = 0;
             count = 1;
             count += CantidadNodosArbol(nodo.LCHILD);
             count += CantidadNodosArbol(nodo.RCHILD);
@@ -194,5 +195,20 @@ public class ArbolesBinariosConListas {
             } // end if else que lleva el conteo
         } // end if else
     }// end Profundidad
+
+    public void BorrarLista() {
+        nc.next = nc;
+    }// end BorrarLista
+     // los puse separados porque sino se estaria borrando cadavez que vuelva a
+     // iniciar el metodo PasasArbolLista, cuando quiera este, primero tengo 
+     //que llamar BorrarLista y luego PasarArbolaLista
+
+    public void PasarArbolaLista(NodoB nodo) {
+        if (nodo != null) {
+            PasarArbolaLista(nodo.LCHILD);
+            AltaEnLista(nodo.NumEmp, nodo.NomEmp, nodo.Sueldo);
+            PasarArbolaLista(nodo.RCHILD);
+        } // en if
+    }// end BorrarLista
 
 }// end class
