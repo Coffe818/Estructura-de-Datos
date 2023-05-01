@@ -51,9 +51,13 @@ public class ArbolesBinariosConListas {
         temp = nc;
     }// end contstructor y deja nc vacio
 
-    public boolean Vacia() {
+    public boolean VaciaLista() {
         return nc.next == nc;
     }// end Vacia
+
+    private boolean VaciaCola() {
+        return cola.isEmpty();
+    }//end vacia
 
     public void AltaEnArbol(int numEmp, String nombre, float sueldo) {
         NuevoNodoB = new NodoB(numEmp, nombre, sueldo);
@@ -100,7 +104,7 @@ public class ArbolesBinariosConListas {
         if (nodo != null) {
             PasarArbolaLista(nodo.LCHILD, nodopasar);
             if (nodo.NumEmp == nodopasar.NumEmp) {
-                AltaEnLista(nodo.NumEmp, nodo.NomEmp, nodo.Sueldo);
+                cola.add(nodo.NumEmp);
             } // end if para pasar el nodo si es igual al numemp que queremos
             PasarArbolaLista(nodo.RCHILD, nodopasar);
         } // en if
@@ -135,7 +139,7 @@ public class ArbolesBinariosConListas {
     }// end PostOrder
 
     public void ImprimirLista() {
-        if (!Vacia()) {
+        if (!VaciaLista()) {
             temp = nc.next;
             while (temp != nc) {
                 System.out
@@ -146,5 +150,37 @@ public class ArbolesBinariosConListas {
             System.out.println("La lista esta vacia");
         } // end if else
     }// end Imprimir Todo
+
+    public void ImpimirCola() {
+        if (!VaciaCola()) {
+           System.out.println(cola.toString()); 
+        } else {
+            System.out.println("La cola esta vacia");
+        }//end if
+    }//end Imprimir Cola
+
+    public void CantidadNodosLista() {
+        int contador = 0;
+        temp = nc.next;
+        while (temp != nc) {
+            contador++;
+            temp = temp.next;
+        } // end while
+        System.out.println("La cantidad de nodos en la lista es de: " + contador );
+    }// end  Catidades Nodos Lista
+
+    public int CantidadNodosArbol(NodoB nodo) {
+        if (nodo == null) {
+            return 0;
+        } else {
+            int count=0;
+            count = 1;
+            count += CantidadNodosArbol(nodo.LCHILD);
+            count += CantidadNodosArbol(nodo.RCHILD);
+            return count;
+        } // end if else que lleva el conteo
+    }// end CantidadNodos
+
+    
 
 }// end class
