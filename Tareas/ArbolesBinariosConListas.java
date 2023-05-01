@@ -1,6 +1,7 @@
 package Tareas;
 
 import java.util.LinkedList;
+import java.util.Scanner;
 
 public class ArbolesBinariosConListas {
     // esta clase es para el arbol
@@ -20,7 +21,7 @@ public class ArbolesBinariosConListas {
         }// end constructor
     }// end class NodoB
 
-    NodoB raiz;
+    static NodoB raiz;
     NodoB NuevoNodoB;
 
     // esta clase es para la lista
@@ -217,5 +218,95 @@ public class ArbolesBinariosConListas {
         } // end while
     }// end Pasar Lista a Arbol
 
-   
+    public static void main(String[] args) {
+        ArbolesBinariosConListas arbol = new ArbolesBinariosConListas();
+        Scanner s = new Scanner(System.in);
+        int opcion = 0;
+        do {
+            System.out.println("=============Menu Arbol Binario con listas==================\n"
+                    + "1. Alta de elemento en el arbol\n"
+                    + "2. Alta de elemento en lista encadenada circular\n"
+                    + "3. Pasar todos los NumEmp del arbol a la cola\n"
+                    + "4. Recorrido PREORDER \n"
+                    + "5. Recorrido INORDER\n"
+                    + "6. Recorrido POSTORDER\n"
+                    + "7. Imprimir lista encadenada circular\n"
+                    + "8. Imprimir Cola\n"
+                    + "9. Cantidad de Nodos en la lista encadenada simple circular\n"
+                    + "10. Cantidad de Nodos en el arbol binario\n"
+                    + "11. Proundidad del arbol\n"
+                    + "12. Borrar lista y pasar los datos del arbol a la lista\n"
+                    + "13. Pasar de la lista al arbol\n"
+                    + "0. Salir\n"
+                    + "Ingrese opción: \n");
+            opcion = s.nextInt();
+            switch (opcion) {
+                case 1:
+                    System.out.println("Numero de empleado: ");
+                    int numemp = s.nextInt();
+                    System.out.println("Sueldo de empleado: ");
+                    Float sueldo = s.nextFloat();
+                    s.nextLine();
+                    System.out.println("Nombre de empleado: ");
+                    String nomemp = s.nextLine();
+
+                    arbol.AltaEnArbol(numemp, nomemp, sueldo);
+                    break;
+                case 2:
+                    System.out.println("Numero de empleado: ");
+                    numemp = s.nextInt();
+                    System.out.println("Sueldo de empleado: ");
+                    sueldo = s.nextFloat();
+                    s.nextLine();
+                    System.out.println("Nombre de empleado: ");
+                    nomemp = s.nextLine();
+
+                    arbol.AltaEnLista(numemp, nomemp, numemp);
+                    break;
+                case 3:
+                    arbol.PasarArbolaCola(raiz);
+                    break;
+                case 4:
+                    arbol.PreOrder(raiz);
+                    break;
+                case 5:
+                    arbol.InOrder(raiz);
+                    break;
+                case 6:
+                    arbol.PostOrder(raiz);
+                    break;
+                case 7:
+                    arbol.ImprimirLista();
+                    break;
+                case 8:
+                    arbol.ImpimirCola();
+                    break;
+                case 9:
+                    arbol.CantidadNodosLista();
+                    break;
+                case 10:
+                    System.out.println("La cantidad de nodos en el arbol: " + arbol.CantidadNodosArbol(raiz));
+                    break;
+                case 11:
+                    System.out.println("La profundidad del arbo: " + arbol.Profundidad(raiz));
+                    break;
+                case 12:
+                    arbol.BorrarLista();
+                    arbol.PasarArbolaLista(raiz);
+                    break;
+                case 13:
+                    arbol.PasarListaaArbol();
+                    break;
+                case 0:
+                    System.out.println("Saliendo");
+                    break;
+                default:
+                    System.out.println("Seleccione opcion valida");
+                    break;
+            }// end switch
+
+        } while (opcion != 0);
+
+        s.close();
+    }// end main
 }// end class
