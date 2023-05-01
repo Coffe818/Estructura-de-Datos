@@ -100,13 +100,13 @@ public class ArbolesBinariosConListas {
         ant.next = NuevoNodoL;
     }// end insertar
 
-    public void PasarArbolaLista(NodoB nodo, NodoL nodopasar) {
+    public void PasarArbolaCola(NodoB nodo, NodoL nodopasar) {
         if (nodo != null) {
-            PasarArbolaLista(nodo.LCHILD, nodopasar);
+            PasarArbolaCola(nodo.LCHILD, nodopasar);
             if (nodo.NumEmp == nodopasar.NumEmp) {
                 cola.add(nodo.NumEmp);
             } // end if para pasar el nodo si es igual al numemp que queremos
-            PasarArbolaLista(nodo.RCHILD, nodopasar);
+            PasarArbolaCola(nodo.RCHILD, nodopasar);
         } // en if
     }// end PasarArbolaLista
 
