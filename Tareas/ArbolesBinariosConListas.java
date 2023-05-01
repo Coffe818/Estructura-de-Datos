@@ -102,4 +102,28 @@ public class ArbolesBinariosConListas {
         }//en if    
     }//end PasarArbolaLista
 
+     // RECORRIDOS//
+     public void PreOrder(NodoB nodo) {
+        if (nodo != null) {
+            System.out.println("NumEmp: "+nodo.NumEmp+", NomEmp: "+nodo.NomEmp+" ,Sueldo: "+nodo.Sueldo+"\n");
+            PreOrder(nodo.LCHILD);
+            PreOrder(nodo.RCHILD);
+        }
+    }// end PreOrder
+
+    public void InOrder(NodoB nodo) {
+        if (nodo != null) {
+            InOrder(nodo.LCHILD);
+            System.out.println("NumEmp: "+nodo.NumEmp+", NomEmp: "+nodo.NomEmp+" ,Sueldo: "+nodo.Sueldo+"\n");
+            InOrder(nodo.RCHILD);
+        }
+    }// end InOrder
+
+    public void PostOrder(NodoB nodo) {
+        if (nodo != null) {
+            PostOrder(nodo.LCHILD);
+            PostOrder(nodo.RCHILD);
+            System.out.println("NumEmp: "+nodo.NumEmp+", NomEmp: "+nodo.NomEmp+" ,Sueldo: "+nodo.Sueldo+"\n");
+        }
+    }// end PostOrder
 }// end class
