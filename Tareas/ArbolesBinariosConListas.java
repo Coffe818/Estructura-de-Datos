@@ -181,6 +181,18 @@ public class ArbolesBinariosConListas {
         } // end if else que lleva el conteo
     }// end CantidadNodos
 
-    
+    public int Profundidad(NodoB nodo) {
+        if (nodo == null) {
+            return 0;
+        } else {
+            int leftDepth = Profundidad(nodo.LCHILD);
+            int rightDepth = Profundidad(nodo.RCHILD);
+            if (leftDepth > rightDepth) {
+                return leftDepth + 1;
+            } else {
+                return rightDepth + 1;
+            } // end if else que lleva el conteo
+        } // end if else
+    }// end Profundidad
 
 }// end class
