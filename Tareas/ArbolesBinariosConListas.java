@@ -211,4 +211,11 @@ public class ArbolesBinariosConListas {
         } // en if
     }// end BorrarLista
 
+    public void PasarListaaArbol() {
+        temp=nc.next;
+        while (temp!=nc) {
+            AltaEnArbol(temp.NumEmp,temp.NomEmp, temp.Sueldo);
+            temp=temp.next;
+        }//end while
+    }//end Pasar Lista a Arbol
 }// end class
