@@ -92,4 +92,14 @@ public class ArbolesBinariosConListas {
         ant.next = NuevoNodoL;
     }// end insertar
 
+    public void PasarArbolaLista(NodoB nodo,  NodoL nodopasar) {
+        if (nodo != null) {
+            PasarArbolaLista(nodo.LCHILD,  nodopasar);
+            if (nodo.NumEmp==nodopasar.NumEmp) {
+                AltaEnLista(nodo.NumEmp, nodo.NomEmp, nodo.Sueldo);
+            }//end if para pasar el nodo si es igual al numemp que queremos
+            PasarArbolaLista(nodo.RCHILD,  nodopasar);
+        }//en if    
+    }//end PasarArbolaLista
+
 }// end class
