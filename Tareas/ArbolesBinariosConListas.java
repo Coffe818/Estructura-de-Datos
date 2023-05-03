@@ -59,8 +59,25 @@ public class ArbolesBinariosConListas {
     private boolean VaciaCola() {
         return cola.isEmpty();
     }// end vacia
+    public boolean BuscarNodo(int numEmp) {
+        NodoB actual = raiz;
+        while (actual != null) {
+            if (actual.NumEmp == numEmp) {
+                return true; // se encontró un nodo con el mismo número de empleado
+            } else if (numEmp < actual.NumEmp) {
+                actual = actual.LCHILD;
+            } else {
+                actual = actual.RCHILD;
+            }
+        }//end while para ir recorriendo actual
+        return false; // no se encontró ningún nodo con el mismo número de empleado
+    }// end Buscar Nodo
 
     public void AltaEnArbol(int numEmp, String nombre, float sueldo) {
+        if (BuscarNodo(numEmp)) {
+            System.out.println("El número de empleado ya existe en el árbol.");
+            return;
+        }//end if para saber si se repite o no
         NuevoNodoB = new NodoB(numEmp, nombre, sueldo);
         if (raiz == null) {
             raiz = NuevoNodoB;
