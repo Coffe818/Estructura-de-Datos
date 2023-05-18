@@ -171,8 +171,10 @@ public class ExameOrdinario {
     public void PasarArbolaLista(Nodo nodo) {
         if (nodo != null) {
             PasarArbolaLista(nodo.Hijoizq);
+            if(nodo.estatus!='B'){
             String dato = String.valueOf(nodo.dato);
             AltaEnLista(dato);
+            }
             PasarArbolaLista(nodo.Hijoder);
         } // en if
     }// end BorrarLista
